@@ -8,6 +8,7 @@ A site for fitness enthusiasts to connect with others and track their progress.
 * Jesse Bright
 * Storme Briscoe
 * Ryan Danetaras
+* Haziel Zuniga
 * Carlton Ochoa
 * Zixiang Zhou
 * Daniel Belcher

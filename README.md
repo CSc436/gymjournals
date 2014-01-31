@@ -10,3 +10,4 @@ A site for fitness enthusiasts to connect with others and track their progress.
 * Ryan Danetaras
 * Haziel Zuniga
 * Carlton Ochoa
+* Zixiang Zhou

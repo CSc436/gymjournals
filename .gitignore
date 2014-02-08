@@ -34,3 +34,11 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# angular-seed
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+.idea

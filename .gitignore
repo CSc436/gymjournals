@@ -42,3 +42,9 @@ node_modules/
 tmp
 .DS_Store
 .idea
+
+# auto-generated Gemfile.lock
+Gemfile.lock
+
+# sass cache
+.sass-cache/

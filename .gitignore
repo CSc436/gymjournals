@@ -34,3 +34,17 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# angular-seed
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+.idea
+
+# auto-generated Gemfile.lock
+Gemfile.lock
+
+# sass cache
+.sass-cache/

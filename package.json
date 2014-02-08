@@ -1,0 +1,8 @@
+{
+  "_comment": "Install NodeJS and run `npm install`",
+  "dependencies":
+  {
+    "bower": "1.2.8",
+    "grunt-cli": "0.1.13"
+  }
+}

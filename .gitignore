@@ -48,3 +48,6 @@ Gemfile.lock
 
 # sass cache
 .sass-cache/
+
+# ignore generated files
+app.css

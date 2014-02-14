@@ -3,30 +3,43 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     sass: {
-      options: {
-        includePaths: ['bower_components/foundation/scss']
-      },
       dist: {
         options: {
-          outputStyle: 'compressed'
+          includePaths: ['bower_components/foundation/scss'],
+          outputStyle: 'expanded',
+          sourceComments: 'map',
+          sourceMap: '../scss',
         },
-        files: {
-          'css/app.css': 'scss/app.scss'
-        }        
-      }
+        files: [{
+          expand: true,
+          cwd: 'scss',
+          src: ['**/*.scss', '!**/_*.scss'],
+          dest: 'css',
+          ext: '.css',
+        }],
+      },
+    },
+    autoprefixer: {
+      prefix: {
+        expand: true,
+        src: 'css/*.css',
+      },
     },
 
     watch: {
-      grunt: { files: ['Gruntfile.js'] },
+      grunt: {
+        files: ['Gruntfile.js']
+      },
 
       sass: {
         files: 'scss/**/*.scss',
-        tasks: ['sass']
-      }
-    }
+        tasks: ['sass', 'autoprefixer'],
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['sass']);

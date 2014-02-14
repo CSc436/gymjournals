@@ -27,13 +27,27 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        livereload: true,
+      },
       grunt: {
         files: ['Gruntfile.js']
       },
-
       sass: {
+        options: {
+          livereload: false,
+        },
         files: 'scss/**/*.scss',
         tasks: ['sass', 'autoprefixer'],
+      },
+      html: {
+        files: '**/*.html',
+      },
+      css: {
+        files: 'css/**/*.css',
+      },
+      js: {
+        files: 'js/**/*.js',
       },
     },
   });

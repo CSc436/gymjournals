@@ -1,4 +1,4 @@
-Django==1.6.1
+Django==1.6.2
 astroid==1.0.1
 autopep8==0.9.7
 cov-core==1.7

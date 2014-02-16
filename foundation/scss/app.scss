@@ -37,6 +37,10 @@
   "foundation/components/offcanvas",
   "foundation/components/visibility";
 
+.tabs-content{
+  padding: 5px;
+}
+
 .th img{
   max-height:50px;
   max-width:50px;
@@ -45,6 +49,40 @@
   margin-left: 10px;
   font-size: 24px;
 }
-#post-footer{
-  background-color: red;
+.post{
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  position: relative;
 }
+/* http://www.paulund.co.uk/creating-different-css3-box-shadows-effects */
+.post:before, .post:after{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 40%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+.post:after{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.post-header, .post-content{
+  padding: 12px 22px 0px;
+  margin: 0 auto 0px;
+}
+.post-footer{
+  padding-top: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 50px;
+  background-color: lightgrey;
+}
+

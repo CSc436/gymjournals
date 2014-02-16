@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html ng-app>
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Welcome to Gymjournals!</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+  
+    <div>  
+    </div>
+
+    <div id="panel1" class="content active">
+      <dl class="tabs" data-tab>
+        <dd class="active"><a href="#panel2-1">New User</a></dd>
+        <dd><a href="#panel2-2">Existing User</a></dd>
+
+      </dl>
+      <div class="tabs-content">
+
+
+<!--The new user panel starts from here
+=================================================================================
+-->
+        <div class="content active" id="panel2-1">
+          <form class="custom" id="signupForm"data-abide="ajax">
+<!--Username-->
+            <div class="name-field">
+              <label>Username&nbsp;<small>required</small>
+                <input type="text" id="username" placeholder="Username can only contain letters and numbers"required pattern="alpha_numeric" size="6">
+              </label>
+              <small class="error">No characters allowed except letters and numbers. e.g. fittness</small>
+            </div>
+<!--password-->
+            <div class="password-field">
+                <label>Password <small>required</small>
+                  <input type="password" id="password" 
+                  placeholder="Passwords must be at least 6 characters"
+                  required pattern="[A-z0-9]{6,}" maxlength="20">
+                </label>
+                <small class="error">Your password must match the requirements</small>
+            </div>
+<!--confirm-password-->
+            <div class="password-confirmation-field">
+                <label>Confirm Password <small>required</small>
+                  <input type="password" required  data-equalto="password">
+                </label>
+                <small class="error">The password did not match</small>
+            </div>
+
+<!--email-->
+            <div class="email-field">
+              <label>Email&nbsp;<small>required</small>
+                <input type="email" required placeholder="e.g. fit@gymjournals.com">
+              </label>
+              <small class="error">Please use the right email format<br>
+                </small>
+            </div>
+<!--signup button-->
+            <button type="submit" value="signup">Sign Up</button>
+          </form>        
+
+        </div>
+
+<!--The existing user panel starts from here
+=================================================================================
+-->
+
+        <div class="content" id="panel2-2">
+          <form class="custom" id="signinForm"data-abide="ajax">
+            <!--username-->
+
+            <div class="name-field">
+              <label>Username
+                <input type="text" required>
+              </label>
+            </div>
+
+            
+
+            <!--password-->
+            <div class="password-field">
+                <label>Password 
+                  <input type="password" id="password" 
+                  required>
+                </label>
+            </div>
+
+<!--signup button-->  
+            <button type="submit" value=signin>Sign In</button>
+
+      
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+<!-- javascript
+==================================================
+Placed at the end of the document so the pages load faster -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+<script type="text/javascript">
+//$(window).load( function(){
+// $.extend(true, this.settings, method, options);
+/*  $(document)
+  .foundation({
+    abide : {
+      patterns: {
+        password: /^[A-Z0-9]{6,20}$/
+      }
+    }
+
+  });
+  $('#signupForm')
+  .on('invalid', function () {
+    var invalid_fields = $(this).find('[data-invalid]');
+    console.log(invalid_fields);
+  })
+  .on('valid', function () {
+    console.log('valid!');
+  });
+*/
+//});
+</script>
+
+  </body>
+</html>

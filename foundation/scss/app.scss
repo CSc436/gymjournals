@@ -65,6 +65,12 @@ dd.active a{
   border: 1px solid #e5e5e5;
   position: relative;
 }
+
+.post-header, .post-content{
+  padding: 10px 10px 0px;
+  margin: 0 auto 0px;
+}
+
 /* http://www.paulund.co.uk/creating-different-css3-box-shadows-effects */
 .post:before, .post:after{
   z-index: -1;
@@ -85,10 +91,7 @@ dd.active a{
   left: auto;
 }
 
-.post-header, .post-content{
-  padding: 12px 22px 0px;
-  margin: 0 auto 0px;
-}
+
 .post-footer{
   padding-top: 6px;
   padding-left: 5px;

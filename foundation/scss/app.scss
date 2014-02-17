@@ -37,10 +37,21 @@
   "foundation/components/offcanvas",
   "foundation/components/visibility";
 
+/* navbar item red bottom border */
+dd.active{
+  font-weight: bold;
+  border-bottom: solid red 3px;
+}
+dd.active a{
+  height:55px;
+}
+
+/* everything inside a specific tab in navbar */
 .tabs-content{
   padding: 5px;
 }
 
+/* news feed post */
 .th img{
   max-height:50px;
   max-width:50px;

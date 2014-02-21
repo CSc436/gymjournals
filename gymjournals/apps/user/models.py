@@ -10,19 +10,21 @@ from django.contrib.auth.models import User
 
 class SiteUser(User):
     """
+	first_name - User's firstname
+	last_name - User's lastname
     email - A valid email
     hashed_password - The user's hashed password
     """
-    user_info = models.OneToOneField('UserInfo')
+    userinfo = models.OneToOneField('UserInfo')
     
 
     def __str__(self):
         """Return the email of a user"""
-        return "Email: '{}'".format(self.email)
+        return "Name: {} {}, Email: '{}'".format(self.first_name, self.last_name, self.email)
 
     def __repr__(self):
         """Return the email of a user"""
-        return "User(email='{}')".format(self.email)
+        return "User(first_name='{}', last_name='{}', email='{}')".format(self.first_name, self.last_name, self.email)
 
 SiteUser._meta.get_field('first_name').null=False
 SiteUser._meta.get_field('first_name').blank=False
@@ -33,10 +35,14 @@ SiteUser._meta.get_field('email').blank=False
 
 
 class UserInfo(models.Model):
-    email = models.ForeignKey(SiteUser, primary_key=True)
+    #siteuser = models.OneToOneField(SiteUser, primary_key=True)
     city = models.CharField(max_length=50)
-    state = USStateField()
-    zip_code = USZipCodeField()
+    state = models.CharField(max_length=2)
+    zip_code = models.IntegerField(max_length=5)
     dob = models.DateField()
+
+    def __repr__(self):
+        """Return a representation of this object's info"""
+        return "UserInfo(city={}, state={}, zip_code={}, dob={})".format(self.city, self.state, self.zip_code, self.dob)
 
 

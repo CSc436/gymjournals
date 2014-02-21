@@ -9,16 +9,21 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="css/app.css" />
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:bold" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css">
   </head>
   <body>
-  
-    <div>  
-    </div>
+<!--header-->  
+    <header style="font-family: 'Open sans', arial, sans-serif">Gym Journals 
+    </header>
 
     <div id="panel1" class="content active">
+<!--tabs-->
       <dl class="tabs" data-tab>
-        <dd class="active"><a href="#panel2-1">New User</a></dd>
-        <dd><a href="#panel2-2">Existing User</a></dd>
+<!--new user tab -->
+        <dd class="active"><a class="login_tabs" href="#panel2-1">New User</a></dd>
+<!--existing user tab-->
+        <dd><a  href="#panel2-2">Existing User</a></dd>
 
       </dl>
       <div class="tabs-content">
@@ -32,7 +37,7 @@
 <!--Username-->
             <div class="name-field">
               <label>Username&nbsp;<small>required</small>
-                <input type="text" id="username" placeholder="Username can only contain letters and numbers"required pattern="alpha_numeric" size="6">
+                <input type="text" id="username" placeholder="can only contain letters and numbers"required pattern="alpha_numeric" size="6">
               </label>
               <small class="error">No characters allowed except letters and numbers. e.g. fittness</small>
             </div>
@@ -40,7 +45,7 @@
             <div class="password-field">
                 <label>Password <small>required</small>
                   <input type="password" id="password" 
-                  placeholder="Passwords must be at least 6 characters"
+                  placeholder="at least 6 characters"
                   required pattern="[A-z0-9]{6,}" maxlength="20">
                 </label>
                 <small class="error">Your password must match the requirements</small>
@@ -62,7 +67,7 @@
                 </small>
             </div>
 <!--signup button-->
-            <button type="submit" value="signup">Sign Up</button>
+            <button type="submit" value="signup">Create Profile</button>
           </form>        
 
         </div>

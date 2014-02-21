@@ -36,3 +36,31 @@
   "foundation/components/type",
   "foundation/components/offcanvas",
   "foundation/components/visibility";
+
+button
+    {display:flex;margin:auto;margin-top: 2em}
+ dd
+    {width:50%;
+    text-align:center;
+    
+
+      }
+  }
+.tabs-content
+    {padding:1em}
+
+header
+  { /*box-shadow: 5px 5px 5px;*/
+    font: 2.5em 'Open Sans',Calibri,Arial;
+    text-align: center;
+    padding: 0.5em;
+
+    color: white;
+    background: #162d40;
+    margin-bottom: -2px;
+    background-image: -webkit-linear-gradient(top right, #FFFFFF 0%, #001824 100%);
+  }
+
+
+
+

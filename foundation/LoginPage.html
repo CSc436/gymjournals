@@ -33,7 +33,7 @@
 =================================================================================
 -->
         <div class="content active" id="panel2-1">
-          <form class="custom" id="signupForm"data-abide="ajax">
+          <form class="custom" id="signupForm" data-abide="ajax" onsubmit="registerUser()">
 <!--Username-->
             <div class="name-field">
               <label>Username&nbsp;<small>required</small>
@@ -61,13 +61,13 @@
 <!--email-->
             <div class="email-field">
               <label>Email&nbsp;<small>required</small>
-                <input type="email" required placeholder="e.g. fit@gymjournals.com">
+                <input id="email" type="email" required placeholder="e.g. fit@gymjournals.com">
               </label>
               <small class="error">Please use the right email format<br>
                 </small>
             </div>
 <!--signup button-->
-            <button type="submit" value="signup">Create Profile</button>
+            <button id="signup" type="submit" value="signup">Create Profile</button>
           </form>        
 
         </div>
@@ -82,7 +82,7 @@
 
             <div class="name-field">
               <label>Username
-                <input type="text" required>
+                <input id="username" type="text" required>
               </label>
             </div>
 
@@ -97,7 +97,7 @@
             </div>
 
 <!--signup button-->  
-            <button type="submit" value=signin>Sign In</button>
+            <button id="signin" type="submit" value=signin>Sign In</button>
 
       
           </form>
@@ -115,6 +115,43 @@ Placed at the end of the document so the pages load faster -->
     <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="js/app.js"></script>
+
+<!--send profile to server
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#signup").click(function(){
+      var username_ = $("#panel2-1 #username").val();
+      var password_ = $("#panel2-1 #password").val();
+      var email_ =$("#panel2-1 #email").val();
+      var url="";
+      $.post(url,{username:username_,password:password_,email:email_})
+
+    })
+  })
+
+
+</script>-->
+<!--send login information to server
+
+
+<script type="text/javascript">
+ $(document).ready(function(){
+    $("#signin").click(function(){
+      var username_ = $("#panel2-2 #username").val();
+      var password_ = $("#panel2-2 #password").val();
+      var url="";
+      $.post(url,{username:username_,password:password_})
+
+
+    })
+  })
+
+
+
+
+</script>-->
+
+
 
 <script type="text/javascript">
 //$(window).load( function(){

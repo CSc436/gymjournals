@@ -1029,8 +1029,8 @@ select {
   position: relative;
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
   font-size: 0.8125rem;
-  background-color: #008cba;
-  border-color: #007ba0;
+  background-color: green;
+  border-color: #006e00;
   color: white; }
   /* line 105, bower_components/foundation/scss/foundation/components/alert-boxes */
   .alert-box .close {
@@ -1048,9 +1048,11 @@ select {
       opacity: 0.5; }
   /* line 107, bower_components/foundation/scss/foundation/components/alert-boxes */
   .alert-box.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
   /* line 108, bower_components/foundation/scss/foundation/components/alert-boxes */
   .alert-box.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
   /* line 110, bower_components/foundation/scss/foundation/components/alert-boxes */
   .alert-box.success {
@@ -1475,6 +1477,7 @@ select {
   border-width: 1px;
   background-color: #f4f4f4;
   border-color: gainsboro;
+  -webkit-border-radius: 3px;
   border-radius: 3px; }
   /* line 118, bower_components/foundation/scss/foundation/components/breadcrumbs */
   .breadcrumbs > * {
@@ -1488,7 +1491,7 @@ select {
     /* line 65, bower_components/foundation/scss/foundation/components/breadcrumbs */
     .breadcrumbs > * a, .breadcrumbs > * span {
       text-transform: uppercase;
-      color: #008cba; }
+      color: green; }
     /* line 71, bower_components/foundation/scss/foundation/components/breadcrumbs */
     .breadcrumbs > *.current {
       cursor: default;
@@ -1542,10 +1545,11 @@ button, .button {
   padding-left: 2rem;
   font-size: 1rem;
   /*     @else                            { font-size: $padding - rem-calc(2); } */
-  background-color: #008cba;
-  border-color: #007295;
+  background-color: green;
+  border-color: #006600;
   color: white;
   -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
   transition: background-color 300ms ease-out;
   padding-top: 1.0625rem;
   padding-bottom: 1rem;
@@ -1554,7 +1558,7 @@ button, .button {
   font-weight: normal !important; }
   /* line 144, bower_components/foundation/scss/foundation/components/buttons */
   button:hover, button:focus, .button:hover, .button:focus {
-    background-color: #007295; }
+    background-color: #006600; }
   /* line 155, bower_components/foundation/scss/foundation/components/buttons */
   button:hover, button:focus, .button:hover, .button:focus {
     color: white; }
@@ -1630,14 +1634,16 @@ button, .button {
     padding-right: 0.75rem; }
   /* line 219, bower_components/foundation/scss/foundation/components/buttons */
   button.radius, .button.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
   /* line 220, bower_components/foundation/scss/foundation/components/buttons */
   button.round, .button.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
   /* line 222, bower_components/foundation/scss/foundation/components/buttons */
   button.disabled, button[disabled], .button.disabled, .button[disabled] {
-    background-color: #008cba;
-    border-color: #007295;
+    background-color: green;
+    border-color: #006600;
     color: white;
     cursor: default;
     opacity: 0.7;
@@ -1645,13 +1651,13 @@ button, .button {
     box-shadow: none; }
     /* line 144, bower_components/foundation/scss/foundation/components/buttons */
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-      background-color: #007295; }
+      background-color: #006600; }
     /* line 155, bower_components/foundation/scss/foundation/components/buttons */
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
       color: white; }
     /* line 168, bower_components/foundation/scss/foundation/components/buttons */
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-      background-color: #008cba; }
+      background-color: green; }
     /* line 223, bower_components/foundation/scss/foundation/components/buttons */
     button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
       background-color: #e7e7e7;
@@ -2346,9 +2352,11 @@ select {
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
+  -webkit-border-radius: 0;
   border-radius: 0; }
   /* line 336, bower_components/foundation/scss/foundation/components/forms */
   select.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
   /* line 337, bower_components/foundation/scss/foundation/components/forms */
   select:hover {
@@ -2410,6 +2418,7 @@ select::-ms-expand {
 
 /* line 363, bower_components/foundation/scss/foundation/components/forms */
 .prefix.button.radius {
+  -webkit-border-radius: 0;
   border-radius: 0;
   -moz-border-radius-bottomleft: 3px;
   -moz-border-radius-topleft: 3px;
@@ -2420,6 +2429,7 @@ select::-ms-expand {
 
 /* line 364, bower_components/foundation/scss/foundation/components/forms */
 .postfix.button.radius {
+  -webkit-border-radius: 0;
   border-radius: 0;
   -moz-border-radius-bottomright: 3px;
   -moz-border-radius-topright: 3px;
@@ -2430,6 +2440,7 @@ select::-ms-expand {
 
 /* line 365, bower_components/foundation/scss/foundation/components/forms */
 .prefix.button.round {
+  -webkit-border-radius: 0;
   border-radius: 0;
   -moz-border-radius-bottomleft: 1000px;
   -moz-border-radius-topleft: 1000px;
@@ -2440,6 +2451,7 @@ select::-ms-expand {
 
 /* line 366, bower_components/foundation/scss/foundation/components/forms */
 .postfix.button.round {
+  -webkit-border-radius: 0;
   border-radius: 0;
   -moz-border-radius-bottomright: 1000px;
   -moz-border-radius-topright: 1000px;
@@ -2457,6 +2469,7 @@ span.prefix, label.prefix {
   border-color: #cccccc; }
   /* line 370, bower_components/foundation/scss/foundation/components/forms */
   span.prefix.radius, label.prefix.radius {
+    -webkit-border-radius: 0;
     border-radius: 0;
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-topleft: 3px;
@@ -2473,6 +2486,7 @@ span.postfix, label.postfix {
   border-color: #cccccc; }
   /* line 373, bower_components/foundation/scss/foundation/components/forms */
   span.postfix.radius, label.postfix.radius {
+    -webkit-border-radius: 0;
     border-radius: 0;
     -moz-border-radius-bottomright: 3px;
     -moz-border-radius-topright: 3px;
@@ -2501,12 +2515,15 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-transition: -webkit-box-shadow 0.45s, border-color 0.45s ease-in-out;
+  -moz-transition: -moz-box-shadow 0.45s, border-color 0.45s ease-in-out;
   transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
   -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
   transition: all 0.15s linear; }
   /* line 145, bower_components/foundation/scss/foundation/components/global */
   input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, textarea:focus {
     -webkit-box-shadow: 0 0 5px #999999;
+    -moz-box-shadow: 0 0 5px #999999;
     box-shadow: 0 0 5px #999999;
     border-color: #999999; }
   /* line 125, bower_components/foundation/scss/foundation/components/forms */
@@ -2519,6 +2536,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
     background-color: #dddddd; }
   /* line 396, bower_components/foundation/scss/foundation/components/forms */
   input[type="text"].radius, input[type="password"].radius, input[type="date"].radius, input[type="datetime"].radius, input[type="datetime-local"].radius, input[type="month"].radius, input[type="week"].radius, input[type="email"].radius, input[type="number"].radius, input[type="search"].radius, input[type="tel"].radius, input[type="time"].radius, input[type="url"].radius, textarea.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
 
 /* Add height value for select elements to match text input height */
@@ -2774,6 +2792,7 @@ label.error {
   position: absolute;
   border-radius: 3px;
   z-index: 102;
+  -moz-box-shadow: 0 0 30px white;
   -webkit-box-shadow: 0 0 15px white;
   box-shadow: 0 0 15px white; }
 
@@ -2829,6 +2848,7 @@ label.error {
   font-family: "Consolas", "Menlo", "Courier", monospace;
   font-size: 0.875rem;
   padding: 0.125rem 0.25rem 0;
+  -webkit-border-radius: 3px;
   border-radius: 3px; }
 
 /* line 87, bower_components/foundation/scss/foundation/components/labels */
@@ -2844,13 +2864,15 @@ label.error {
   margin-bottom: inherit;
   padding: 0.25rem 0.5rem 0.375rem;
   font-size: 0.6875rem;
-  background-color: #008cba;
+  background-color: green;
   color: white; }
   /* line 92, bower_components/foundation/scss/foundation/components/labels */
   .label.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
   /* line 93, bower_components/foundation/scss/foundation/components/labels */
   .label.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
   /* line 95, bower_components/foundation/scss/foundation/components/labels */
   .label.alert {
@@ -2890,17 +2912,31 @@ label.error {
   to {
     -webkit-transform: rotate(360deg); } }
 
+@-moz-keyframes rotate {
+  /* line 49, bower_components/foundation/scss/foundation/components/orbit */
+  from {
+    -moz-transform: rotate(0deg); }
+
+  /* line 50, bower_components/foundation/scss/foundation/components/orbit */
+  to {
+    -moz-transform: rotate(360deg); } }
+
+@-o-keyframes rotate {
+  /* line 53, bower_components/foundation/scss/foundation/components/orbit */
+  from {
+    -o-transform: rotate(0deg); }
+
+  /* line 54, bower_components/foundation/scss/foundation/components/orbit */
+  to {
+    -o-transform: rotate(360deg); } }
+
 @keyframes rotate {
   /* line 58, bower_components/foundation/scss/foundation/components/orbit */
   from {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
     transform: rotate(0deg); }
 
   /* line 59, bower_components/foundation/scss/foundation/components/orbit */
   to {
-    -webkit-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
 /* Orbit Graceful Loading */
@@ -2939,6 +2975,7 @@ label.error {
   margin-left: -20px;
   border: solid 3px;
   border-color: #555555 white;
+  -webkit-border-radius: 1000px;
   border-radius: 1000px;
   -webkit-animation-name: rotate;
   -webkit-animation-duration: 1.5s;
@@ -2952,13 +2989,9 @@ label.error {
   -o-animation-duration: 1.5s;
   -o-animation-iteration-count: infinite;
   -o-animation-timing-function: linear;
-  -webkit-animation-name: rotate;
   animation-name: rotate;
-  -webkit-animation-duration: 1.5s;
   animation-duration: 1.5s;
-  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear; }
 
 /* line 118, bower_components/foundation/scss/foundation/components/orbit */
@@ -3122,6 +3155,7 @@ label.error {
     background: #cccccc;
     float: none;
     margin-right: 6px;
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
     /* line 308, bower_components/foundation/scss/foundation/components/orbit */
     .orbit-bullets li.active {
@@ -3173,6 +3207,7 @@ ul.pagination {
       display: block;
       padding: 0.0625rem 0.625rem 0.0625rem;
       color: #999999;
+      -webkit-border-radius: 3px;
       border-radius: 3px; }
     /* line 109, bower_components/foundation/scss/foundation/components/pagination */
     ul.pagination li:hover a, ul.pagination li a:focus {
@@ -3186,13 +3221,13 @@ ul.pagination {
       background: transparent; }
     /* line 60, bower_components/foundation/scss/foundation/components/pagination */
     ul.pagination li.current a {
-      background: #008cba;
+      background: green;
       color: white;
       font-weight: bold;
       cursor: default; }
       /* line 67, bower_components/foundation/scss/foundation/components/pagination */
       ul.pagination li.current a:hover, ul.pagination li.current a:focus {
-        background: #008cba; }
+        background: green; }
   /* line 119, bower_components/foundation/scss/foundation/components/pagination */
   ul.pagination li {
     float: left;
@@ -3236,10 +3271,10 @@ ul.pagination {
   .panel.callout {
     border-style: solid;
     border-width: 1px;
-    border-color: #b6edff;
+    border-color: #b2ffb2;
     margin-bottom: 1.25rem;
     padding: 1.25rem;
-    background: #ecfaff; }
+    background: #e8ffe8; }
     /* line 48, bower_components/foundation/scss/foundation/components/panels */
     .panel.callout > :first-child {
       margin-top: 0; }
@@ -3258,9 +3293,10 @@ ul.pagination {
         line-height: 1.4; }
     /* line 74, bower_components/foundation/scss/foundation/components/panels */
     .panel.callout a {
-      color: #008cba; }
+      color: green; }
   /* line 79, bower_components/foundation/scss/foundation/components/panels */
   .panel.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
 
 /* Pricing Tables */
@@ -3326,7 +3362,7 @@ ul.pagination {
   margin-bottom: 0.625rem; }
   /* line 57, bower_components/foundation/scss/foundation/components/progress-bars */
   .progress .meter {
-    background: #008cba;
+    background: green;
     height: 100%;
     display: block; }
   /* line 60, bower_components/foundation/scss/foundation/components/progress-bars */
@@ -3346,15 +3382,19 @@ ul.pagination {
     display: block; }
   /* line 64, bower_components/foundation/scss/foundation/components/progress-bars */
   .progress.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
     /* line 65, bower_components/foundation/scss/foundation/components/progress-bars */
     .progress.radius .meter {
+      -webkit-border-radius: 2px;
       border-radius: 2px; }
   /* line 68, bower_components/foundation/scss/foundation/components/progress-bars */
   .progress.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
     /* line 69, bower_components/foundation/scss/foundation/components/progress-bars */
     .progress.round .meter {
+      -webkit-border-radius: 999px;
       border-radius: 999px; }
 
 /* line 138, bower_components/foundation/scss/foundation/components/reveal */
@@ -3456,13 +3496,13 @@ dialog[open] {
     /* line 61, bower_components/foundation/scss/foundation/components/side-nav */
     .side-nav li a:not(.button) {
       display: block;
-      color: #008cba; }
+      color: green; }
       /* line 65, bower_components/foundation/scss/foundation/components/side-nav */
       .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
-        color: #1ccaff; }
+        color: #00f300; }
     /* line 68, bower_components/foundation/scss/foundation/components/side-nav */
     .side-nav li.active > a:first-child:not(.button) {
-      color: #1ccaff;
+      color: #00f300;
       font-weight: normal;
       font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; }
     /* line 74, bower_components/foundation/scss/foundation/components/side-nav */
@@ -3616,15 +3656,16 @@ dialog[open] {
         color: #737373; }
     /* line 90, bower_components/foundation/scss/foundation/components/sub-nav */
     .sub-nav dt.active a, .sub-nav dd.active a, .sub-nav li.active a {
+      -webkit-border-radius: 3px;
       border-radius: 3px;
       font-weight: normal;
-      background: #008cba;
+      background: green;
       padding: 0.1875rem 1rem;
       cursor: default;
       color: white; }
       /* line 97, bower_components/foundation/scss/foundation/components/sub-nav */
       .sub-nav dt.active a:hover, .sub-nav dd.active a:hover, .sub-nav li.active a:hover {
-        background: #007ba0; }
+        background: #006e00; }
 
 /* line 289, bower_components/foundation/scss/foundation/components/switch */
 div.switch {
@@ -3650,6 +3691,7 @@ div.switch {
     font-weight: bold;
     text-align: left;
     -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out; }
   /* line 90, bower_components/foundation/scss/foundation/components/switch */
   div.switch input {
@@ -3673,6 +3715,7 @@ div.switch {
     border-width: 1px;
     border-style: solid;
     -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out; }
   /* line 121, bower_components/foundation/scss/foundation/components/switch */
   div.switch input:not(:checked) + label {
@@ -3724,16 +3767,16 @@ div.switch {
   div.switch span:last-child {
     border-color: #b3b3b3;
     background: white;
+    background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
     background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f2f2f2));
     background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
     -webkit-box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 1000px #f3faf6, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
     box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #f3faf6, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke; }
   /* line 234, bower_components/foundation/scss/foundation/components/switch */
   div.switch:hover span:last-child, div.switch:focus span:last-child {
     background: white;
+    background: -moz-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
     background: -webkit-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
     background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%); }
   /* line 244, bower_components/foundation/scss/foundation/components/switch */
   div.switch:active {
@@ -3788,15 +3831,19 @@ div.switch {
       height: 1.375rem; }
   /* line 302, bower_components/foundation/scss/foundation/components/switch */
   div.switch.radius {
+    -webkit-border-radius: 4px;
     border-radius: 4px; }
     /* line 303, bower_components/foundation/scss/foundation/components/switch */
     div.switch.radius span:last-child {
+      -webkit-border-radius: 3px;
       border-radius: 3px; }
   /* line 307, bower_components/foundation/scss/foundation/components/switch */
   div.switch.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
     /* line 308, bower_components/foundation/scss/foundation/components/switch */
     div.switch.round span:last-child {
+      -webkit-border-radius: 999px;
       border-radius: 999px; }
     /* line 309, bower_components/foundation/scss/foundation/components/switch */
     div.switch.round label {
@@ -3949,13 +3996,15 @@ table {
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
   transition: all 200ms ease-out; }
   /* line 50, bower_components/foundation/scss/foundation/components/thumbs */
   .th:hover, .th:focus {
-    -webkit-box-shadow: 0 0 6px 1px rgba(0, 140, 186, 0.5);
-    box-shadow: 0 0 6px 1px rgba(0, 140, 186, 0.5); }
+    -webkit-box-shadow: 0 0 6px 1px rgba(0, 128, 0, 0.5);
+    box-shadow: 0 0 6px 1px rgba(0, 128, 0, 0.5); }
   /* line 67, bower_components/foundation/scss/foundation/components/thumbs */
   .th.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
 
 /* Tooltips */
@@ -3967,8 +4016,8 @@ table {
   color: #333333; }
   /* line 40, bower_components/foundation/scss/foundation/components/tooltips */
   .has-tip:hover, .has-tip:focus {
-    border-bottom: dotted 1px #004054;
-    color: #008cba; }
+    border-bottom: dotted 1px #003a00;
+    color: green; }
   /* line 46, bower_components/foundation/scss/foundation/components/tooltips */
   .has-tip.tip-left, .has-tip.tip-right {
     float: none !important; }
@@ -3999,17 +4048,19 @@ table {
     top: -10px; }
   /* line 74, bower_components/foundation/scss/foundation/components/tooltips */
   .tooltip.radius {
+    -webkit-border-radius: 3px;
     border-radius: 3px; }
   /* line 77, bower_components/foundation/scss/foundation/components/tooltips */
   .tooltip.round {
+    -webkit-border-radius: 1000px;
     border-radius: 1000px; }
     /* line 79, bower_components/foundation/scss/foundation/components/tooltips */
     .tooltip.round > .nub {
       left: 2rem; }
   /* line 84, bower_components/foundation/scss/foundation/components/tooltips */
   .tooltip.opened {
-    color: #008cba !important;
-    border-bottom: dotted 1px #004054 !important; }
+    color: green !important;
+    border-bottom: dotted 1px #003a00 !important; }
 
 /* line 90, bower_components/foundation/scss/foundation/components/tooltips */
 .tap-to-close {
@@ -4196,6 +4247,7 @@ meta.foundation-mq-topbar {
   position: relative;
   width: auto;
   -webkit-transition: left 300ms ease-out;
+  -moz-transition: left 300ms ease-out;
   transition: left 300ms ease-out; }
   /* line 271, bower_components/foundation/scss/foundation/components/top-bar */
   .top-bar-section ul {
@@ -4224,13 +4276,13 @@ meta.foundation-mq-topbar {
     background: #333333; }
     /* line 300, bower_components/foundation/scss/foundation/components/top-bar */
     .top-bar-section ul li > a.button {
-      background: #008cba;
+      background: green;
       font-size: 0.8125rem;
       padding-right: 15px;
       padding-left: 15px; }
       /* line 305, bower_components/foundation/scss/foundation/components/top-bar */
       .top-bar-section ul li > a.button:hover {
-        background: #006888; }
+        background: #005d00; }
     /* line 309, bower_components/foundation/scss/foundation/components/top-bar */
     .top-bar-section ul li > a.button.secondary {
       background: #e7e7e7; }
@@ -4255,11 +4307,11 @@ meta.foundation-mq-topbar {
     color: white; }
   /* line 338, bower_components/foundation/scss/foundation/components/top-bar */
   .top-bar-section ul li.active > a {
-    background: #008cba;
+    background: green;
     color: white; }
     /* line 341, bower_components/foundation/scss/foundation/components/top-bar */
     .top-bar-section ul li.active > a:hover {
-      background: #007ba0;
+      background: #006e00;
       color: white; }
   /* line 349, bower_components/foundation/scss/foundation/components/top-bar */
   .top-bar-section .has-form {
@@ -4370,6 +4422,7 @@ meta.foundation-mq-topbar {
   /* line 448, bower_components/foundation/scss/foundation/components/top-bar */
   .top-bar-section {
     -webkit-transition: none 0 0;
+    -moz-transition: none 0 0;
     transition: none 0 0;
     left: 0 !important; }
     /* line 452, bower_components/foundation/scss/foundation/components/top-bar */
@@ -4400,10 +4453,10 @@ meta.foundation-mq-topbar {
       padding: 0 15px;
       line-height: 45px;
       color: white;
-      background: #008cba; }
+      background: green; }
       /* line 484, bower_components/foundation/scss/foundation/components/top-bar */
       .top-bar-section li.active:not(.has-form) a:not(.button):hover {
-        background: #007ba0; }
+        background: #006e00; }
     /* line 493, bower_components/foundation/scss/foundation/components/top-bar */
     .top-bar-section .has-dropdown > a {
       padding-right: 35px !important; }
@@ -4489,7 +4542,7 @@ meta.foundation-mq-topbar {
     color: white; }
   /* line 603, bower_components/foundation/scss/foundation/components/top-bar */
   .no-js .top-bar-section ul li:active > a {
-    background: #008cba;
+    background: green;
     color: white; }
   /* line 611, bower_components/foundation/scss/foundation/components/top-bar */
   .no-js .top-bar-section .has-dropdown:hover > .dropdown {
@@ -4660,12 +4713,12 @@ div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, t
 /* Default Link Styles */
 /* line 230, bower_components/foundation/scss/foundation/components/type */
 a {
-  color: #008cba;
+  color: green;
   text-decoration: none;
   line-height: inherit; }
   /* line 236, bower_components/foundation/scss/foundation/components/type */
   a:hover, a:focus {
-    color: #007ba0; }
+    color: #006e00; }
   /* line 238, bower_components/foundation/scss/foundation/components/type */
   a img {
     border: none; }
@@ -4930,8 +4983,6 @@ blockquote, blockquote p {
     background: transparent !important;
     color: black !important;
     /* Black prints faster: h5bp.com/s */
-    -webkit-box-shadow: none !important;
-    /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
     text-shadow: none !important; }
   /* line 481, bower_components/foundation/scss/foundation/components/type */
@@ -5153,6 +5204,9 @@ blockquote, blockquote p {
   width: 100%;
   *zoom: 1;
   -webkit-transition: -webkit-transform 500ms ease;
+  -moz-transition: -moz-transform 500ms ease;
+  -ms-transition: -ms-transform 500ms ease;
+  -o-transition: -o-transform 500ms ease;
   transition: transform 500ms ease; }
   /* line 130, bower_components/foundation/scss/foundation/components/global */
   .inner-wrap:before, .inner-wrap:after {
@@ -5187,7 +5241,6 @@ section.left-small {
   position: absolute;
   top: 0;
   border-right: solid 1px #1a1a1a;
-  -webkit-box-shadow: 1px 0 0 #4e4e4e;
   box-shadow: 1px 0 0 #4e4e4e;
   left: 0; }
 
@@ -5198,7 +5251,6 @@ section.right-small {
   position: absolute;
   top: 0;
   border-left: solid 1px #4e4e4e;
-  -webkit-box-shadow: -1px 0 0 #1a1a1a;
   box-shadow: -1px 0 0 #1a1a1a;
   right: 0; }
 
@@ -5260,11 +5312,11 @@ a.menu-icon {
   overflow-y: auto;
   background: #333333;
   z-index: 1001;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
   -ms-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
   left: 0; }
   /* line 260, bower_components/foundation/scss/foundation/components/offcanvas */
@@ -5281,11 +5333,11 @@ a.menu-icon {
   overflow-y: auto;
   background: #333333;
   z-index: 1001;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
   -ms-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
   right: 0; }
 
@@ -5314,15 +5366,15 @@ ul.off-canvas-list {
 /* line 340, bower_components/foundation/scss/foundation/components/offcanvas */
 .move-right > .inner-wrap {
   -webkit-transform: translate3d(250px, 0, 0);
+  -moz-transform: translate3d(250px, 0, 0);
   -ms-transform: translate3d(250px, 0, 0);
+  -o-transform: translate3d(250px, 0, 0);
   transform: translate3d(250px, 0, 0); }
 /* line 343, bower_components/foundation/scss/foundation/components/offcanvas */
 .move-right a.exit-off-canvas {
   -webkit-backface-visibility: hidden;
-  -webkit-transition: background 300ms ease;
   transition: background 300ms ease;
   cursor: pointer;
-  -webkit-box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
   box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
   display: block;
   position: absolute;
@@ -5341,15 +5393,15 @@ ul.off-canvas-list {
 /* line 347, bower_components/foundation/scss/foundation/components/offcanvas */
 .move-left > .inner-wrap {
   -webkit-transform: translate3d(-250px, 0, 0);
+  -moz-transform: translate3d(-250px, 0, 0);
   -ms-transform: translate3d(-250px, 0, 0);
+  -o-transform: translate3d(-250px, 0, 0);
   transform: translate3d(-250px, 0, 0); }
 /* line 351, bower_components/foundation/scss/foundation/components/offcanvas */
 .move-left a.exit-off-canvas {
   -webkit-backface-visibility: hidden;
-  -webkit-transition: background 300ms ease;
   transition: background 300ms ease;
   cursor: pointer;
-  -webkit-box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
   box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
   display: block;
   position: absolute;
@@ -5368,22 +5420,30 @@ ul.off-canvas-list {
 /* line 356, bower_components/foundation/scss/foundation/components/offcanvas */
 .csstransforms.no-csstransforms3d .left-off-canvas-menu {
   -webkit-transform: translate(-100%, 0);
+  -moz-transform: translate(-100%, 0);
   -ms-transform: translate(-100%, 0);
+  -o-transform: translate(-100%, 0);
   transform: translate(-100%, 0); }
 /* line 357, bower_components/foundation/scss/foundation/components/offcanvas */
 .csstransforms.no-csstransforms3d .right-off-canvas-menu {
   -webkit-transform: translate(100%, 0);
+  -moz-transform: translate(100%, 0);
   -ms-transform: translate(100%, 0);
+  -o-transform: translate(100%, 0);
   transform: translate(100%, 0); }
 /* line 359, bower_components/foundation/scss/foundation/components/offcanvas */
 .csstransforms.no-csstransforms3d .move-left > .inner-wrap {
   -webkit-transform: translate(-250px, 0);
+  -moz-transform: translate(-250px, 0);
   -ms-transform: translate(-250px, 0);
+  -o-transform: translate(-250px, 0);
   transform: translate(-250px, 0); }
 /* line 360, bower_components/foundation/scss/foundation/components/offcanvas */
 .csstransforms.no-csstransforms3d .move-right > .inner-wrap {
   -webkit-transform: translate(250px, 0);
+  -moz-transform: translate(250px, 0);
   -ms-transform: translate(250px, 0);
+  -o-transform: translate(250px, 0);
   transform: translate(250px, 0); }
 
 /* line 365, bower_components/foundation/scss/foundation/components/offcanvas */

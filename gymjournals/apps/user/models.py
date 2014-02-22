@@ -25,12 +25,14 @@ class SiteUser(User):
     def __str__(self):
         """Return the email of a user"""
         return "Name: {} {}, Email: '{}'".format(
-            self.first_name, self.last_name, self.email)
+            self.first_name, self.last_name, self.email
+        )
 
     def __repr__(self):
         """Return the email of a user"""
-        return "User(first_name='{}', last_name='{}', email='{}')".format(
-            self.first_name, self.last_name, self.email)
+        return "SiteUser(first_name='{}', last_name='{}', email='{}')".format(
+            self.first_name, self.last_name, self.email
+        )
 
 
 SiteUser._meta.get_field('first_name').null = False

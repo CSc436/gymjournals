@@ -1,0 +1,128 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Test Nav</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/normalize.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="bower_components/foundation-icons/foundation-icons.css" />
+  </head>
+  <body>
+    <div class="fixed"> 
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Gym Journals</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="active"><a href="#">Stegosaurus Settings</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+
+      <div class="small-4 columns">
+        <img src="img/default_profile.jpg">
+      </div>
+
+      <div class="small-8 columns">
+        <p>NAME HERE?
+        </p>
+      </div>
+
+    </div>  
+
+
+    <div class="row">
+      <!-- navbar -->
+      <div id="navbar" class="content active">
+        <dl class="tabs" data-tab>
+          <dd class="active"><a href="#panel1">News</a></dd>
+          <dd><a href="#panel2">Friends</a></dd>
+          <dd><a href="#panel3">Calendar</a></dd>
+          <dd><a href="#panel4">About</a></dd>
+        </dl>
+        <div class="tabs-content">
+          <div class="content active" id="panel1">
+              <p>First panel content goes here...</p>
+              <div class="post">
+                <div class="post-header">
+                  <a class="th" href="#">
+                    <img src="img/default_profile.jpg">
+                  </a>
+                  <span id="profilename" class="post-name">Jesse Bright</span>
+                  <span class="label radius success">2 hours ago</span>
+                  
+                  <a class="right" href="#" data-dropdown="drop1"><i class="step fi-widget"></i></a>
+                  <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                  </ul>
+                </div>
+                <div class="post-content">
+                  <p class="post-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <!-- comment/share on post -->
+                <div class="post-footer">
+                  <div class="">
+                    <div class="left row collapse">
+                      <div class="small-8 columns">
+                        <input type="text" placeholder="Comment!">
+                      </div>
+                      <div class="small-4 columns">
+                        <a href="#" class="button postfix radius">Share!</a>
+                      </div>
+                    </div>
+                    <button class="right radius tiny" onclick=""><i class="step fi-like size-48"></i></button>
+                  </div>
+                </div>
+              </div>
+          </div> <!-- end of panel1 -->
+
+          <div class="content" id="panel2">
+            <p>Second panel content goes here...</p>
+            <button onclick="getUsers()">click me</button>
+            <ul ng-controller="PhoneListCtrl">
+              <li ng-repeat="i in [1,2,3]">{{i}}</li>
+            </ul>
+          </div>
+          <div class="content" id="panel3">
+            <p>Third panel content goes here...</p>
+          </div>
+          <div class="content" id="panel4">
+            <p>Fourth panel content goes here...Haziel</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- javascript
+    ==================================================
+    Placed at the end of the document so the pages load faster -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

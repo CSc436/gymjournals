@@ -10,28 +10,30 @@ from django.contrib.auth.models import User
 
 class SiteUser(User):
     """
-	first_name - User's firstname
-	last_name - User's lastname
+    first_name - User's firstname
+    last_name - User's lastname
     email - A valid email
     hashed_password - The user's hashed password
     """
     userinfo = models.OneToOneField('UserInfo')
-    
 
     def __str__(self):
         """Return the email of a user"""
-        return "Name: {} {}, Email: '{}'".format(self.first_name, self.last_name, self.email)
+        return "Name: {} {}, Email: '{}'".format(
+            self.first_name, self.last_name, self.email)
 
     def __repr__(self):
         """Return the email of a user"""
-        return "User(first_name='{}', last_name='{}', email='{}')".format(self.first_name, self.last_name, self.email)
+        return "User(first_name='{}', last_name='{}', email='{}')".format(
+            self.first_name, self.last_name, self.email)
 
-SiteUser._meta.get_field('first_name').null=False
-SiteUser._meta.get_field('first_name').blank=False
-SiteUser._meta.get_field('last_name').null=False
-SiteUser._meta.get_field('last_name').blank=False
-SiteUser._meta.get_field('email').null=False
-SiteUser._meta.get_field('email').blank=False
+
+SiteUser._meta.get_field('first_name').null = False
+SiteUser._meta.get_field('first_name').blank = False
+SiteUser._meta.get_field('last_name').null = False
+SiteUser._meta.get_field('last_name').blank = False
+SiteUser._meta.get_field('email').null = False
+SiteUser._meta.get_field('email').blank = False
 
 
 class UserInfo(models.Model):
@@ -43,6 +45,5 @@ class UserInfo(models.Model):
 
     def __repr__(self):
         """Return a representation of this object's info"""
-        return "UserInfo(city={}, state={}, zip_code={}, dob={})".format(self.city, self.state, self.zip_code, self.dob)
-
-
+        return "UserInfo(city={}, state={}, zip_code={}, dob={})".format(
+            self.city, self.state, self.zip_code, self.dob)

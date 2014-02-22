@@ -33,11 +33,11 @@
 =================================================================================
 -->
         <div class="content active" id="panel2-1">
-          <form class="custom" id="signupForm" data-abide="ajax" onsubmit="registerUser()">
+          <form class="custom" id="signupForm" data-abide="ajax">
 <!--Username-->
             <div class="name-field">
               <label>Username&nbsp;<small>required</small>
-                <input type="text" id="username" placeholder="can only contain letters and numbers"required pattern="alpha_numeric" size="6">
+                <input name="username" type="text" id="username" placeholder="can only contain letters and numbers"required pattern="alpha_numeric" size="6">
               </label>
               <small class="error">No characters allowed except letters and numbers. e.g. fittness</small>
             </div>
@@ -67,7 +67,7 @@
                 </small>
             </div>
 <!--signup button-->
-            <button id="signup" type="submit" value="signup">Create Profile</button>
+            <button name="signup" type="submit" value="signup">Create Profile</button>
           </form>        
 
         </div>
@@ -97,7 +97,7 @@
             </div>
 
 <!--signup button-->  
-            <button id="signin" type="submit" value=signin>Sign In</button>
+            <button name="signin" type="submit" value=signin>Sign In</button>
 
       
           </form>
@@ -149,7 +149,8 @@ Placed at the end of the document so the pages load faster -->
 
 
 
-</script>-->
+</script>
+-->
 
 
 
@@ -176,6 +177,37 @@ Placed at the end of the document so the pages load faster -->
 */
 //});
 </script>
+
+
+<script type="text/javascript">
+/*
+$('button[name="signup"]').on('valid', function() {
+  // Handle the submission of the form
+   //  console.log("It is valid!");
+   //$(this).append("<strong>It is valid</strong>");
+   alert("OK!");
+
+});
+$('input[name="username"]').click(function() {
+
+  $(this).on('invalid', function() {
+  // Handle the submission of the form
+   //  console.log("It is valid!");
+   //$(this).append("<strong>It is valid</strong>");
+  //console.log("It is not valid!");
+
+
+})});
+
+*/
+
+</script>
+
+
+
+
+
+
 
   </body>
 </html>

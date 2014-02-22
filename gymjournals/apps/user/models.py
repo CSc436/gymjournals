@@ -3,7 +3,6 @@ Defines a user of GymJournals.
 """
 
 from django.db import models
-from localflavor.us.forms import USStateField, USZipCodeField
 from django.contrib.auth.models import User
 # Create your models here.
 

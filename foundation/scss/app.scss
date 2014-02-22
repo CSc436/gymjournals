@@ -37,19 +37,22 @@
   "foundation/components/offcanvas",
   "foundation/components/visibility";
 
-button
-    {display:flex;margin:auto;margin-top: 2em}
- dd
+ .login_button
+    {display:flex;
+      margin:auto;
+      margin-top: 2em}
+
+ .login_tabs > dd
     {width:50%;
     text-align:center;
     
 
-      }
-  }
+    
+    }
 .tabs-content
     {padding:1em}
 
-header
+header#login_header
   { /*box-shadow: 5px 5px 5px;*/
     font: 2.5em 'Open Sans',Calibri,Arial;
     text-align: center;

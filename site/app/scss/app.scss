@@ -99,4 +99,33 @@ dd.active a{
   height: 50px;
   background-color: lightgrey;
 }
+ 
+.login_button
+    {display:flex;
+      margin:auto;
+      margin-top: 2em}
+
+.login_tabs > dd
+    {width:50%;
+    text-align:center;
+    
+
+ 
+    }
+.tabs-content
+    {padding:1em}
+
+header#login_header
+  { /*box-shadow: 5px 5px 5px;*/
+    font: 2.5em 'Open Sans',Calibri,Arial;
+    text-align: center;
+    padding: 0.5em;
+
+    color: white;
+    background: #162d40;
+    margin-bottom: -2px;
+    background-image: -webkit-linear-gradient(top right, #FFFFFF 0%, #001824 100%);
+  }
+
+
 

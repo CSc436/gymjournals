@@ -5732,3 +5732,29 @@ th.hide-for-touch {
 /* line 674, bower_components/foundation/scss/foundation/components/visibility */
 .touch th.show-for-touch {
   display: table-cell !important; }
+
+/* line 40, /Users/22/Documents/GITHUB/gymjournals/foundation/scss/app.scss */
+.login_button {
+  display: flex;
+  margin: auto;
+  margin-top: 2em; }
+
+/* line 45, /Users/22/Documents/GITHUB/gymjournals/foundation/scss/app.scss */
+.login_tabs > dd {
+  width: 50%;
+  text-align: center; }
+
+/* line 52, /Users/22/Documents/GITHUB/gymjournals/foundation/scss/app.scss */
+.tabs-content {
+  padding: 1em; }
+
+/* line 55, /Users/22/Documents/GITHUB/gymjournals/foundation/scss/app.scss */
+header#login_header {
+  /*box-shadow: 5px 5px 5px;*/
+  font: 2.5em 'Open Sans', Calibri, Arial;
+  text-align: center;
+  padding: 0.5em;
+  color: white;
+  background: #162d40;
+  margin-bottom: -2px;
+  background-image: -webkit-linear-gradient(top right, #ffffff 0%, #001824 100%); }

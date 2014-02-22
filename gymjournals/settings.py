@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     "user",
     "rest_framework",
     "api",
+    "corsheaders",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,7 +52,10 @@ MIDDLEWARE_CLASSES = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "gymjournals.urls"
 

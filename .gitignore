@@ -52,4 +52,4 @@ Gemfile.lock
 app.css
 
 #pytest
-.cache/*
+.cache

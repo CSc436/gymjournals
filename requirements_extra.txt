@@ -3,3 +3,4 @@ coverage==3.7.1
 virtualenv-clone==0.2.4
 virtualenv==1.11.2
 virtualenvwrapper==4.2
+ipython==1.2

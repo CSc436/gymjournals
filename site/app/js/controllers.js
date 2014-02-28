@@ -20,26 +20,55 @@ var loginPage = angular.module('loginPage', []);
 
 
 loginPage.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
-    $http.get(server + "api/users/").success(
-      function(data, status, headers, config) {
+  $scope.formData = {};
+
+  // process the login form
+  $('#signinForm').on('valid', function () {
+    console.log($scope.formData); // temporary
+    $http.post(server + "api/users/", $scope.formData)
+      .success( function(data, status, headers, config ) {
+        console.log("SUCESS");
+        $scope.data = data;
+
+      })
+      .error( function(data, status, headers, config ) {
+        console.log("ERROR");
+        console.log(data);
+        $scope.error = "There was an error.";
+      });
+
+  }); // on valid
+
+  // process the registration form
+  $('#signupForm').on('valid', function () {
+  
+    $http.post(server + "api/users/", $scope.formData)
+      .success( function(data, status, headers, config ) {
         $scope.data = data;
         console.log($scope.data);
-      }
-    ).error(
-      function(data, status, headers, config) {
+      })
+      .error( function(data, status, headers, config ) {
         $scope.error = "There was an error.";
-      }
-    );
-  }]);
+      });
 
+  }); // on valid
+
+}]);
+
+/*
 loginPage.controller("registerCtrl", ["$scope", "$http", function($scope, $http) {
-    $http.get(server + "api/users/").success(
-      function(data, status, headers, config) {
-        $scope.data = data;
-      }
-    ).error(
-      function(data, status, headers, config) {
-        $scope.error = "There was an error.";
-      }
-    );
+    $scope.formData = {};
+    console.log("registerCtrl");
+    $http.post(server + "api/users/", $scope.formData)
+      .success(
+        function(data, status, headers, config) {
+          $scope.data = data;
+          console.log($scope.data);
+
+      })
+      .error(
+        function(data, status, headers, config) {
+          $scope.error = "There was an error.";
+        });
   }]);
+*/

@@ -37,10 +37,17 @@
   "foundation/components/offcanvas",
   "foundation/components/visibility";
 
+/* no overflow of words on tabs */
+.tabs dd > a{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 /* navbar item red bottom border */
 dd.active{
   font-weight: bold;
   border-bottom: solid red 3px;
+  padding: 0px;
+
 }
 dd.active a{
   height:55px;
@@ -108,9 +115,6 @@ dd.active a{
 .login_tabs > dd
     {width:50%;
     text-align:center;
-    
-
- 
     }
 .tabs-content
     {padding:1em}

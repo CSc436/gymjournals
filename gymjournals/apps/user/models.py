@@ -21,6 +21,8 @@ class SiteUser(User):
     state = models.CharField(max_length=2)
     zip_code = models.IntegerField(max_length=5)
     dob = models.DateField()
+    fields_to_serialize = ("first_name", "last_name", "email",
+                            "city", "state", "zip_code", "dob")
 
     def __str__(self):
         """Return the email of a user"""

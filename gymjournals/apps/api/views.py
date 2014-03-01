@@ -53,7 +53,8 @@ class WorkoutsListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         user = self.request.siteuser
         return Workouts.objects.filter(workouts=user)
-    
+
+
 class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = WorkoutsSerializer
 

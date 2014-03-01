@@ -37,7 +37,7 @@ class WorkoutSerializer(serializers.HyperlinkedModelSerializer):
     test = serializers.SerializerMethodField('get_test')
 
     def __init__(self, user_id):
-        
+
 
     def get_test(self, obj):
         return "TEST DATA"

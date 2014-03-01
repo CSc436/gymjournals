@@ -1,7 +1,23 @@
 language: python
 python:
   - "3.3"
+
 # command to install dependencies
-install: "pip install -r requirements.txt"
-install: "pip install -r requirements_test.txt"
-script: pep8 .
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements_test.txt
+  - npm install --quiet -g karma
+  - npm install --quiet -g grunt-cli
+  - npm install --quiet -g protractor
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - cd site
+  - npm install
+  - ./scripts/web-server.js > /dev/null &
+  - sleep 2  # give server time to start
+
+script:
+  - grunt test
+  - pep8 ../ --exclude=node_modules

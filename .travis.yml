@@ -7,4 +7,5 @@ install: "pip install -r requirements_test.txt"
 script:
   - pep8 . --exclude=node_modules
   - cd site
+  - npm install
   - grunt test

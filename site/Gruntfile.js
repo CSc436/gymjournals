@@ -19,10 +19,24 @@ module.exports = function(grunt) {
         }],
       },
     },
+
     autoprefixer: {
       prefix: {
         expand: true,
         src: 'app/css/*.css',
+      },
+    },
+
+    karma: {
+      options: {
+        configFile: 'config/karma.conf.js',
+        autoWatch: false,
+      },
+      unit: {
+        background: true,
+      },
+      continuous: {
+        singleRun: true,
       },
     },
 
@@ -32,6 +46,19 @@ module.exports = function(grunt) {
       },
       grunt: {
         files: ['Gruntfile.js']
+      },
+      karma: {
+        files: [
+          'app/lib/angular/angular.js',
+          'app/lib/angular/angular-*.js',
+          'test/lib/angular/angular-mocks.js',
+          'app/js/**/*.js',
+          'test/unit/**/*Spec.js',
+          '!app/lib/angular/angular-loader.js',
+          '!app/lib/angular/*.min.js',
+          '!app/lib/angular/angular-scenario.js'
+        ],
+        tasks: ['karma:unit:run'],
       },
       sass: {
         options: {
@@ -54,8 +81,13 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['sass']);
-  grunt.registerTask('default', ['build','watch']);
+  grunt.registerTask('test', ['karma:continuous']);
+  grunt.registerTask(
+    'default',
+    ['build', 'karma:unit:start', 'watch']
+  );
 }

@@ -1,16 +1,19 @@
-'use strict';
+"use strict";
 
-/* jasmine specs for controllers go here */
+describe("ExampleController", function(){
+  var scope;
 
-describe('controllers', function(){
-  beforeEach(module('myApp.controllers'));
-
-
-  it('should ....', inject(function() {
-    //spec body
+  beforeEach(angular.mock.module("myApp.controllers"));
+  beforeEach(angular.mock.inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    $controller("ExampleController", {$scope: scope});
   }));
 
-  it('should ....', inject(function() {
-    //spec body
+  it("should pass", inject(function() {
+    expect(true).toBe(true);
+  }));
+
+  it("should have testData = 'TEST DATA'", inject(function() {
+    expect(scope.testData).toBe("TEST DATA");
   }));
 });

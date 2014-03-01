@@ -5,14 +5,14 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          includePaths: ['bower_components/foundation/scss'],
+          includePaths: ['app/bower_components/foundation/scss'],
           outputStyle: 'expanded',
           sourceComments: 'map',
           sourceMap: '../scss',
         },
         files: [{
           expand: true,
-          cwd: 'scss',
+          cwd: 'app/scss',
           src: ['**/*.scss', '!**/_*.scss'],
           dest: 'css',
           ext: '.css',
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     autoprefixer: {
       prefix: {
         expand: true,
-        src: 'css/*.css',
+        src: 'app/css/*.css',
       },
     },
 
@@ -37,17 +37,17 @@ module.exports = function(grunt) {
         options: {
           livereload: false,
         },
-        files: 'scss/**/*.scss',
+        files: 'app/scss/**/*.scss',
         tasks: ['sass', 'autoprefixer'],
       },
       html: {
         files: '**/*.html',
       },
       css: {
-        files: 'css/**/*.css',
+        files: 'app/css/**/*.css',
       },
       js: {
-        files: 'js/**/*.js',
+        files: 'app/js/**/*.js',
       },
     },
   });

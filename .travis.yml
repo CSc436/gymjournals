@@ -7,11 +7,12 @@ node_js:
   - 0.8
 
 # command to install dependencies
-install: "pip install -r requirements.txt"
-install: "pip install -r requirements_test.txt"
-install: "npm install --quiet -g karma"
-install: "npm install --quiet -g grunt-cli"
-install: "npm install --quiet -g protractor"
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements_test.txt
+  - npm install --quiet -g karma
+  - npm install --quiet -g grunt-cli
+  - npm install --quiet -g protractor
 
 before_script:
   - export DISPLAY=:99.0

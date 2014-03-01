@@ -17,4 +17,11 @@ urlpatterns = patterns(
         views.SiteUserGetAPIView.as_view(),
         name="get_user"
     ),
+    url(r"^workouts/$", viewsWorkoutsListAPIView.as_view(),
+        name="list_workouts"),
+    url(
+        r"^workouts/(?P<pk>\d+)/$",
+        views.WorkoutsGetAPIView.as_view(),
+        name="get_workout"
+    ),
 )

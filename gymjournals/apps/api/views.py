@@ -32,12 +32,9 @@ class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = SiteUserSerializer
     model = SiteUser
 
-'''
-class WorkoutSerializer(serializers.HyperlinkedModelSerializer):
+
+class WorkoutsSerializer(serializers.HyperlinkedModelSerializer):
     test = serializers.SerializerMethodField('get_test')
-
-    def __init__(self, user_id):
-
 
     def get_test(self, obj):
         return "TEST DATA"
@@ -46,13 +43,20 @@ class WorkoutSerializer(serializers.HyperlinkedModelSerializer):
         class TestModel(models.Model):
             pass
 
-        model = Workout
-        fields = tuple(map(lambda m: m.name, Workout._meta.fields))
+        model = Workouts
+        fields = Workouts.fields_to_serialize
 
 
-class WorkoutListAPIView(generics.APIView):
+class WorkoutsListAPIView(generics.ListCreateAPIView):
+    serializer_class = WorkoutsSerializer
 
-    def get(self, request):
-        serializer = SiteUserSerializer(request.user_id)
-        return Response(serializer.data)
-'''
+    def get_queryset(self):
+        user = self.request.siteuser
+        return Workouts.objects.filter(workouts=user)
+    
+class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
+    serializer_class = WorkoutsSerializer
+
+    def get_queryset(self):
+        user = self.request.siteuser
+        return Workouts.objects.filter(workouts=user)

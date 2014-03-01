@@ -11,10 +11,17 @@ from api import views
 
 urlpatterns = patterns(
     "",
-    url(r"^users/$", views.UserListAPIView.as_view(), name="list_users"),
+    url(r"^users/$", views.SiteUserListAPIView.as_view(), name="list_users"),
     url(
         r"^users/(?P<pk>\d+)/$",
-        views.UserGetAPIView.as_view(),
+        views.SiteUserGetAPIView.as_view(),
         name="get_user"
+    ),
+    url(r"^workouts/$", viewsWorkoutsListAPIView.as_view(),
+        name="list_workouts"),
+    url(
+        r"^workouts/(?P<pk>\d+)/$",
+        views.WorkoutsGetAPIView.as_view(),
+        name="get_workout"
     ),
 )

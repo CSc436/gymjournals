@@ -41,6 +41,8 @@ class SiteUser(User):
             r'\d{5}(-\d{4})?',
             'ZIP Code can either be ##### or #####-####')])
     dob = models.DateField()
+    fields_to_serialize = ("first_name", "last_name", "email",
+                           "city", "state", "zip_code", "dob")
 
     def save(self):
         self.clean_fields()

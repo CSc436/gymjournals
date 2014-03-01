@@ -57,3 +57,19 @@ class SiteUser(User):
         return "SiteUser(first_name='{}', last_name='{}', email='{}')".format(
             self.first_name, self.last_name, self.email
         )
+
+
+class Workouts(models.Model):
+    """
+    user - Foreign key to SiteUser
+    date - DateField when the user worked out
+    """
+    user = models.ForeignKey(SiteUser)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        """Return the User and date"""
+        return "User: {}, Date: {}".format(self.user, self.date)
+
+    def __repr__(self):
+        return str(self)

@@ -68,6 +68,7 @@ class Workouts(models.Model):
     """
     user = models.ForeignKey(SiteUser)
     date = models.DateField(auto_now_add=True)
+    fields_to_serialize = ("user", "date")
 
     def __str__(self):
         """Return the User and date"""

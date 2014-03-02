@@ -10,15 +10,7 @@ from django.db import models
 
 
 class SiteUserSerializer(serializers.HyperlinkedModelSerializer):
-    test = serializers.SerializerMethodField('get_test')
-
-    def get_test(self, obj):
-        return "TEST DATA"
-
     class Meta:
-        class TestModel(models.Model):
-            pass
-
         model = SiteUser
         fields = SiteUser.fields_to_serialize
 
@@ -33,31 +25,24 @@ class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
     model = SiteUser
 
 
-class WorkoutsSerializer(serializers.HyperlinkedModelSerializer):
+class WorkoutsSerializer(serializers.ModelSerializer):
     test = serializers.SerializerMethodField('get_test')
 
-    def get_test(self, obj):
-        return "TEST DATA"
-
     class Meta:
-        class TestModel(models.Model):
-            pass
-
         model = Workouts
         fields = Workouts.fields_to_serialize
 
 
 class WorkoutsListAPIView(generics.ListCreateAPIView):
     serializer_class = WorkoutsSerializer
+    model = Workouts
 
     def get_queryset(self):
-        user = self.kwargs['id']
-        return Workouts.objects.filter(user_id=user)
+        user_id = self.kwargs['id']
+        user = SiteUser.objects.filter(id=user_id).first()
+        return Workouts.objects.filter(user=user)
 
 
 class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = WorkoutsSerializer
-
-    def get_queryset(self):
-        user = self.kwargs['id']
-        return Workouts.objects.filter(user_id=user)
+    model = Workouts

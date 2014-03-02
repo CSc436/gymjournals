@@ -26,8 +26,6 @@ class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
 
 
 class WorkoutsSerializer(serializers.ModelSerializer):
-    test = serializers.SerializerMethodField('get_test')
-
     class Meta:
         model = Workouts
         fields = Workouts.fields_to_serialize

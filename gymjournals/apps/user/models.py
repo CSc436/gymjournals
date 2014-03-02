@@ -41,12 +41,14 @@ class SiteUser(User):
             r'\d{5}(-\d{4})?',
             'ZIP Code can either be ##### or #####-####')])
     dob = models.DateField()
-    fields_to_serialize = ("first_name", "last_name", "email",
-                           "city", "state", "zip_code", "dob")
+    fields_to_serialize = (
+        "id", "first_name", "last_name", "email",
+        "city", "state", "zip_code", "dob"
+    )
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.clean_fields()
-        super().save()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """Return the email of a user"""
@@ -68,7 +70,7 @@ class Workouts(models.Model):
     """
     user = models.ForeignKey(SiteUser)
     date = models.DateField(auto_now_add=True)
-    fields_to_serialize = ("user", "date")
+    fields_to_serialize = ("id", "user", "date")
 
     def __str__(self):
         """Return the User and date"""

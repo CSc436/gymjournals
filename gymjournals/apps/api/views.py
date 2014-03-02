@@ -5,7 +5,7 @@ Views for displaying Users
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import serializers
-from user.models import SiteUser
+from user.models import *
 from django.db import models
 
 
@@ -51,13 +51,13 @@ class WorkoutsListAPIView(generics.ListCreateAPIView):
     serializer_class = WorkoutsSerializer
 
     def get_queryset(self):
-        user = self.request.siteuser
-        return Workouts.objects.filter(workouts=user)
+        user = self.kwargs['id']
+        return Workouts.objects.filter(user_id=user)
 
 
 class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = WorkoutsSerializer
 
     def get_queryset(self):
-        user = self.request.siteuser
-        return Workouts.objects.filter(workouts=user)
+        user = self.kwargs['id']
+        return Workouts.objects.filter(user_id=user)

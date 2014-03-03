@@ -67,7 +67,7 @@ class SiteUser(User):
         )
 
 
-class Workouts(models.Model):
+class Workout(models.Model):
     """
     user - Foreign key to SiteUser
     date - DateField when the user worked out

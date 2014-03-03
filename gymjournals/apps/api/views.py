@@ -25,21 +25,21 @@ class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
     model = SiteUser
 
 
-class WorkoutsSerializer(serializers.ModelSerializer):
+class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Workouts
+        model = Workout
 
 
-class WorkoutsListAPIView(generics.ListCreateAPIView):
-    serializer_class = WorkoutsSerializer
-    model = Workouts
+class WorkoutListAPIView(generics.ListCreateAPIView):
+    serializer_class = WorkoutSerializer
+    model = Workout
 
     def get_queryset(self):
         user_id = self.kwargs['id']
         user = SiteUser.objects.filter(id=user_id).first()
-        return Workouts.objects.filter(user=user)
+        return Workout.objects.filter(user=user)
 
 
-class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
-    serializer_class = WorkoutsSerializer
-    model = Workouts
+class WorkoutGetAPIView(generics.RetrieveUpdateAPIView):
+    serializer_class = WorkoutSerializer
+    model = Workout

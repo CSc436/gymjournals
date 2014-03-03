@@ -19,11 +19,11 @@ urlpatterns = patterns(
     ),
     url(
         r"^workouts/(?P<id>\d+)/$",
-        views.WorkoutsListAPIView.as_view(),
+        views.WorkoutListAPIView.as_view(),
         name="list_workouts"),
     url(
         r"^workouts/\d+/(?P<pk>\d+)/$",
-        views.WorkoutsGetAPIView.as_view(),
+        views.WorkoutGetAPIView.as_view(),
         name="get_workout"
     ),
 )

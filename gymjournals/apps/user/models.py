@@ -4,13 +4,17 @@ Defines a user of GymJournals.
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator, RegexValidator
+from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
-# Create your models here.
 
 
-def validate_(value):
-    if len(str(value)) != 2:
+def validate_(state):
+    """Make sure states are of length 2
+
+    Args:
+        state: A string of the state name
+    """
+    if len(str(state)) != 2:
         raise ValidationError('State length must be 2')
 
 
@@ -41,12 +45,14 @@ class SiteUser(User):
             r'\d{5}(-\d{4})?',
             'ZIP Code can either be ##### or #####-####')])
     dob = models.DateField()
-    fields_to_serialize = ("first_name", "last_name", "email",
-                           "city", "state", "zip_code", "dob")
+    fields_to_serialize = (
+        "id", "first_name", "last_name", "email", "city",
+        "state", "zip_code", "dob", "username", "password"
+    )
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.clean_fields()
-        super().save()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """Return the email of a user"""
@@ -59,3 +65,20 @@ class SiteUser(User):
         return "SiteUser(first_name='{}', last_name='{}', email='{}')".format(
             self.first_name, self.last_name, self.email
         )
+
+
+class Workout(models.Model):
+    """
+    user - Foreign key to SiteUser
+    date - DateField when the user worked out
+    """
+    user = models.ForeignKey(SiteUser)
+    date = models.DateField()
+    fields_to_serialize = ("id", "user", "date")
+
+    def __str__(self):
+        """Return the User and date"""
+        return "User: {}, Date: {}".format(self.user, self.date)
+
+    def __repr__(self):
+        return str(self)

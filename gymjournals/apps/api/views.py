@@ -5,20 +5,12 @@ Views for displaying Users
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import serializers
-from user.models import SiteUser
+from user.models import *
 from django.db import models
 
 
 class SiteUserSerializer(serializers.HyperlinkedModelSerializer):
-    test = serializers.SerializerMethodField('get_test')
-
-    def get_test(self, obj):
-        return "TEST DATA"
-
     class Meta:
-        class TestModel(models.Model):
-            pass
-
         model = SiteUser
         fields = SiteUser.fields_to_serialize
 
@@ -33,30 +25,21 @@ class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
     model = SiteUser
 
 
-class WorkoutsSerializer(serializers.HyperlinkedModelSerializer):
-    test = serializers.SerializerMethodField('get_test')
-
-    def get_test(self, obj):
-        return "TEST DATA"
-
+class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
-        class TestModel(models.Model):
-            pass
-
-        model = Workouts
-        fields = Workouts.fields_to_serialize
+        model = Workout
 
 
-class WorkoutsListAPIView(generics.ListCreateAPIView):
-    serializer_class = WorkoutsSerializer
+class WorkoutListAPIView(generics.ListCreateAPIView):
+    serializer_class = WorkoutSerializer
+    model = Workout
 
     def get_queryset(self):
-        user = self.request.siteuser
-        return Workouts.objects.filter(workouts=user)
-    
-class WorkoutsGetAPIView(generics.RetrieveUpdateAPIView):
-    serializer_class = WorkoutsSerializer
+        user_id = self.kwargs['id']
+        user = SiteUser.objects.filter(id=user_id).first()
+        return Workout.objects.filter(user=user)
 
-    def get_queryset(self):
-        user = self.request.siteuser
-        return Workouts.objects.filter(workouts=user)
+
+class WorkoutGetAPIView(generics.RetrieveUpdateAPIView):
+    serializer_class = WorkoutSerializer
+    model = Workout

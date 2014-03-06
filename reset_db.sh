@@ -5,4 +5,4 @@
 #Access psql and start querying
 sudo psql -U postgres -h localhost -c "DROP DATABASE gymjournals;"
 sudo psql -U postgres -h localhost -c "CREATE DATABASE gymjournals OWNER gymjournalsuser;"
-./manage.py syncdb
+echo "no" | ./manage.py syncdb

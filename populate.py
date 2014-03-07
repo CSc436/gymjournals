@@ -6,7 +6,11 @@ jesse.save()
 dan = SiteUser(email="dbelcher@email.com", username="dbelcher", pwd="haha")
 dan.save()
 
-logan = SiteUser(email="lchadderdon@email.com", username="lchadderdon", pwd="password")
+logan = SiteUser(
+    email="lchadderdon@email.com",
+    username="lchadderdon",
+    pwd="password"
+    )
 logan.save()
 
 storme = SiteUser(email="stormeb@email.com", username="stormeb", pwd="yolo")
@@ -18,7 +22,11 @@ haziel.save()
 zach = SiteUser(email="zach@email.com", username="zach", pwd="zach")
 zach.save()
 
-carlton = SiteUser(email="carlton@gmail.com", username="carlton", pwd="carlton")
+carlton = SiteUser(
+    email="carlton@gmail.com",
+    username="carlton",
+    pwd="carlton"
+    )
 carlton.save()
 
 ryan = SiteUser(email="ryan@gmail.com", username="ryan", pwd="ryan")

@@ -2,9 +2,11 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
-var loginPage = angular.module('loginPage', []);
 
-loginPage.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
+
+var gymjournals = angular.module('gymjournals', []);
+
+gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.formData = {};
 
   // process the login form

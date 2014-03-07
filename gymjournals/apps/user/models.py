@@ -110,7 +110,7 @@ class Workout(models.Model):
 
     def __str__(self):
         """Return the User and date"""
-        return "User: {}, Date: {}".format(self.user, self.date)
+        return "User: {}, Date: {}".format(self.user.username, self.date)
 
     def __repr__(self):
         return str(self)

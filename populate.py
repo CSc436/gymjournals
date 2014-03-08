@@ -33,6 +33,7 @@ ryan = SiteUser(email="ryan@gmail.com", username="ryan", pwd="ryan")
 ryan.save()
 
 jesse_workout = Workout(user=jesse, date=date(year=2014, month=3, day=7))
+
 jesse_workout.save()
 
 dan_workout = Workout(user=dan, date=date(year=2013, month=3, day=7))

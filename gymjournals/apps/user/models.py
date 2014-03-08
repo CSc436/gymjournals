@@ -18,7 +18,37 @@ def validate_(state):
         raise ValidationError('State length must be 2')
 
 
-class SiteUser(User):
+class SiteUser(models.Model):
+    username = models.CharField(
+        max_length=30,
+        blank=False,
+        null=False,
+        unique=True)
+    email = models.EmailField(
+        unique=True,
+        blank=False,
+        null=False)
+    pwd = models.CharField(
+        max_length=30,
+        blank=False,
+        null=False)
+    fields_to_serialize = (
+        "id", "username", "email", "pwd"
+    )
+
+    def __str__(self):
+        return "Username: {}, Email: {}".format(self.username, self.email)
+
+    def __repr__(self):
+        return str(self)
+
+    def save(self, *args, **kwargs):
+        self.clean_fields()
+        super().save(*args, **kwargs)
+
+
+'''
+class SiteUser(models.Model):
     """
     first_name - User's firstname
     last_name - User's lastname
@@ -28,6 +58,7 @@ class SiteUser(User):
     zip_code - 5 digit number (for now)
     dob - User's dob. Year, month, day
     """
+    first_name
     city = models.CharField(
         max_length=50,
         validators=[RegexValidator(
@@ -65,6 +96,7 @@ class SiteUser(User):
         return "SiteUser(first_name='{}', last_name='{}', email='{}')".format(
             self.first_name, self.last_name, self.email
         )
+'''
 
 
 class Workout(models.Model):
@@ -78,7 +110,7 @@ class Workout(models.Model):
 
     def __str__(self):
         """Return the User and date"""
-        return "User: {}, Date: {}".format(self.user, self.date)
+        return "User: {}, Date: {}".format(self.user.username, self.date)
 
     def __repr__(self):
         return str(self)

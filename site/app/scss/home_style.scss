@@ -1,0 +1,61 @@
+$grey: #222222;
+$offwhite: #fafafa;
+
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: $offwhite;
+	color: $offwhite;
+
+	#index-top {
+		height: 100px;
+		background-color: $offwhite;
+		
+	}
+
+	@media only screen and (min-width: 426px) {
+		.index-header-content {
+			padding-top: 15px;
+		}
+	}
+	
+	@media only screen and (max-width: 425px) {
+		.index-header-content {
+			padding-top: 0px;
+		}
+		#index-login-button {
+			padding-top: 12px;
+			height: 100px;
+		}
+		#index-login-button-div {
+			padding-right: 0px;
+		}
+	}
+
+	#index-login-button {
+		float: right;
+	}
+
+	#index-body-content {
+		background-color: $grey;
+		background-image: url("../img/gym1.jpg");
+		height: 80%;
+		min-height: 500px;
+	}
+
+	#index-info-section {
+		padding: 20px;
+		background: rgba(0, 0, 0, .8);
+		margin-top: 20px;
+
+	}
+
+	#index-headline {
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+
+	#index-footer-content {
+		padding: 10px;
+	}
+}
+

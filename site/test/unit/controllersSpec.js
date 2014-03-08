@@ -1,12 +1,12 @@
 "use strict";
 
-describe("ExampleController", function(){
+describe("GetUsers", function(){
   var scope;
 
-  beforeEach(angular.mock.module("myApp.controllers"));
+  beforeEach(angular.mock.module("exampleAPI"));
   beforeEach(angular.mock.inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    $controller("ExampleController", {$scope: scope});
+    $controller("GetUsers", {$scope: scope});
   }));
 
   it("should pass", inject(function() {

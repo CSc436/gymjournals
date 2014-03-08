@@ -6,6 +6,10 @@ var server = "http://localhost:8000/";
 
 var gymjournals = angular.module('gymjournals', []);
 
+gymjournals.controller('viewCtrl', ['$scope', function($scope){
+  
+}]);
+
 gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.formData = {};
 

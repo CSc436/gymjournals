@@ -1,4 +1,4 @@
-<div ng-controller="loginCtrl">
+<div ng-controller="loginCtrl" id="loginModal" class="" data-reveal>
 	<!--header-->  
     <header id="login_header" style="font-family: 'Open sans', arial, sans-serif">Gym Journals 
     </header>
@@ -100,4 +100,13 @@
       </div>
     </div>
 </div>
-<script type="text/javascript">$(document).foundation();</script>
+
+
+
+<script type="text/javascript">
+  if($(window).width() >= 640){
+   $("#loginModal").addClass("reveal-modal");
+  }
+  $(document).foundation();
+
+</script>

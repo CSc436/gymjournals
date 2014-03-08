@@ -23,4 +23,8 @@ angular.module(
   ]
 );
 
-$(document).foundation();
+$(document).foundation({
+  orbit: {
+    timer_speed: 5000,
+  }
+});

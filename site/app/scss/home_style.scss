@@ -6,7 +6,7 @@ body {
 	background-color: $offwhite;
 	color: $offwhite;
 
-	#index-top {
+	#index-header {
 		height: 100px;
 		background-color: $offwhite;
 		
@@ -59,3 +59,22 @@ body {
 	}
 }
 
+#my-orbit {
+	height: 80%;
+	min-height: 500px;
+}
+
+#slide1 {
+	background-image: url("../img/gym1.jpg");
+	height: 100%;
+}
+
+#slide2 {
+	background-image: url("../img/gym.jpg");
+	height: 100%;
+}
+
+#slide3 {
+	background-image: url("../img/gym1.jpg");
+	height: 100%;
+}

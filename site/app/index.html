@@ -14,14 +14,22 @@
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:bold" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css">
 </head>
-<body ng-controller="viewCtrl">
-	
-	before:
-      <div ng-include src="'partials/_login.html'"></div>   
-    after
+<body>
+	<div class="container">
+        <header ng-include src="'partials/_nav.html'"></header>   
+        <div ng-include src="'partials/_login.html'"></div>   
 
-	<a href="#" data-reveal-id="loginModal" data-reveal>Click Me For A Modal</a>
+        
+
+        before: 
+        <div ui-view></div>
+    	
+        after
+
+    	
 	
+        <footer ng-include src="'partials/_footer.html'"></footer>
+    </div>
 	<!-- javascript
     ==================================================
     Placed at the end of the document so the pages load faster -->
@@ -32,8 +40,8 @@
     <script src="bower_components/foundation/js/foundation/foundation.reveal.js"></script> 
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-ui-router.min.js"></script>
-    <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
     <script type="text/javascript">
     $(document).foundation();
 

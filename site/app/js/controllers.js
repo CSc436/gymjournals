@@ -3,13 +3,27 @@
 /* Controllers */
 var server = "http://localhost:8000/";
 
+var gymjournals = angular.module('gymjournals');
 
-var gymjournals = angular.module('gymjournals', []);
+/* HOME PAGE CTRL */
+gymjournals.controller("homeCtrl", ["$scope", function($scope) {
+  $scope.title = "Home";
+  $scope.items = ["one", "two", "three"]; // testing
 
-gymjournals.controller('viewCtrl', ['$scope', function($scope){
-  
 }]);
 
+/* CALENDAR CTRL */
+gymjournals.controller("calendarCtrl", ["$scope", "calendarData", function($scope, calendarData) {
+  $scope.title = "CALENDAR";
+  $scope.calendarData = calendarData;
+
+  $scope.save = function() {
+    $http.post(server + '/api/calendar', JSON.stringify($scope.calendarData));
+  }
+
+}]);
+
+/* LOGIN CTRL */
 gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
   $scope.formData = {};
 
@@ -49,6 +63,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
 
 }]);
 
+/* EXAMPLE */
 angular.module("myApp.controllers", []).controller(
   "ExampleController",
   [

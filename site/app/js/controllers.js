@@ -29,9 +29,10 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
 
   // process the login form
   $('#signinForm').on('valid', function () {
-            console.log($scope.formData);
+    var json = JSON.stringify($scope.formData)
+    console.log(json);
 
-    $http.post(server + "api/users/login", $scope.formData)
+    $http.post(server + "api/users/login", json)
       .success( function(data, status, headers, config ) {
         $scope.data = data;
 

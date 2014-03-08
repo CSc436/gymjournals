@@ -20,7 +20,7 @@ class SiteUserListAPIView(generics.ListCreateAPIView):
     model = SiteUser
 
 
-class SiteUserGetAPIView(generics.RetrieveUpdateAPIView):
+class SiteUserGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SiteUserSerializer
     model = SiteUser
 
@@ -40,6 +40,11 @@ class WorkoutListAPIView(generics.ListCreateAPIView):
         return Workout.objects.filter(user=user)
 
 
-class WorkoutGetAPIView(generics.RetrieveUpdateAPIView):
+class WorkoutGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WorkoutSerializer
     model = Workout
+
+    def get_queryset(self):
+        user_id = self.kwargs['id']
+        user = SiteUser.objects.filter(id=user_id).first()
+        return Workout.objects.filter(user=user)

@@ -22,7 +22,7 @@ urlpatterns = patterns(
         views.WorkoutListAPIView.as_view(),
         name="list_workouts"),
     url(
-        r"^workouts/\d+/(?P<pk>\d+)/$",
+        r"^workouts/(?P<id>\d+)/(?P<pk>\d+)/$",
         views.WorkoutGetAPIView.as_view(),
         name="get_workout"
     ),

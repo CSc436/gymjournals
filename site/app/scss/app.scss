@@ -1,56 +1,57 @@
 @import "settings";
 
 @import
-  "foundation/components/accordion",
-  "foundation/components/alert-boxes",
-  "foundation/components/block-grid",
-  "foundation/components/breadcrumbs",
-  "foundation/components/button-groups",
-  "foundation/components/buttons",
-  "foundation/components/clearing",
-  "foundation/components/dropdown",
-  "foundation/components/dropdown-buttons",
-  "foundation/components/flex-video",
-  "foundation/components/forms",
-  "foundation/components/grid",
-  "foundation/components/inline-lists",
-  "foundation/components/joyride",
-  "foundation/components/keystrokes",
-  "foundation/components/labels",
-  "foundation/components/magellan",
-  "foundation/components/orbit",
-  "foundation/components/pagination",
-  "foundation/components/panels",
-  "foundation/components/pricing-tables",
-  "foundation/components/progress-bars",
-  "foundation/components/reveal",
-  "foundation/components/side-nav",
-  "foundation/components/split-buttons",
-  "foundation/components/sub-nav",
-  "foundation/components/switch",
-  "foundation/components/tables",
-  "foundation/components/tabs",
-  "foundation/components/thumbs",
-  "foundation/components/tooltips",
-  "foundation/components/top-bar",
-  "foundation/components/type",
-  "foundation/components/offcanvas",
-  "foundation/components/visibility";
+"foundation/components/accordion",
+"foundation/components/alert-boxes",
+"foundation/components/block-grid",
+"foundation/components/breadcrumbs",
+"foundation/components/button-groups",
+"foundation/components/buttons",
+"foundation/components/clearing",
+"foundation/components/dropdown",
+"foundation/components/dropdown-buttons",
+"foundation/components/flex-video",
+"foundation/components/forms",
+"foundation/components/grid",
+"foundation/components/inline-lists",
+"foundation/components/joyride",
+"foundation/components/keystrokes",
+"foundation/components/labels",
+"foundation/components/magellan",
+"foundation/components/orbit",
+"foundation/components/pagination",
+"foundation/components/panels",
+"foundation/components/pricing-tables",
+"foundation/components/progress-bars",
+"foundation/components/reveal",
+"foundation/components/side-nav",
+"foundation/components/split-buttons",
+"foundation/components/sub-nav",
+"foundation/components/switch",
+"foundation/components/tables",
+"foundation/components/tabs",
+"foundation/components/thumbs",
+"foundation/components/tooltips",
+"foundation/components/top-bar",
+"foundation/components/type",
+"foundation/components/offcanvas",
+"foundation/components/visibility";
 
 /* no overflow of words on tabs */
 .tabs dd > a{
   padding-left: 0px;
   padding-right: 0px;
 }
-/* navbar item red bottom border */
+
+/* navbar item bottom border */
 dd.active{
   font-weight: bold;
-  border-bottom: solid red 3px;
+  border-bottom: solid $secondary-color 3px;
   padding: 0px;
-
 }
+
 dd.active a{
-  height:55px;
+  height: 55px;
 }
 
 /* everything inside a specific tab in navbar */
@@ -60,16 +61,17 @@ dd.active a{
 
 /* news feed post */
 .th img{
-  max-height:50px;
-  max-width:50px;
+  max-height: 50px;
+  max-width: 50px;
 }
 #profilename{
   margin-left: 10px;
   font-size: 24px;
 }
+
 .post{
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
+  background-color: lighten($body-bg, 20%);
+  border: 1px solid darken($body-bg, 30%);
   position: relative;
 }
 
@@ -87,49 +89,48 @@ dd.active a{
   left: 10px;
   width: 40%;
   top: 80%;
-  max-width:300px;
-  background: #777;
-  box-shadow: 0 15px 10px #777;
+  max-width: 300px;
+  background: $dark-color;
+  box-shadow: 0 15px 10px $dark-color;
   transform: rotate(-3deg);
 }
+
 .post:after{
   transform: rotate(3deg);
   right: 10px;
   left: auto;
 }
 
-
 .post-footer{
   padding-top: 6px;
   padding-left: 5px;
   padding-right: 5px;
   height: 50px;
-  background-color: lightgrey;
+  background-color: darken($body-bg, 20%);
 }
- 
-.login_button
-    {display:flex;
-      margin:auto;
-      margin-top: 2em}
 
-.login_tabs > dd
-    {width:50%;
-    text-align:center;
-    }
-.tabs-content
-    {padding:1em}
+.login_button {
+  display: flex;
+  margin: auto;
+  margin-top: 2em
+}
 
-header#login_header
-  { /*box-shadow: 5px 5px 5px;*/
-    font: 2.5em 'Open Sans',Calibri,Arial;
-    text-align: center;
-    padding: 0.5em;
+.login_tabs > dd {
+  width:50%;
+  text-align:center;
+}
 
-    color: white;
-    background: #162d40;
-    margin-bottom: -2px;
-    background-image: -webkit-linear-gradient(top right, #FFFFFF 0%, #001824 100%);
-  }
+.tabs-content {
+  padding:1em
+}
 
+header#login_header {
+  font: 2.5em 'Open Sans', Calibri, Arial;
+  text-align: center;
+  padding: 0.5em;
 
-
+  color: $body-bg;
+  background: $dark-color;
+  margin-bottom: -2px;
+  background-image: -webkit-linear-gradient(top right, #FFFFFF 0%, #001824 100%);
+}

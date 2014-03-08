@@ -10,7 +10,7 @@ from django.db import models
 
 
 class SiteUserSerializer(serializers.HyperlinkedModelSerializer):
-     class Meta:
+    class Meta:
         model = SiteUser
         fields = SiteUser.fields_to_serialize
 

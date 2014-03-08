@@ -24,9 +24,9 @@ angular.module(
 );
 
 /* CALENDAR */
-var calendar = angular.module('schedulerApp', [ ]);
+var app = angular.module('schedulerApp', [ ]);
 
-calendar.controller('MainSchedulerCtrl', function($scope) {
+app.controller('MainSchedulerCtrl', function($scope) {
 	//var d = new Date(2013, 10, 12).toJSON().substr(0,10);
 	//console.log(d);
 

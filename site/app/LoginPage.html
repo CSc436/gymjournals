@@ -34,21 +34,30 @@
 -->
         <div class="content active" id="panel2-1">
           <form class="custom" id="signupForm" data-abide="ajax" ng-submit="register()">
-<!--Username-->
+            
+            <!-- SHOW ERROR/SUCCESS MESSAGES -->
+            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
+              {{ message }}
+              <a href="#" class="close">&times;</a>
+            </div>
+
+            <!--Username-->
             <div class="name-field">
               <label>Username&nbsp;<small>required</small>
                 <input name="username" type="text" id="username" placeholder="can only contain letters and numbers" pattern="alpha_numeric" size="6" ng-model="formData.username" name="username" required>
               </label>
               <small class="error">No characters allowed except letters and numbers. e.g. fittness</small>
             </div>
-<!--password-->
+            
+            <!--password-->
             <div class="password-field">
                 <label>Password <small>required</small>
                   <input type="password" id="password" placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="formData.password" required>
                 </label>
                 <small class="error">Your password must match the requirements</small>
             </div>
-<!--confirm-password-->
+
+            <!--confirm-password-->
             <div class="password-confirmation-field">
                 <label>Confirm Password <small>required</small>
                   <input type="password" required  data-equalto="password" name="password" >
@@ -56,7 +65,7 @@
                 <small class="error">The password did not match</small>
             </div>
 
-<!--email-->
+            <!--email-->
             <div class="email-field">
               <label>Email&nbsp;<small>required</small>
                 <input id="email" type="email" required placeholder="e.g. fit@gymjournals.com" ng-model="formData.email" name="email">
@@ -64,7 +73,8 @@
               <small class="error">Please use the right email format<br>
                 </small>
             </div>
-<!--signup button-->
+
+            <!--signup button-->
             <input type="submit" class="button radius login_button" name="signup" type="submit" value="Create Profile">
           </form>        
 
@@ -76,15 +86,18 @@
 
         <div class="content" id="panel2-2">
           <form class="custom" id="signinForm" data-abide="ajax" ng-submit="login()">
-            <!--username-->
+            <!-- SHOW ERROR/SUCCESS MESSAGES -->
+            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
+              {{ message }}
+              <a href="#" class="close">&times;</a>
+            </div>
 
+            <!--username-->
             <div class="name-field">
               <label>Username
                 <input id="username" type="text" ng-model="formData.username" name="username" required>
               </label>
             </div>
-
-            
 
             <!--password-->
             <div class="password-field">
@@ -93,10 +106,9 @@
                 </label>
             </div>
 
-<!--signup button-->  
+            <!--signup button-->  
             <input type="submit" class="button radius login_button" name="signin" type="submit" value="Sign In">
 
-      
           </form>
         </div>
       </div>

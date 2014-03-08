@@ -12,14 +12,16 @@ loginPage.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
     console.log($scope.formData); // temporary
     $http.post(server + "api/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
-        console.log("SUCESS");
         $scope.data = data;
 
+        $scope.alertType = "success";
+        $scope.message = "SUCCESS!";
       })
       .error( function(data, status, headers, config ) {
-        console.log("ERROR");
         console.log(data);
-        $scope.error = "There was an error.";
+        
+        $scope.alertType = "warning";
+        $scope.message = "There was an error.";
       });
 
   }); // on valid
@@ -29,11 +31,12 @@ loginPage.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
   
     $http.post(server + "api/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
-        $scope.data = data;
-        console.log($scope.data);
+        $scope.alertType = "success";
+        $scope.message = "SUCCESS!";
       })
       .error( function(data, status, headers, config ) {
-        $scope.error = "There was an error.";
+        $scope.alertType = "warning";
+        $scope.message = "There was an error.";
       });
 
   }); // on valid

@@ -54,8 +54,10 @@ class Workout(models.Model):
     """
     user = models.ForeignKey(SiteUser)
     date = models.DateField()
-    fields_to_serialize = ("id", "user", "date", "tag", "color", 
-        "description", "time")
+    fields_to_serialize = (
+        "id", "user", "date", "tag", "color",
+        "description", "time"
+    )
     tag = models.CharField(max_length=50)
     color = models.CharField(max_length=6)
     description = models.TextField()
@@ -63,7 +65,7 @@ class Workout(models.Model):
 
     def __repr__(self):
         """Return the User and date"""
-        return str(self.__dict__) #"User: {}, Date: {}".format(self.user.username, self.date)
+        return str(self.__dict__)
 
 
 class WeightExercise(models.Model):
@@ -76,8 +78,8 @@ class WeightExercise(models.Model):
     duration = models.TimeField(null=True)
 
     def __str__(self):
-        return ("{} {}x{} at {}".format(self.name, self.num_sets, self.num_reps,
-            self.min_weight) + 
+        return ("{} {}x{} at {}".format(
+            self.name, self.num_sets, self.num_reps, self.min_weight) +
             ("-{}".format(self.max_weight) if self.max_weight else "") +
             " lbs." +
             (" for {}".format(self.duration) if self.duration else ""))

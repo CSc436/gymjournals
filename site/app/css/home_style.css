@@ -1,0 +1,45 @@
+/* line 4, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #fafafa;
+  color: #fafafa; }
+  /* line 9, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-top {
+    height: 100px;
+    background-color: #fafafa; }
+  @media only screen and (min-width: 426px) {
+    /* line 16, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+    body .index-header-content {
+      padding-top: 15px; } }
+  @media only screen and (max-width: 425px) {
+    /* line 22, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+    body .index-header-content {
+      padding-top: 0px; }
+    /* line 25, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+    body #index-login-button {
+      padding-top: 12px;
+      height: 100px; }
+    /* line 29, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+    body #index-login-button-div {
+      padding-right: 0px; } }
+  /* line 34, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-login-button {
+    float: right; }
+  /* line 38, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-body-content {
+    background-color: #222222;
+    background-image: url("../img/gym1.jpg");
+    height: 80%;
+    min-height: 500px; }
+  /* line 45, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-info-section {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    margin-top: 20px; }
+  /* line 52, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-headline {
+    font-size: 1.5em;
+    font-weight: bold; }
+  /* line 57, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
+  body #index-footer-content {
+    padding: 10px; }

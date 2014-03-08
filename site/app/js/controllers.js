@@ -29,7 +29,9 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
 
   // process the login form
   $('#signinForm').on('valid', function () {
-    $http.post(server + "api/users/", $scope.formData)
+            console.log($scope.formData);
+
+    $http.post(server + "api/users/login", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.data = data;
 
@@ -54,6 +56,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
         $scope.message = "SUCCESS!";
       })
       .error( function(data, status, headers, config ) {
+        console.log(data);
         $scope.alertType = "warning";
         $scope.message = "There was an error.";
       });

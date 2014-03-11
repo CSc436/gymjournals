@@ -1,4 +1,4 @@
-app.directive('dhxScheduler', function() {
+calendar.directive('dhxScheduler', function() {
   return {
     restrict: 'A',
     scope: false,
@@ -45,7 +45,7 @@ app.directive('dhxScheduler', function() {
   }
 });
 
-app.directive('dhxTemplate', ['$filter', function($filter){
+calendar.directive('dhxTemplate', ['$filter', function($filter){
   scheduler.aFilter = $filter;
 
   return {

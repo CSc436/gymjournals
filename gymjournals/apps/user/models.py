@@ -72,7 +72,7 @@ class WeightExercise(models.Model):
     wkout = models.ForeignKey(Workout)
     name = models.CharField(max_length=50)
     min_weight = models.PositiveSmallIntegerField()
-    max_weight = models.PositiveSmallIntegerField(null=True)
+    max_weight = models.PositiveSmallIntegerField(null=True,blank=True)
     num_sets = models.PositiveSmallIntegerField(default=1)
     num_reps = models.PositiveSmallIntegerField(default=1)
     duration = models.TimeField(null=True)

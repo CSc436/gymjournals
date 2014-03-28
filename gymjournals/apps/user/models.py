@@ -78,11 +78,11 @@ class WeightExercise(models.Model):
     duration = models.TimeField(null=True)
 
     def __str__(self):
-        return ("{} {}x{} at {}".format(
-            self.name, self.num_sets, self.num_reps, self.min_weight) +
-            ("-{}".format(self.max_weight) if self.max_weight else "") +
-            " lbs." +
-            (" for {}".format(self.duration) if self.duration else ""))
+        return ("{}: {} {}x{} at {}".format(self.wkout.user.username,
+                self.name, self.num_sets, self.num_reps, self.min_weight) +
+                ("-{}".format(self.max_weight) if self.max_weight else "") +
+                " lbs." +
+                (" for {}".format(self.duration) if self.duration else ""))
 
     def __repr__(self):
         return str(self)

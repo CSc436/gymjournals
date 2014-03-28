@@ -41,3 +41,52 @@ dan_workout.save()
 
 dan_workout_two = Workout(user=dan, date=date(year=2015, month=6, day=10))
 dan_workout_two.save()
+
+dan_ex = WeightExercise(
+    name="Bench Press",
+    min_weight=105,
+    num_sets=5,
+    num_reps=5,
+    duration=time(minute=15)
+    )
+dan_ex.wkout = dan_workout
+dan_ex.save()
+
+dan_ex = WeightExercise(
+    name="Shoulder Press",
+    min_weight=85,
+    num_sets=3,
+    num_reps=5,
+    duration=time(minute=10)
+    )
+dan_ex.wkout = dan_workout
+dan_ex.save()
+
+dan_ex = WeightExercise(
+    name="Tricep Extension",
+    min_weight=45,
+    num_sets=3,
+    num_reps=8,
+    duration=time(minute=10)
+    )
+dan_ex.wkout = dan_workout
+dan_ex.save()
+
+dan_ex = WeightExercise(
+    name="Pec Fly",
+    min_weight=110,
+    num_sets=3,
+    num_reps=5,
+    duration=time(minute=10)
+    )
+dan_ex.wkout = dan_workout
+dan_ex.save()
+
+dan_ex = WeightExercise(
+    name="Tricep Pulldowns",
+    min_weight=25,
+    max_weight=95,
+    duration=time(minute=10)
+    )
+dan_ex.wkout = dan_workout
+dan_ex.save()

@@ -96,3 +96,8 @@ class WeightExerciseListAPIView(generics.ListCreateAPIView):
         workout_id = self.kwargs['workout_id']
         workout = Workout.objects.filter(id=workout_id).first()
         return workout.weightexercise_set.all()
+
+
+class WeightExerciseGetAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = WeightExerciseSerializer
+    model = WeightExercise

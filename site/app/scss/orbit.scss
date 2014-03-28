@@ -1,0 +1,47 @@
+@import 'home_style';
+
+#body-content {
+
+}
+
+#orbit-content {
+	margin-top: 20px;
+	padding: 20px;
+	z-index: 1;
+	background: rgba(0, 0, 0, .8);
+}
+
+.orbit-container {
+	position: absolute;
+	top: 100px;
+	height: 80%;
+	min-height: 500px;
+
+	#my-orbit {
+		height: 100%;
+		
+		#slide1 {
+			background-image: url("../img/gym1.jpg");
+			height: 100%;
+		}
+
+		#slide2 {
+			background-image: url("../img/gym.jpg");
+			height: 100%;
+		}
+
+		#slide3 {
+			background-image: url("../img/gym1.jpg");
+			height: 100%;
+		}
+	}
+}
+
+#orbit-footer {
+	position: absolute;
+	bottom: 0px;
+	z-index: 2;
+	background: $offwhite;
+	width: 100%;
+
+}

@@ -47,58 +47,6 @@ class SiteUser(models.Model):
         super().save(*args, **kwargs)
 
 
-'''
-class SiteUser(models.Model):
-    """
-    first_name - User's firstname
-    last_name - User's lastname
-    email - A valid email
-    city - User's city
-    state - Two character representation of User's state
-    zip_code - 5 digit number (for now)
-    dob - User's dob. Year, month, day
-    """
-    first_name
-    city = models.CharField(
-        max_length=50,
-        validators=[RegexValidator(
-            r'[A-Z]{1}[a-z]+',
-            'City must have a capital first letter and contain only \
-            alphabetic characters')])
-    state = models.CharField(
-        max_length=2,
-        validators=[RegexValidator(
-            r'[A-Z]{2}',
-            'The state must be 2 upper-case letters')])
-    zip_code = models.CharField(
-        max_length=10,
-        validators=[RegexValidator(
-            r'\d{5}(-\d{4})?',
-            'ZIP Code can either be ##### or #####-####')])
-    dob = models.DateField()
-    fields_to_serialize = (
-        "id", "first_name", "last_name", "email", "city",
-        "state", "zip_code", "dob", "username", "password"
-    )
-
-    def save(self, *args, **kwargs):
-        self.clean_fields()
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        """Return the email of a user"""
-        return "Name: {} {}, Email: '{}'".format(
-            self.first_name, self.last_name, self.email
-        )
-
-    def __repr__(self):
-        """Return the email of a user"""
-        return "SiteUser(first_name='{}', last_name='{}', email='{}')".format(
-            self.first_name, self.last_name, self.email
-        )
-'''
-
-
 class Workout(models.Model):
     """
     user - Foreign key to SiteUser
@@ -106,11 +54,35 @@ class Workout(models.Model):
     """
     user = models.ForeignKey(SiteUser)
     date = models.DateField()
-    fields_to_serialize = ("id", "user", "date")
+    fields_to_serialize = (
+        "id", "user", "date", "tag", "color",
+        "description", "time"
+    )
+    tag = models.CharField(max_length=50)
+    color = models.CharField(max_length=6)
+    description = models.TextField()
+    duration = models.TimeField(null=True)
+
+    def __repr__(self):
+        """Return the User and date"""
+        return str(self.__dict__)
+
+
+class WeightExercise(models.Model):
+    wkout = models.ForeignKey(Workout)
+    name = models.CharField(max_length=50)
+    min_weight = models.PositiveSmallIntegerField()
+    max_weight = models.PositiveSmallIntegerField(null=True)
+    num_sets = models.PositiveSmallIntegerField(default=1)
+    num_reps = models.PositiveSmallIntegerField(default=1)
+    duration = models.TimeField(null=True)
 
     def __str__(self):
-        """Return the User and date"""
-        return "User: {}, Date: {}".format(self.user.username, self.date)
+        return ("{} {}x{} at {}".format(
+            self.name, self.num_sets, self.num_reps, self.min_weight) +
+            ("-{}".format(self.max_weight) if self.max_weight else "") +
+            " lbs." +
+            (" for {}".format(self.duration) if self.duration else ""))
 
     def __repr__(self):
         return str(self)

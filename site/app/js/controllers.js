@@ -83,21 +83,20 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
 
   // process the login form
   $('#signinForm').on('valid', function () {
-    var json = JSON.stringify($scope.formData)
-    console.log(json);
 
-    $http.post(server + "api/users/login", json)
+    $http.post(server + "api/users/login/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.data = data;
 
         $scope.alertType = "success";
         $scope.message = "SUCCESS!";
+        window.location = "testNav.html";
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
         
         $scope.alertType = "warning";
-        $scope.message = "There was an error.";
+        $scope.message = data.error;
       });
 
   }); // on valid

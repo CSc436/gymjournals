@@ -1,4 +1,4 @@
-calendar.directive('dhxScheduler', function() {
+gymjournals.directive('dhxScheduler', function() {
   return {
     restrict: 'A',
     scope: false,
@@ -40,12 +40,13 @@ calendar.directive('dhxScheduler', function() {
       $element.addClass("dhx_cal_container");
 
       //init scheduler
+      console.log("inside directive");
       scheduler.init($element[0], $scope.scheduler.date, $scope.scheduler.mode);
     }
   }
 });
 
-calendar.directive('dhxTemplate', ['$filter', function($filter){
+gymjournals.directive('dhxTemplate', ['$filter', function($filter){
   scheduler.aFilter = $filter;
 
   return {

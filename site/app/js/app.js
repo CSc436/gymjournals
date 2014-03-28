@@ -2,7 +2,7 @@
 
 angular
   .module('gymjournals', [
-    'ui.router'
+    'ui.router',
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
@@ -16,7 +16,7 @@ angular
       .state('calendar', {
         url: '/calendar',
         templateUrl: 'partials/_calendar.html',
-        controller: 'calendarCtrl',
+        // controller: 'calendarCtrl',
         resolve: {
           calendarData: ['$http', function($http){
             return $http.get('test_calendarData.json').then(function(response){
@@ -30,9 +30,11 @@ angular
 
 
 /* CALENDAR */
-var calendar = angular.module('schedulerApp', [ ]);
+var calendar = angular.module('schedulerApp', []);
 
 calendar.controller('mainSchedulerCtrl', function($scope) {
+  console.log("calendar.controller('mainSchedulerCtrl'")
+
 	//var d = new Date(2013, 10, 12).toJSON().substr(0,10);
 	//console.log(d);
 
@@ -66,6 +68,7 @@ calendar.controller('mainSchedulerCtrl', function($scope) {
 
 });
 
+angular.bootstrap(document.getElementById("scheduler"),['schedulerApp']);
 
 /* 
  *

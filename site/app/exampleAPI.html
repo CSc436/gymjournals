@@ -1,20 +1,47 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="exampleAPI">
 <head>
   <meta charset="utf-8">
   <title>Sample AngularJS API Usage</title>
+  <link rel="stylesheet" href="css/app.css" />
 </head>
-<body data-ng-controller="ExampleController as ctrl">
+<body>
 
-  <ul data-ng-if="data">
-    <li data-ng-repeat="user in data">
-      {{user}}
-    </li>
-  </ul>
+  <div data-ng-controller="GetUsers as ctrl">
+    <h3>Get all users</h3>
+    <ul data-ng-if="data">
+      <li data-ng-repeat="user in data">
+        Username: {{user.username}}
+        <ul>
+          <li>ID: {{user.id}}</li>
+          <li>First Name: {{user.first_name}}</li>
+          <li>Last Name: {{user.last_name}}</li>
+          <li>Email: {{user.email}}</li>
+        </ul>
+      </li>
+    </ul>
 
-  <h2 data-ng-if="error">
-    {{error}}
-  </h2>
+    <h2 data-ng-if="error">
+      {{error}}
+    </h2>
+  </div>
+
+  <div data-ng-controller="CreateWorkout as ctrl">
+    <form data-ng-submit="createWorkout()">
+      <label>User ID:
+        <input name="user_id" type="text" placeholder="Enter a user id" ng-model="workoutData.user" name="user_id" required>
+      </label>
+      <label>Date:
+        <input name="workout_date" type="date" ng-model="workoutData.date" name="workout_date" required>
+      </label>
+
+      <input type="submit" class="button radius login_button" name="create" value="Create Workout">
+    </form>
+
+    <div data-ng-if="createdWorkout">
+      {{createdWorkout}}
+    </div>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -26,5 +53,10 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/foundation/js/foundation.min.js"></script>
+  <script src="bower_components/foundation/js/foundation/foundation.abide.js"></script>
+  <script type="text/javascript">$(document).foundation();</script>
 </body>
 </html>

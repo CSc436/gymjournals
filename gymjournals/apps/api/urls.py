@@ -11,33 +11,36 @@ from api import views
 
 urlpatterns = patterns(
     "",
-    url(r"^users/$", views.SiteUserListAPIView.as_view(), name="list_users"),
+    url(r"^list/users/$",
+        views.SiteUserListAPIView.as_view(),
+        name="list_users"
+    ),
     url(
-        r"^users/(?P<pk>\d+)/$",
+        r"^get/users/(?P<pk>\d+)/$",
         views.SiteUserGetAPIView.as_view(),
         name="get_user"
     ),
     url(
-        r"^users/login/$",
+        r"^login/$",
         views.SiteUserGetLoginAPIView.as_view(),
         name="get_login_user"
     ),
     url(
-        r"^workouts/(?P<id>\d+)/$",
+        r"^list/workouts/(?P<id>\d+)/$",
         views.WorkoutListAPIView.as_view(),
         name="list_workouts"),
     url(
-        r"^workouts/(?P<id>\d+)/(?P<pk>\d+)/$",
+        r"^get/workouts/(?P<pk>\d+)/$",
         views.WorkoutGetAPIView.as_view(),
         name="get_workout"
     ),
     url(
-        r"^weightexercise/(?P<workout_id>\d+)/$",
+        r"^list/weightexercises/(?P<workout_id>\d+)/$",
         views.WeightExerciseListAPIView.as_view(),
         name="list_weight_exercises",
     ),
     url(
-        r"^weightexercise/get/(?P<pk>\d+)/$",
+        r"^get/weightexercises/(?P<pk>\d+)/$",
         views.WeightExerciseGetAPIView.as_view(),
         name="get_weight_exercise",
     ),

@@ -16,7 +16,7 @@ angular
       .state('calendar', {
         url: '/calendar',
         templateUrl: 'partials/_calendar.html',
-        // controller: 'calendarCtrl',
+        controller: 'mainSchedulerCtrl',
         resolve: {
           calendarData: ['$http', function($http){
             return $http.get('test_calendarData.json').then(function(response){
@@ -68,7 +68,7 @@ calendar.controller('mainSchedulerCtrl', function($scope) {
 
 });
 
-angular.bootstrap(document.getElementById("scheduler"),['schedulerApp']);
+// angular.bootstrap(document.getElementById("scheduler"),['schedulerApp']);
 
 /* 
  *

@@ -26,15 +26,15 @@ gymjournals.controller("homeCtrl", ["$scope", function($scope) {
 
 
 
-gymjournals.controller('mainSchedulerCtrl', ["$scope", "calendarData", function($scope, calendarData) {
+gymjournals.controller('mainSchedulerCtrl', ["$scope", function($scope) {
 console.log("gymjournals.controller('mainSchedulerCtrl'")
 
-//   $scope.title = "CALENDAR";
-//   $scope.calendarData = calendarData;
+  $scope.title = "CALENDAR";
+  // $scope.calendarData = calendarData;
 
-//   $scope.save = function() {
-//     $http.post(server + '/api/calendar', JSON.stringify($scope.calendarData));
-//   }
+  // $scope.save = function() {
+  //   $http.post(server + '/api/calendar', JSON.stringify($scope.calendarData));
+  // }
 
 
 

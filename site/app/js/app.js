@@ -10,7 +10,7 @@ angular
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'partials/_home.html',
+        templateUrl: 'partials/home_partial.html',
         controller: 'homeCtrl'
       })
       .state('profile', {

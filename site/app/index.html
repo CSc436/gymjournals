@@ -15,20 +15,9 @@
     <link href="http://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="container">
-        <div ng-include src="'partials/_nav.html'"></div>   
-        <div ng-include src="'partials/_home.html'"></div> 
-
-        <div ng-include src="'partials/_login.html'"></div>   
-  
+	<div class="container">  
         
-
-        before: 
         <div ui-view></div>
-    	
-        after
-
-    	
 	
     </div>
 	<!-- javascript
@@ -45,12 +34,10 @@
     <script src="js/controllers.js"></script>
 
     <script src="lib/scheduler/dhtmlxscheduler.js"></script>
-
     <script src="js/app.scheduler.js"></script>
 
     <script type="text/javascript">
-    $(document).foundation();
-
+        $(document).foundation();
     </script>
 </body>
 </html>

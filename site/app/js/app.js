@@ -14,7 +14,7 @@ angular
         controller: 'homeCtrl'
       })
       .state('profile', {
-        url: '/',
+        url: '/profile',
         templateUrl: 'partials/_profile.html',
         controller: 'profileCtrl'
       })

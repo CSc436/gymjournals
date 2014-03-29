@@ -95,7 +95,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
 
 /* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) {
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scope, $http, $state) {
   $scope.formData = {};
 
   // process the login form
@@ -107,7 +107,8 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
 
         $scope.alertType = "success";
         $scope.message = "SUCCESS!";
-        window.location = "testNav.html";
+        $('#loginModal').foundation('reveal', 'close');
+        $state.go("profile");
       })
       .error( function(data, status, headers, config ) {
         console.log(data);

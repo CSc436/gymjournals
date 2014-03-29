@@ -63,9 +63,7 @@ class SiteUser(models.Model):
 
 class Weight(models.Model):
     user = models.ForeignKey(SiteUser)
-    date = models.DateField(
-        auto_now_add=True
-        )
+    date = models.DateField(blank=False, null=False)
     weight = models.PositiveSmallIntegerField(
         null=False,
         blank=False

@@ -23,15 +23,6 @@ angular.module(
   ]
 );
 
-$(document).foundation({
-  orbit: {
-    timer_speed: 5000,
-    pause_on_hover: false,
-    bullets: false,
-    slide_number: false,
-    resume_on_mouseout: true,
-    timer: true
-  }
 /* CALENDAR */
 var app = angular.module('schedulerApp', [ ]);
 

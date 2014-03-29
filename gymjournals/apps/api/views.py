@@ -70,17 +70,12 @@ class WorkoutListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         user_id = self.kwargs['id']
         user = SiteUser.objects.filter(id=user_id).first()
-        return Workout.objects.filter(user=user)
+        return user.workout_set.all()
 
 
 class WorkoutGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WorkoutSerializer
     model = Workout
-
-    def get_queryset(self):
-        user_id = self.kwargs['id']
-        user = SiteUser.objects.filter(id=user_id).first()
-        return Workout.objects.filter(user=user)
 
 
 class WeightExerciseSerializer(serializers.ModelSerializer):

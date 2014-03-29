@@ -12,20 +12,15 @@ gymjournals.controller("homeCtrl", ["$scope", function($scope) {
 
 }]);
 
+/* PROFILE CTRL */
+gymjournals.controller("profileCtrl", ["$scope", function($scope) {
+  $scope.title = "PROFILE";
+
+}]);
+
+
+
 /* CALENDAR CTRL */
-// gymjournals.controller("calendarCtrl", ["$scope", "calendarData", function($scope, calendarData) {
-//   $scope.title = "CALENDAR";
-//   $scope.calendarData = calendarData;
-
-//   $scope.save = function() {
-//     $http.post(server + '/api/calendar', JSON.stringify($scope.calendarData));
-//   }
-
-// }]);
-
-
-
-
 gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData", function($scope, $http, calendarData) {
 console.log("gymjournals.controller('mainSchedulerCtrl'")
 

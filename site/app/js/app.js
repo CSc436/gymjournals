@@ -13,6 +13,11 @@ angular
         templateUrl: 'partials/_home.html',
         controller: 'homeCtrl'
       })
+      .state('profile', {
+        url: '/',
+        templateUrl: 'partials/_profile.html',
+        controller: 'profileCtrl'
+      })
       .state('calendar', {
         url: '/calendar',
         templateUrl: 'partials/_calendar.html',

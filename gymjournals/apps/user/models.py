@@ -86,3 +86,21 @@ class WeightExercise(models.Model):
 
     def __repr__(self):
         return str(self)
+
+
+class AerobicExercise(models.Model):
+    wkout = models.ForeignKey(Workout)
+    name = models.CharField(max_length=50)
+    initial_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
+    final_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
+    duration = models.TimeField()
+
+    def __repr__(self):
+        return ("{}: {} for {}".format(self.wkout.user.username, self.name,
+                self.duration) +
+                (" at {}".format(self.initial_heartrate)
+                    if self.initial_heartrate else "") +
+                ("-{}".format(self.final_heartrate)
+                    if self.final_heartrate else "") +
+                " bpm" if self.initial_heartrate or self.final_heartrate
+                else "")

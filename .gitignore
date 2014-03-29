@@ -50,6 +50,7 @@ Gemfile.lock
 
 # ignore generated files
 app.css
+site/app/css
 
 #pytest
 .cache

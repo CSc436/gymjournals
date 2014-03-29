@@ -11,7 +11,8 @@ from api import views
 
 urlpatterns = patterns(
     "",
-    url(r"^list/users/$",
+    url(
+        r"^list/users/$",
         views.SiteUserListAPIView.as_view(),
         name="list_users"
     ),

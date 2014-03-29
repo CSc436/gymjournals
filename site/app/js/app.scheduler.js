@@ -1,3 +1,4 @@
+var gymjournals = angular.module('gymjournals');
 gymjournals.directive('dhxScheduler', function() {
   return {
     restrict: 'A',

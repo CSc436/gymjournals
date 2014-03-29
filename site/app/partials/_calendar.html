@@ -1,11 +1,8 @@
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="lib/scheduler/dhtmlxscheduler.css">
 
-	<script src="lib/scheduler/dhtmlxscheduler.js"></script>
 
-	<script src="js/app.scheduler.js"></script>
-
-	<div id="scheduler" ng-controller="mainSchedulerCtrl">
+	<div id="scheduler">
 		<div data="events" dhx-scheduler style="height:600px; width:800px;">
 			<div class="dhx_cal_prev_button">&nbsp;</div>
 			<div class="dhx_cal_next_button">&nbsp;</div>
@@ -21,9 +18,8 @@
 		<div>
 
 		calendar!
-
-		<button class="radius" ng-click="save()">SAVE</button>
 	</div>
 
+	<button class="radius" ng-click="save()">SAVE</button>
 
 

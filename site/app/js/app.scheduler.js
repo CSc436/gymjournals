@@ -40,7 +40,6 @@ gymjournals.directive('dhxScheduler', function() {
       $element.addClass("dhx_cal_container");
 
       //init scheduler
-      console.log("inside directive");
       scheduler.init($element[0], $scope.scheduler.date, $scope.scheduler.mode);
     }
   }

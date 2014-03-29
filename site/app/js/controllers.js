@@ -26,20 +26,42 @@ gymjournals.controller("homeCtrl", ["$scope", function($scope) {
 
 
 
-gymjournals.controller('mainSchedulerCtrl', ["$scope", function($scope) {
+gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData", function($scope, $http, calendarData) {
 console.log("gymjournals.controller('mainSchedulerCtrl'")
 
   $scope.title = "CALENDAR";
-  // $scope.calendarData = calendarData;
 
-  // $scope.save = function() {
-  //   $http.post(server + '/api/calendar', JSON.stringify($scope.calendarData));
-  // }
+  $scope.save = function() {
+    $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
+  }
 
+// console.log(calendarData);
+// calendarData = JSON.parse( JSON.stringify(calendarData) );
 
+  // $scope.events = calendarData;
 
-  //var d = new Date(2013, 10, 12).toJSON().substr(0,10);
-  //console.log(d);
+  $.each(calendarData, function(i, datePair) {
+    // console.log(datePair);
+    // var date = datePair.start_date;
+    // var list = date.split("-");
+    // var year = list[0];
+    // var month = list[1] + 1;
+    // var day = list[2];
+
+    // var startDate = new Date(year, month, day);
+    // var endDate = new Date(year, month, day+1);
+
+    // $scope.events[i]({
+    //   "id": i,
+    //   "text":"Task A-12458",
+    //   "start_date": new Date(2013, 11, 12),
+    //   "end_date": new Date(2013, 11, 13) 
+    // });
+  });
+
+//   $scope.events = calendarData;
+// console.log($scope.events);
+
 
   //Get list of dates from database
   //For each, append to scope.events?
@@ -53,19 +75,19 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
   $scope.events = [
     { 
 
-      id:1,
-      text:"Task A-12458",
-      start_date: new Date(2013, 11, 12),
-      end_date: new Date(2013, 11, 13) 
+      "id":1,
+      "text":"Task A-12458",
+      "start_date": new Date(2013, 11, 12),
+      "end_date": new Date(2013, 11, 13) 
     },
-     
-     { id:2, text:"Task A-83473",
-       start_date: new Date(2013, 10, 22 ),
-       end_date: new Date(2013, 10, 24 ) }
+    { 
+      "id":2, 
+      "text":"Task A-83473",
+      "start_date": new Date(2013, 10, 22 ),
+      "end_date": new Date(2013, 10, 24 ) }
   ];
- 
-  // var d = start_date;
-  //console.log();
+
+  console.log($scope.events);
 
   $scope.scheduler = { date : new Date(2013,10,1) };
 
@@ -84,7 +106,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
   // process the login form
   $('#signinForm').on('valid', function () {
 
-    $http.post(server + "api/users/login/", $scope.formData)
+    $http.post(server + "api/login/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.data = data;
 
@@ -104,7 +126,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", function($scope, $http) 
   // process the registration form
   $('#signupForm').on('valid', function () {
 
-    $http.post(server + "api/users/", $scope.formData)
+    $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
         $scope.message = "SUCCESS!";

@@ -6,10 +6,11 @@ var server = "http://localhost:8000/";
 var gymjournals = angular.module('gymjournals');
 
 /* HOME PAGE CTRL */
-gymjournals.controller("homeCtrl", ["$scope", function($scope) {
+gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
   $scope.items = ["one", "two", "three"]; // testing
 
+  $cookieStore.put('loggedin', ''); // store session
 }]);
 
 /* PROFILE CTRL */
@@ -95,7 +96,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
 
 /* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scope, $http, $state) {
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", function($scope, $http, $state, $cookieStore) {
   $scope.formData = {};
 
   // process the login form
@@ -107,8 +108,9 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scop
 
         $scope.alertType = "success";
         $scope.message = "SUCCESS!";
-        $('#loginModal').foundation('reveal', 'close');
-        $state.go("profile");
+        $('#loginModal').foundation('reveal', 'close'); // close modal
+        $cookieStore.put('loggedin', 'true'); // store session
+        $state.go("profile"); // go to profile page
       })
       .error( function(data, status, headers, config ) {
         console.log(data);

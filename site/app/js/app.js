@@ -3,6 +3,7 @@
 angular
   .module('gymjournals', [
     'ui.router',
+    'ngCookies',
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
@@ -30,6 +31,16 @@ angular
           }]
         }
       })
+  }])
+  .run(['$rootScope', '$cookieStore', '$state', function($rootScope, $cookieStore, $state){
+    // make sure they have to be logged in before accessing other parts of the website
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      // if you arent logged in and you are going to a page other than the home page
+      if ( (! $cookieStore.get('loggedin')) && toState.name != 'home' ) {
+        event.preventDefault();
+        $state.go("home"); // go to home page
+      }
+    })
   }]);
 
 

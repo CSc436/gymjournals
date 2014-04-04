@@ -1,66 +1,66 @@
-/* line 3, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+/* line 3, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
 body {
   font-family: 'Lato', sans-serif;
   background-color: #f1f2f2;
   color: #f1f2f2; }
-  /* line 8, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+  /* line 8, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
   body #index-header {
     height: 100px;
     background-color: #f1f2f2; }
-    /* line 12, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 12, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body #index-header h1 {
       color: #1f2831; }
   @media only screen and (min-width: 426px) {
-    /* line 18, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 18, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body .index-header-content {
       padding-top: 15px; } }
   @media only screen and (max-width: 425px) {
-    /* line 24, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 24, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body .index-header-content {
       padding-top: 0px; }
-    /* line 27, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 27, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body #index-login-button {
       padding-top: 12px;
       height: 100px; }
-    /* line 31, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 31, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body #index-login-button-div {
       padding-right: 0px; } }
-  /* line 36, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+  /* line 36, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
   body #index-login-button {
     float: right; }
-  /* line 40, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+  /* line 40, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
   body #index-body-content {
     height: 80%; }
-    /* line 43, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 43, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body #index-body-content #orbit-content {
       margin-top: 20px;
       padding: 20px;
       background: rgba(0, 0, 0, 0.8); }
-      /* line 48, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+      /* line 48, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
       body #index-body-content #orbit-content #index-headline {
         font-size: 1.5em;
         font-weight: bold; }
-    /* line 54, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+    /* line 54, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
     body #index-body-content .orbit-container {
       position: absolute;
       top: 100px;
       height: 80%; }
-      /* line 59, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+      /* line 59, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
       body #index-body-content .orbit-container #my-orbit {
         min-height: 100%; }
-        /* line 62, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+        /* line 62, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
         body #index-body-content .orbit-container #my-orbit #slide1 {
           background-image: url("../img/gym1.jpg");
           height: 100%; }
-        /* line 67, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+        /* line 67, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
         body #index-body-content .orbit-container #my-orbit #slide2 {
           background-image: url("../img/gym.jpg");
           height: 100%; }
-        /* line 72, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+        /* line 72, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
         body #index-body-content .orbit-container #my-orbit #slide3 {
           background-image: url("../img/gym1.jpg");
           height: 100%; }
-  /* line 80, /Users/hazielzuniga/gymjournals/site/app/scss/home_style.scss */
+  /* line 80, /Users/22/Documents/GITHUB/gymjournals/site/app/scss/home_style.scss */
   body #index-footer {
     position: fixed;
     bottom: 0px;

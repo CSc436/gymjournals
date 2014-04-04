@@ -7,9 +7,9 @@
 <!--tabs-->
       <dl class="tabs login_tabs" data-tab>
 <!--new user tab -->
-        <dd class="active"><a class="login_tabs" href="#panel2-1">New User</a></dd>
+        <dd ><a class="login_tabs" href="#panel2-1">New User</a></dd>
 <!--existing user tab-->
-        <dd ><a  href="#panel2-2">Existing User</a></dd>
+        <dd class="active"><a  href="#panel2-2">Existing User</a></dd>
 
       </dl>
       <div class="tabs-content">
@@ -18,7 +18,7 @@
 <!--The new user panel starts from here
 =================================================================================
 -->
-        <div class="content active" id="panel2-1">
+        <div class="content" id="panel2-1">
           <form class="custom" id="signupForm" data-abide="ajax" ng-submit="register()">
             
             <!-- SHOW ERROR/SUCCESS MESSAGES -->
@@ -70,7 +70,7 @@
 =================================================================================
 -->
 
-        <div class="content" id="panel2-2">
+        <div class="content  active" id="panel2-2">
           <form class="custom" id="signinForm" data-abide="ajax" ng-submit="login()">
             <!-- SHOW ERROR/SUCCESS MESSAGES -->
             <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">

@@ -43,6 +43,12 @@ class SiteUser(models.Model):
             return -1
         return ((date.today()-self.dob)/365).days
 
+    @property
+    def current_weight(self):
+        w = (self.weight_set.filter(
+            user=self).order_by('-date').first())
+        return w.weight if w else 0
+
     fields_to_serialize = (
         "id", "username", "email", "pwd", "gender", "dob"
     )
@@ -117,6 +123,32 @@ class AerobicExercise(models.Model):
     name = models.CharField(max_length=50)
     avg_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
     duration = models.TimeField()
+
+    @property
+    def calories_burned(self):
+        if not self.avg_heartrate:
+            return 0
+        user = self.wkout.user
+# Define four constants that are different based on user's gender.
+# For use in the formula
+        agem = None
+        weightm = None
+        hrm = None
+        const = None
+        if user.gender == 'M':
+            agem = .2017
+            weightm = .09036
+            hrm = .6309
+            const = 55.0969
+        else:
+            agem = .074
+            weightm = -0.05741
+            hrm = .4472
+            const = 20.4022
+        return (((user.age * agem) + (user.current_weight * weightm) +
+                (self.avg_heartrate * hrm) - const) *
+                (self.duration.hour * 60 + self.duration.minute) /
+                4.184)
 
     def __repr__(self):
         return ("{}: {} for {}".format(self.wkout.user.username, self.name,

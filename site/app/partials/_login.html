@@ -1,0 +1,112 @@
+<div ng-controller="loginCtrl" id="loginModal" class="reveal-modal" data-reveal>
+	<!--header-->  
+    <header id="login_header" style="font-family: 'Open sans', arial, sans-serif">Gym Journals 
+    </header>
+
+    <div id="panel1" class="content active">
+<!--tabs-->
+      <dl class="tabs login_tabs" data-tab>
+<!--new user tab -->
+        <dd ><a class="login_tabs" href="#panel2-1">New User</a></dd>
+<!--existing user tab-->
+        <dd class="active"><a  href="#panel2-2">Existing User</a></dd>
+
+      </dl>
+      <div class="tabs-content">
+
+
+<!--The new user panel starts from here
+=================================================================================
+-->
+        <div class="content" id="panel2-1">
+          <form class="custom" id="signupForm" data-abide="ajax" ng-submit="register()">
+            
+            <!-- SHOW ERROR/SUCCESS MESSAGES -->
+            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
+              {{ message }}
+              <a href="#" class="close">&times;</a>
+            </div>
+
+            <!--Username-->
+            <div class="name-field">
+              <label>Username&nbsp;<small>required</small>
+                <input name="username" type="text" id="username" placeholder="can only contain letters and numbers" pattern="alpha_numeric" size="6" ng-model="formData.username" name="username" required>
+              </label>
+              <small class="error">No characters allowed except letters and numbers. e.g. fittness</small>
+            </div>
+            
+            <!--password-->
+            <div class="password-field">
+                <label>Password <small>required</small>
+                  <input type="password" id="password" placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="formData.pwd" required>
+                </label>
+                <small class="error">Your password must match the requirements</small>
+            </div>
+
+            <!--confirm-password-->
+            <div class="password-confirmation-field">
+                <label>Confirm Password <small>required</small>
+                  <input type="password" required  data-equalto="password" name="password" >
+                </label>
+                <small class="error">The password did not match</small>
+            </div>
+
+            <!--email-->
+            <div class="email-field">
+              <label>Email&nbsp;<small>required</small>
+                <input id="email" type="email" required placeholder="e.g. fit@gymjournals.com" ng-model="formData.email" name="email">
+              </label>
+              <small class="error">Please use the right email format<br>
+                </small>
+            </div>
+
+            <!--signup button-->
+            <input type="submit" class="button radius login_button" name="signup" type="submit" value="Create Profile">
+          </form>        
+
+        </div>
+
+<!--The existing user panel starts from here
+=================================================================================
+-->
+
+        <div class="content  active" id="panel2-2">
+          <form class="custom" id="signinForm" data-abide="ajax" ng-submit="login()">
+            <!-- SHOW ERROR/SUCCESS MESSAGES -->
+            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
+              {{ message }}
+              <a href="#" class="close">&times;</a>
+            </div>
+
+            <!--username-->
+            <div class="name-field">
+              <label>Username
+                <input id="username" type="text" ng-model="formData.username" name="username" required>
+              </label>
+            </div>
+
+            <!--password-->
+            <div class="password-field">
+                <label>Password 
+                  <input type="password" id="password" ng-model="formData.pwd" pattern="[A-z0-9]{1,}" maxlength="20" name="password" required>
+                </label>
+            </div>
+
+            <!--signup button-->  
+            <input type="submit" class="button radius login_button" name="signin" type="submit" value="Sign In">
+
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+  // if($(window).width() >= 640){
+  //   $("#loginModal").addClass("reveal-modal");
+  // }
+  $(document).foundation();
+
+</script>

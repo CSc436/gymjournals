@@ -1,4 +1,5 @@
-app.directive('dhxScheduler', function() {
+var gymjournals = angular.module('gymjournals');
+gymjournals.directive('dhxScheduler', function() {
   return {
     restrict: 'A',
     scope: false,
@@ -45,7 +46,7 @@ app.directive('dhxScheduler', function() {
   }
 });
 
-app.directive('dhxTemplate', ['$filter', function($filter){
+gymjournals.directive('dhxTemplate', ['$filter', function($filter){
   scheduler.aFilter = $filter;
 
   return {

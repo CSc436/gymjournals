@@ -134,3 +134,8 @@ header#login_header {
   margin-bottom: -2px;
   background-image: -webkit-linear-gradient(top right, white 0%, $primary-color 100%);
 }
+
+/* removing modal padding in login form */
+.reveal-modal{
+  padding: 0;
+}

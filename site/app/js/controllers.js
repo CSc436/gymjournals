@@ -5,6 +5,7 @@ var server = "http://localhost:8000/";
 
 var gymjournals = angular.module('gymjournals');
 
+
 /* HOME PAGE CTRL */
 gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
@@ -14,8 +15,19 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 }]);
 
 /* PROFILE CTRL */
-gymjournals.controller("profileCtrl", ["$scope", function($scope) {
+gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
   $scope.title = "PROFILE";
+  $scope.username = userInfo.getName();
+
+  $http.get(server + "api/get/users/" + userInfo.getID())
+    .success( function(data, status, headers, config ) {
+      console.log(data);
+
+    })
+    .error( function(data, status, headers, config ) {
+      console.log(data);
+      
+    });
 
 }]);
 
@@ -96,7 +108,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
 
 /* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", function($scope, $http, $state, $cookieStore) {
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", "userInfo", function($scope, $http, $state, $cookieStore, userInfo) {
   $scope.formData = {};
 
   // process the login form
@@ -110,6 +122,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
         $scope.message = "SUCCESS!";
         $('#loginModal').foundation('reveal', 'close'); // close modal
         $cookieStore.put('loggedin', 'true'); // store session
+        $cookieStore.put('data', data); // store user info
         $state.go("profile"); // go to profile page
       })
       .error( function(data, status, headers, config ) {

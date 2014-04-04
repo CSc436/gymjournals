@@ -22,9 +22,9 @@
           <form class="custom" id="signupForm" data-abide="ajax" ng-submit="register()">
             
             <!-- SHOW ERROR/SUCCESS MESSAGES -->
-            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
-              {{ message }}
-              <a href="#" class="close">&times;</a>
+            <div id="messages" ng-show="spmessage" data-alert class="alert-box radius {{ alertType }}">
+              {{ spmessage }}
+              <a href="#" ng-click="clear()" class="close_mark">&times;</a>
             </div>
 
             <!--Username-->
@@ -70,12 +70,13 @@
 =================================================================================
 -->
 
-        <div class="content  active" id="panel2-2">
+        <div class="content active" id="panel2-2">
+
           <form class="custom" id="signinForm" data-abide="ajax" ng-submit="login()">
             <!-- SHOW ERROR/SUCCESS MESSAGES -->
-            <div id="messages" ng-show="message" data-alert class="alert-box radius {{ alertType }}">
-              {{ message }}
-              <a href="#" class="close">&times;</a>
+            <div id="messages" ng-show="simessage" data-alert class="alert-box radius {{ alertType }}">
+              {{ simessage }}
+              <a href="#" ng-click="clear()" class="close_mark">&times;</a>
             </div>
 
             <!--username-->

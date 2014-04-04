@@ -144,7 +144,7 @@ exampleAPI.controller(
   [
     "$scope", "$http",
     function($scope, $http) {
-      $http.get(server + "api/users/").success(
+      $scope.getUsers = $http.get(server + "api/list/users/").success(
         function(data, status, headers, config) {
           $scope.data = data;
         }

@@ -6,13 +6,25 @@
 	<div class="row">
 		<h1 class="small-7 columns index-header-content">Gym Journals</h1>
 		<div id="index-login-button-div"class="small-5 columns index-header-content">
-			<a href="LoginPage.html" id="index-login-button" class="button radius">Log in or <br>Sign up!</a>
+			<a href="LoginPage.html" id="index-login-button" class="button radius" data-reveal-id="loginModal" data-reveal>Log in or <br>Sign up!</a>
 		</div>
 	</div>
 </header>
 
 <!-- page content -->
+<div ng-include src="'partials/_login.html'"></div>   
 <div id="index-body-content">
+
+	<!-- background slider -->
+	<ul id="my-orbit" data-orbit>
+		<li id="slide1">
+		</li>
+		<li id="slide2">
+		</li>
+		<li id="slide3">
+		</li>
+	</ul>
+
 	<div class="row">
 		<div id="orbit-content" class="small-11 small-centered columns">
 			<p id="index-headline">
@@ -29,16 +41,6 @@
 			</p>
 		</div>
 	</div>
-
-	<!-- background slider -->
-	<ul id="my-orbit" data-orbit>
-		<li id="slide1">
-		</li>
-		<li id="slide2">
-		</li>
-		<li id="slide3">
-		</li>
-	</ul>
 </div>
 
 <!-- page footer -->

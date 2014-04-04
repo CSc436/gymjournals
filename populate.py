@@ -8,7 +8,7 @@ jesse.save()
 jw = Weight(
     user=jesse,
     weight=150,
-    date=date(year=2014,month=3,day=29)
+    date=date(year=2014, month=3, day=29)
     )
 jw.save()
 
@@ -20,7 +20,7 @@ dan.save()
 dw = Weight(
     user=dan,
     weight=155,
-    date=date(year=2014,month=3,day=29)
+    date=date(year=2014, month=3, day=29)
     )
 dw.save()
 

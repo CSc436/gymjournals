@@ -110,6 +110,11 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 /* LOGIN CTRL */
 gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", "userInfo", function($scope, $http, $state, $cookieStore, userInfo) {
   $scope.formData = {};
+  $scope.clear=function(){
+    $scope.simessage="";
+    $scope.spmessage="";
+    //console.log("change");
+  }
 
   // process the login form
   $('#signinForm').on('valid', function () {
@@ -119,7 +124,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
         $scope.data = data;
 
         $scope.alertType = "success";
-        $scope.message = "SUCCESS!";
+        $scope.simessage = "SUCCESS!";
         $('#loginModal').foundation('reveal', 'close'); // close modal
         $cookieStore.put('loggedin', 'true'); // store session
         $cookieStore.put('data', data); // store user info
@@ -129,7 +134,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
         console.log(data);
         
         $scope.alertType = "warning";
-        $scope.message = data.error;
+        $scope.simessage = data.error;
       });
 
   }); // on valid
@@ -140,12 +145,16 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
     $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
-        $scope.message = "SUCCESS!";
+        $scope.spmessage = "SUCCESS!";
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
         $scope.alertType = "warning";
-        $scope.message = "There was an error.";
+        if(data.username!=null)
+          $scope.spmessage = data.username[0];
+        else if(data.email!=null)
+          $scope.spmessage = data.email[0];
+
       });
 
   }); // on valid

@@ -139,3 +139,22 @@ header#login_header {
 .reveal-modal{
   padding: 0;
 }
+/*close mark for alert box*/ 
+.close_mark {
+    font-size: 1.375rem;
+    padding: 9px 6px 4px;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.6875rem;
+    right: 0.25rem;
+    color: #333333;
+    opacity: 0.3; }
+
+
+.close_mark:hover, .close_mark:focus {
+    opacity: 0.5;
+  
+
+}
+

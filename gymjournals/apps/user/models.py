@@ -32,8 +32,22 @@ class SiteUser(models.Model):
         max_length=30,
         blank=False,
         null=False)
+    gender = models.CharField(
+        max_length=1,
+        blank=False,
+        null=False,
+        choices=(
+            ('M', 'Male'),
+            ('F', 'Female')
+            )
+        )
+    dob = models.DateField(
+        blank=False,
+        null=False
+        )
+
     fields_to_serialize = (
-        "id", "username", "email", "pwd"
+        "id", "username", "email", "pwd", "gender", "dob"
     )
 
     def __str__(self):
@@ -45,6 +59,19 @@ class SiteUser(models.Model):
     def save(self, *args, **kwargs):
         self.clean_fields()
         super().save(*args, **kwargs)
+
+
+class Weight(models.Model):
+    user = models.ForeignKey(SiteUser)
+    date = models.DateField(blank=False, null=False)
+    weight = models.PositiveSmallIntegerField(
+        null=False,
+        blank=False
+        )
+
+    def __repr__(self):
+        return ("{}: {} lbs on {}".format(self.user.username,
+                self.weight, self.date))
 
 
 class Workout(models.Model):

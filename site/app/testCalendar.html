@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="schedulerApp">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Angular Calendar demo</title>
@@ -10,10 +10,12 @@
 	<script src="lib/scheduler/angular.min.js"></script>
 	<script src="lib/scheduler/dhtmlxscheduler.js"></script>
 
-	<script src="js/app.js"></script>
+    <script src="lib/angular/angular-ui-router.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
 	<script src="js/app.scheduler.js"></script>
 </head>
-<body ng-controller="MainSchedulerCtrl">
+<body ng-app="gymjournals" ng-controller="mainSchedulerCtrl">
 	<div data="events" dhx-scheduler style="height:600px; width:800px;">
 		<div class="dhx_cal_prev_button">&nbsp;</div>
 		<div class="dhx_cal_next_button">&nbsp;</div>
@@ -27,5 +29,8 @@
 			<strong>#{{event.id}}</strong>: {{event.text | uppercase}}
 		</div>
 	<div>
+
+	<button class="radius" ng-click="save()">SAVE</button>
+
 </body>
 </html>

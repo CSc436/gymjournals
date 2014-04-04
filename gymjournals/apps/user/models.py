@@ -6,16 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
-
-
-def validate_(state):
-    """Make sure states are of length 2
-
-    Args:
-        state: A string of the state name
-    """
-    if len(str(state)) != 2:
-        raise ValidationError('State length must be 2')
+from datetime import date
 
 
 class SiteUser(models.Model):
@@ -45,6 +36,12 @@ class SiteUser(models.Model):
         blank=False,
         null=False
         )
+
+    @property
+    def age(self):
+        if self.dob is None:
+            return -1
+        return ((date.today()-self.dob)/365).days
 
     fields_to_serialize = (
         "id", "username", "email", "pwd", "gender", "dob"
@@ -118,16 +115,11 @@ class WeightExercise(models.Model):
 class AerobicExercise(models.Model):
     wkout = models.ForeignKey(Workout)
     name = models.CharField(max_length=50)
-    initial_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
-    final_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
+    avg_heartrate = models.PositiveSmallIntegerField(null=True, blank=True)
     duration = models.TimeField()
 
     def __repr__(self):
         return ("{}: {} for {}".format(self.wkout.user.username, self.name,
                 self.duration) +
-                (" at {}".format(self.initial_heartrate)
-                    if self.initial_heartrate else "") +
-                ("-{}".format(self.final_heartrate)
-                    if self.final_heartrate else "") +
-                " bpm" if self.initial_heartrate or self.final_heartrate
-                else "")
+                (" at {} bpm".format(self.avg_heartrate)
+                    if self.avg_heartrate else ""))

@@ -38,21 +38,21 @@
 "foundation/components/visibility";
 
 /* no overflow of words on tabs */
-.tabs dd > a{
-  padding-left: 0px;
-  padding-right: 0px;
-}
+// .tabs dd > a{
+//   padding-left: 0px;
+//   padding-right: 0px;
+// }
 
-/* navbar item bottom border */
-dd.active{
-  font-weight: bold;
-  border-bottom: solid $secondary-color 3px;
-  padding: 0px;
-}
+// /* navbar item bottom border */
+// dd.active{
+//   font-weight: bold;
+//   border-bottom: solid $secondary-color 3px;
+//   padding: 0px;
+// }
 
-dd.active a{
-  height: 55px;
-}
+// dd.active a{
+//   height: 55px;
+// }
 
 /* everything inside a specific tab in navbar */
 .tabs-content{

@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title></title>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" />
-	<link rel="stylesheet" href="bower_components/foundation/css/normalize.css" />
-	<link rel="stylesheet" href="css/app.css" />
-	<link rel="stylesheet" href="bower_components/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/normalize.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/navBar_style.css" />
+    <link rel="stylesheet" href="bower_components/foundation-icons/foundation-icons.css" />
 </head>
 <body>
 	<div class="row">
-        <dl class="tabs three-up" data-tab>
-          <dd class="active"><a href="#panel1">Add Workout</a></dd>
-          <dd><a href="#panel2">View Progress</a></dd>
-          <dd><a href="#panel3">Calendar</a></dd>
-        </dl>
-        
-        <div class="tabs-content">
-          <div class="content active" id="panel1">
-              <p>First panel content goes here...</p>
-          </div>
-          <div class="content" id="panel2">
-            <p>Second panel content goes here...</p>
-          </div>
-          <div class="content" id="panel3">
-            <p>Third panel content goes here...</p>
-          </div>
-        </div>
+    <dl id="navBarTabs" class="tabs" data-tab>
+      <dd class="active">
+        <a href="#panel1">
+          <i class="fi-plus"></i>
+          <span class="tabLabel">
+              Add Workout
+          </span>
+        </a>
+      </dd>
+      <dd>
+        <a href="#panel2">
+          <i class="fi-graph-trend"></i>
+          <span class="tabLabel">
+            View Progress
+          </span>
+        </a>
+      </dd>
+      <dd>
+        <a href="#panel3">
+          <i class="fi-calendar"></i>
+          <span class="tabLabel">
+            Calendar
+          </span>
+        </a>
+      </dd>
+    </dl>
+    
+    <div class="tabs-content">
+      <div class="content active" id="panel1">
+          <p>First panel content goes here...</p>
+      </div>
+      <div class="content" id="panel2">
+        <p>Second panel content goes here...</p>
+      </div>
+      <div class="content" id="panel3">
+        <p>Third panel content goes here...</p>
+      </div>
+    </div>
 
 	</div>
 	<!-- javascript

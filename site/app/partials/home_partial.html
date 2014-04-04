@@ -1,0 +1,67 @@
+<!-- style -->
+<link rel="stylesheet" href="css/home_style.css" />
+
+<!-- page header -->
+<header id="index-header">
+	<div class="row">
+		<h1 class="small-7 columns index-header-content">Gym Journals</h1>
+		<div id="index-login-button-div"class="small-5 columns index-header-content">
+			<a href="LoginPage.html" id="index-login-button" class="button radius" data-reveal-id="loginModal" data-reveal>Log in or <br>Sign up!</a>
+		</div>
+	</div>
+</header>
+
+<!-- page content -->
+<div ng-include src="'partials/_login.html'"></div>   
+<div id="index-body-content">
+
+	<!-- background slider -->
+	<ul id="my-orbit" data-orbit>
+		<li id="slide1">
+		</li>
+		<li id="slide2">
+		</li>
+		<li id="slide3">
+		</li>
+	</ul>
+
+	<div class="row">
+		<div id="orbit-content" class="small-11 small-centered columns">
+			<p id="index-headline">
+				A site for fitness enthusiasts to connect with others and track their progress.
+			</p>
+			<p>
+				Log workouts.
+			</p>
+			<p>
+				View your progress.
+			</p>
+			<p>
+				Reach your goals.
+			</p>
+		</div>
+	</div>
+</div>
+
+<!-- page footer -->
+<footer id="index-footer">
+	<div id="index-footer-content" class="row">
+		<a href="#">About Us</a> - 
+		<a href="#">Support</a> - 
+		<a href="#">Terms</a>
+	</div>
+</footer>
+
+<!-- javascript for the orbit properties -->
+<script>
+	$(document).foundation({
+		orbit: {
+			timer_speed: 5000,
+			pause_on_hover: false,
+			bullets: false,
+			slide_number: false,
+			resume_on_mouseout: true,
+			timer: true
+		}
+	});
+</script>

@@ -100,9 +100,6 @@
           <div class="content" id="panel2">
             <p>Second panel content goes here...</p>
             <button onclick="getUsers()">click me</button>
-            <ul ng-controller="PhoneListCtrl">
-              <li ng-repeat="i in [1,2,3]">{{i}}</li>
-            </ul>
           </div>
           <div class="content" id="panel3">
             <p>Third panel content goes here...</p>
@@ -113,7 +110,11 @@
         </div>
       </div>
 
-    </div>
+      before
+      <div ng-include src="'partials/_hit.html'"></div>      
+      after
+
+    </div> <!-- end of row -->
 
 
     <!-- javascript

@@ -14,6 +14,15 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
   $cookieStore.put('loggedin', ''); // store session
 }]);
 
+
+/* INFORMATION PAGE CTRL*/
+gymjournals.controller("inforCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
+  
+  
+}]);
+
+
+
 /* PROFILE CTRL */
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
   $scope.title = "PROFILE";

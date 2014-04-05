@@ -73,6 +73,7 @@ dd.active a{
   background-color: lighten($body-bg, 20%);
   border: 1px solid darken($body-bg, 30%);
   position: relative;
+  max-width: 800px;
 }
 
 .post-header, .post-content{
@@ -107,6 +108,9 @@ dd.active a{
   padding-right: 5px;
   height: 50px;
   background-color: darken($body-bg, 20%);
+}
+.post-footer .left{
+  max-width: 70%;
 }
 
 .login_button {

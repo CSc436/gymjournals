@@ -10,7 +10,7 @@
           <li>color: {{workout.color}}</li>
           <li>description: {{workout.description}}</li>
           <li>duration: {{workout.duration}}</li>
-
+        </ul>
 
 
 
@@ -19,8 +19,8 @@
                   <a class="th" href="#">
                     <img src="img/default_profile.jpg">
                   </a>
-                  <span id="profilename" class="post-name">{{workout.tag}} {{workout.date}}</span>
-                  <span class="label radius success">2 hours ago</span>
+                  <span id="profilename" class="post-name">{{workout.tag}}</span>
+                  <span class="label radius success" data-livestamp="{{workout.date}}"></span>
                   
                 </div>
                 <div class="post-content">
@@ -55,7 +55,7 @@
 
 
 
-        </ul>
+
       </li>
     </ul>
     <h2 data-ng-if="!workouts">

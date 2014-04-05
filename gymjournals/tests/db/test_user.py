@@ -172,6 +172,17 @@ def test_gender():
 
 
 @pytest.mark.django_db
+def test_date():
+    '''
+    Test a SiteUser's age
+    '''
+    user = create_user('blah@email.com', 'bleh', 'lalala',
+                       date(year=1992, month=3, day=5), 'M')
+
+    assert user.age == 22
+
+
+@pytest.mark.django_db
 def test_user_save():
     '''
     This tests that a user actually is created

@@ -57,11 +57,11 @@ body {
 		.orbit-container {
 			position: absolute;
 			top: 100px;
-			z-index: -100;
 			height: 80%;
 
 			#my-orbit {
 				min-height: 100%;
+				z-index: -1;
 
 				#slide1 {
 					background-image: url("../img/gym1.jpg");
@@ -88,6 +88,6 @@ body {
 		padding: 10px;
 		background-color: $body-bg;
 		width: 100%;
-		z-index: 101;
+		z-index: 1;
 	}
 }

@@ -9,7 +9,7 @@ def create_user(u_email, u_username, u_pwd, u_dob, u_gender):
     so a test is able to add/change info along with
     adding it to the test database.
     '''
-    new_user = SiteUser(email=u_email, username=u_username)
+    new_user = SiteUser(email=u_email, username=u_username, pwd=u_pwd)
     new_user.gender = u_gender
     new_user.dob = u_dob
     return new_user
@@ -30,7 +30,8 @@ def test_user_information():
     This tests that a users information is
     truly what it was set at
     '''
-    jesse = create_user("jbright@email.com", "jbright", "lol", date.today(), 'M')
+    jesse = create_user("jbright@email.com", "jbright", "lol",
+                        date.today(), 'M')
     assert jesse.email == 'jbright@email.com'
     assert jesse.username == 'jbright'
     assert jesse.pwd == 'lol'
@@ -152,10 +153,10 @@ def test_user_cant_save_duplicate_email():
     user = create_user("blah@email.com", "bleh", "lalala", date.today(), 'F')
     user.save()
 
-    duplicate = create_user("blah@email.com", "herp", "derp", date.today(), 'M')
+    dup = create_user("blah@email.com", "herp", "derp", date.today(), 'M')
 
     with pytest.raises(IntegrityError) as excinfo:
-        duplicate.save()
+        dup.save()
 
 
 @pytest.mark.django_db
@@ -175,7 +176,8 @@ def test_user_save():
     '''
     This tests that a user actually is created
     '''
-    jesse = create_user("jbright@email.com", "jbright", "lol", date.today(), 'M')
+    jesse = create_user("jbright@email.com", "jbright", "lol",
+                        date.today(), 'M')
     jesse.save()
     object_len = SiteUser.objects.all()
     assert len(object_len) == 1

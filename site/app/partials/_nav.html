@@ -1,7 +1,71 @@
-nav
-<ul>
-	<li class="" ui-sref="about" ui-sref-active="active">Sample link</li>
+<!-- top bar -->
+<div class="fixed contain-to-grid"> 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name"><h1><a href="#" id="title-name">Gym Journals</a></h1></li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
 
-	<li class="" ui-sref="home">Log out</li>
-</ul>
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="active"><a href="#"><i class="fi-widget"></i>  Settings</a></li>
+        <li class="active"><a href="#"><i class="fi-power"></i>  Logout</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
 
+<!-- nav tabs -->
+<div class="row">
+  <dl id="navBarTabs" class="tabs" data-tab>
+    <dd class="active">
+      <a href="#panel1">
+        <i class="fi-torso"></i>
+        <span class="tabLabel">
+          Overview
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="#panel2">
+        <i class="fi-plus"></i>
+        <span class="tabLabel">
+          Add Workout
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="#panel3">
+        <i class="fi-graph-trend"></i>
+        <span class="tabLabel">
+          View Progress
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="#panel4">
+        <i class="fi-calendar"></i>
+        <span class="tabLabel">
+          Calendar
+        </span>
+      </a>
+    </dd>
+  </dl>
+
+  <!-- Content of the tabs -->
+  <div class="tabs-content">
+    <div class="content active" id="panel1">
+      <p>Overview panel content goes here...</p>
+    </div>
+    <div class="content" id="panel2">
+      <p>First panel content goes here...</p>
+    </div>
+    <div class="content" id="panel3">
+      <p>Second panel content goes here...</p>
+    </div>
+    <div class="content" id="panel4">
+      <p>Calendar goes here...</p>
+    </div>
+  </div>
+</div>

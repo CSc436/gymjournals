@@ -158,7 +158,35 @@ header#login_header {
 
 }
 
+
+// Navigation bar
 #title-name {
   padding-right: 0px;
-  // margin: 0px;
 }
+
+#navBarTabs{
+  height: 50px;
+  margin-top: -1px; // gets rid of gap
+
+  dd {
+    height: 100%;
+    width: 25%;
+    text-align: center;
+
+    a {
+      height: 100%;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  // i {
+  //  font-size: 1.5em;
+  // }
+  .tabLabel {
+    display: none;
+  }
+}
+// end navigation bar

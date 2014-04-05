@@ -19,9 +19,13 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
   $scope.title = "PROFILE";
   $scope.username = userInfo.getName();
 
-  $http.get(server + "api/get/users/" + userInfo.getID())
+  $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
     .success( function(data, status, headers, config ) {
       console.log(data);
+      if (data.length != 0){
+        $scope.workouts = data;
+      }
+
 
     })
     .error( function(data, status, headers, config ) {

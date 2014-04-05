@@ -1,5 +1,21 @@
 <header ng-include src="'partials/_nav.html'"></header>   
 
-
+<div>
+	My workouts:
+	<ul data-ng-if="workouts">
+      <li data-ng-repeat="workout in workouts">
+        <ul>
+          <li>date: {{workout.date}}</li>
+          <li>tag: {{workout.tag}}</li>
+          <li>color: {{workout.color}}</li>
+          <li>description: {{workout.description}}</li>
+          <li>duration: {{workout.duration}}</li>
+        </ul>
+      </li>
+    </ul>
+    <h2 data-ng-if="!workouts">
+      You have not completed any workouts...
+    </h2>
+</div>
 
 <footer ng-include src="'partials/_footer.html'"></footer>

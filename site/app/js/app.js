@@ -48,16 +48,15 @@ var gymjournals = angular
  * we add it
  */
 gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
-  var info = $cookieStore.get('data');
   return {
     getInfo: function () {
-        return info;
+        return $cookieStore.get('data');
     },
     getName: function () {
-      return info.username;
+      return $cookieStore.get('data').username;
     },
     getID: function () {
-      return info.id;
+      return $cookieStore.get('data').id;
     },
     setInfo: function(value) {
       $cookieStore.put('data', value);

@@ -6,10 +6,11 @@ var server = "http://localhost:8000/";
 var gymjournals = angular.module('gymjournals');
 
 /* HOME PAGE CTRL */
-gymjournals.controller("homeCtrl", ["$scope", function($scope) {
+gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
   $scope.items = ["one", "two", "three"]; // testing
 
+  $cookieStore.put('loggedin', ''); // store session
 }]);
 
 /* PROFILE CTRL */
@@ -95,8 +96,13 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
 
 /* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scope, $http, $state) {
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", function($scope, $http, $state, $cookieStore) {
   $scope.formData = {};
+  $scope.clear=function(){
+    $scope.simessage="";
+    $scope.spmessage="";
+    //console.log("change");
+  }
 
   // process the login form
   $('#signinForm').on('valid', function () {
@@ -106,15 +112,16 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scop
         $scope.data = data;
 
         $scope.alertType = "success";
-        $scope.message = "SUCCESS!";
-        $('#loginModal').foundation('reveal', 'close');
-        $state.go("profile");
+        $scope.simessage = "SUCCESS!";
+        $('#loginModal').foundation('reveal', 'close'); // close modal
+        $cookieStore.put('loggedin', 'true'); // store session
+        $state.go("profile"); // go to profile page
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
         
         $scope.alertType = "warning";
-        $scope.message = data.error;
+        $scope.simessage = data.error;
       });
 
   }); // on valid
@@ -125,12 +132,16 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", function($scop
     $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
-        $scope.message = "SUCCESS!";
+        $scope.spmessage = "SUCCESS!";
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
         $scope.alertType = "warning";
-        $scope.message = "There was an error.";
+        if(data.username!=null)
+          $scope.spmessage = data.username[0];
+        else if(data.email!=null)
+          $scope.spmessage = data.email[0];
+
       });
 
   }); // on valid

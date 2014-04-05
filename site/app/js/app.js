@@ -1,6 +1,6 @@
 "use strict";
 
-angular
+var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
     'ngCookies',
@@ -42,6 +42,29 @@ angular
       }
     })
   }]);
+
+/* a factory is useful when we want to compute something from user data 
+ * but this factory does not yet have this functionailty but is here just in case
+ * we add it
+ */
+gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
+  var info = $cookieStore.get('data');
+  return {
+    getInfo: function () {
+        return info;
+    },
+    getName: function () {
+      return info.username;
+    },
+    getID: function () {
+      return info.id;
+    },
+    setInfo: function(value) {
+      $cookieStore.put('data', value);
+    }
+  };
+}]);
+
 
 
 /* 

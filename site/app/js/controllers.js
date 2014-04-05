@@ -15,9 +15,19 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 }]);
 
 
-/* INFORMATION PAGE CTRL*/
-gymjournals.controller("inforCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
-  
+/* INFORMATION AND SETTINGS PAGE CTRL*/
+gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
+  var obj=userInfo.getInfo();
+  $scope.username = obj.username;
+  $scope.email=obj.email;
+  if(obj.gender=="M")
+    $scope.gender="♂";
+  else
+    $scope.gender="♀";
+
+  $scope.dob=obj.dob;
+  //$scope.info=userInfo.getInfo();
+  //console.log(userInfo.getInfo());
   
 }]);
 

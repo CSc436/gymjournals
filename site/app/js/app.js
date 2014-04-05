@@ -19,10 +19,10 @@ var gymjournals = angular
         templateUrl: 'partials/_profile.html',
         controller: 'profileCtrl'
       })
-      .state('information', {
-        url: '/infor',
-        templateUrl: 'partials/_information.html',
-        controller: 'inforCtrl'
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'partials/_settings.html',
+        controller: 'settingsCtrl'
       })
       .state('calendar', {
         url: '/calendar',

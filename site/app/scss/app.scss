@@ -154,7 +154,11 @@ header#login_header {
 
 .close_mark:hover, .close_mark:focus {
     opacity: 0.5;
-  
+}
+
+/*Set legend field background transparent*/
+fieldset legend{
+  background:transparent;
 
 }
 

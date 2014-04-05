@@ -9,10 +9,11 @@ def create_user(u_email, u_username, u_pwd, u_dob, u_gender):
     so a test is able to add/change info along with
     adding it to the test database.
     '''
-    new_user = SiteUser(email=u_email, username=u_username, pwd=u_pwd, gender='M')
+    new_user = SiteUser(email=u_email, username=u_username)
     new_user.gender = u_gender
     new_user.dob = u_dob
     return new_user
+
 
 @pytest.mark.django_db
 def test_default_state():
@@ -125,7 +126,6 @@ def test_user_cant_save_no_dob():
 
     object_len = SiteUser.objects.all()
     assert len(object_len) == 0
-
 
 
 @pytest.mark.django_db

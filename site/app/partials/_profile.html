@@ -10,6 +10,51 @@
           <li>color: {{workout.color}}</li>
           <li>description: {{workout.description}}</li>
           <li>duration: {{workout.duration}}</li>
+
+
+
+
+			<div class="post">
+                <div class="post-header">
+                  <a class="th" href="#">
+                    <img src="img/default_profile.jpg">
+                  </a>
+                  <span id="profilename" class="post-name">{{workout.tag}} {{workout.date}}</span>
+                  <span class="label radius success">2 hours ago</span>
+                  
+                </div>
+                <div class="post-content">
+                  <p class="post-text">{{workout.description}}</p>
+                </div>
+                <!-- comment/share on post -->
+                <div class="post-footer">
+                  <div class="">
+                    <div class="left row collapse">
+                      <div class="small-8 columns">
+                        <input type="text" placeholder="Comment!">
+                      </div>
+                      <div class="small-4 columns">
+                        <a href="#" class="button postfix radius">Share!</a>
+                      </div>
+                    </div>
+                    <button class="right radius tiny" onclick=""><i class="step fi-like size-48"></i></button>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </ul>
       </li>
     </ul>

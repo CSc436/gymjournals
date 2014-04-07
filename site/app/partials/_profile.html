@@ -1,48 +1,59 @@
 <header ng-include src="'partials/_nav.html'"></header>   
 
-<div>
-	My workouts:
-	<ul data-ng-if="workouts">
-      <li data-ng-repeat="workout in workouts">
-        <ul>
-          <li>date: {{workout.date}}</li>
-          <li>tag: {{workout.tag}}</li>
-          <li>color: {{workout.color}}</li>
-          <li>description: {{workout.description}}</li>
-          <li>duration: {{workout.duration}}</li>
-        </ul>
-			<div class="post">
-                <div class="post-header">
-                  <a class="th" href="#">
-                    <img src="img/default_profile.jpg">
-                  </a>
-                  <span id="profilename" class="post-name">{{workout.tag}}</span>
-                  <span class="label radius success" data-livestamp="{{workout.date}}"></span>
-                  
-                </div>
-                <div class="post-content">
-                  <p class="post-text">{{workout.description}}</p>
-                </div>
-                <!-- comment/share on post -->
-                <div class="post-footer">
-                  <div class="">
-                    <div class="left row collapse">
-                      <div class="small-8 columns">
-                        <input type="text" placeholder="Comment!">
-                      </div>
-                      <div class="small-4 columns">
-                        <a href="#" class="button postfix radius">Share!</a>
-                      </div>
-                    </div>
-                    <button class="right radius tiny" onclick=""><i class="step fi-like size-48"></i></button>
-                  </div>
-                </div>
-              </div>
-      </li>
-    </ul>
-    <h2 data-ng-if="!workouts">
-      You have not completed any workouts...
-    </h2>
+<!-- nav tabs -->
+<div class="row">
+  <dl id="navBarTabs" class="tabs" data-tab>
+    <dd class="active">
+      <a href="profile/#panel1">
+        <i class="fi-torso"></i>
+        <span class="tabLabel">
+          Overview
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="profile/#panel2">
+        <i class="fi-plus"></i>
+        <span class="tabLabel">
+          Add Workout
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="profile/#panel3">
+        <i class="fi-graph-trend"></i>
+        <span class="tabLabel">
+          View Progress
+        </span>
+      </a>
+    </dd>
+    <dd>
+      <a href="profile/#panel4">
+        <i class="fi-calendar"></i>
+        <span class="tabLabel">
+          Calendar
+        </span>
+      </a>
+    </dd>
+  </dl>
+
+  <!-- Content of the tabs -->
+  <div class="tabs-content">
+    <div class="content active" id="panel1">
+    	<div ng-include src="'partials/_overview.html'"></div>
+    </div>
+    <div class="content" id="panel2">
+    	<div ng-include src="'partials/_add_workout.html'"></div>
+    </div>
+    <div class="content" id="panel3">
+    	<div ng-include src="'partials/_progress.html'"></div>
+    </div>
+    <div class="content" id="panel4">
+    	<div ng-include src="'partials/_calendar.html'"></div>
+    </div>
+  </div>
 </div>
 
 <footer ng-include src="'partials/_footer.html'"></footer>
+
+<script type="text/javascript">$(document).foundation();</script>

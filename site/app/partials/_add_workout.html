@@ -1,1 +1,55 @@
 add a workout here...
+
+<dl class="accordion" data-accordion>
+  <dd class="accordionTab">
+    <a href="profile/#logAccordion1">Log Workout</a>
+	<div id="logAccordion1" class="content">
+      
+        <dl class="accordion" data-accordion>
+		  <dd class="accordionWorkout">
+		    <a href="profile/#workoutAccordion1">chest workout</a>
+			<div id="workoutAccordion1" class="content">
+		      <div class="row">
+                <div class="small-5 columns">
+                  <div class="row collapse">
+                    <div class="small-7 columns">
+                      <input type="number" placeholder="0" />
+                    </div>
+                    <div class="small-5 columns">
+                      <span class="postfix">reps</span>
+                    </div>
+                  </div>
+                </div> 
+                <div class="small-5 columns">
+                  <div class="row collapse">
+                    <div class="small-7 columns">
+                      <input type="number" placeholder="0" />
+                    </div>
+                    <div class="small-5 columns">
+                      <span class="postfix">lbs</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="button tiny radius right"><i class="fi-plus"></i></button>
+              </div>
+              <ul>
+                  <li ng-repeat="set in setItems">{{set.set[0].reps}} reps X {{set.set[0].weight}} lbs</li> 
+              </ul>
+              
+
+		    </div>
+		  </dd>
+        </dl>
+
+    </div>
+  </dd>
+  <dd class="accordionTab">
+    <a href="profile/#logAccordion2">Log Intake</a>
+    <div id="logAccordion2" class="content">
+      
+    </div>
+  </dd>
+</dl>
+
+<script type="text/javascript">$(document).foundation();</script>

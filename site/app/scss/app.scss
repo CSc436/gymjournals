@@ -48,9 +48,17 @@ dd.active{
   border-top: solid $primary-color 3px;
 }
 
-dd.active a{
-  height: 43px;
+#navBarTabs{
+  .dd.active a{
+    height: 43px;
+    line-height: 50%;
+  }
 }
+
+.accordion dd{
+  margin-bottom: 10px;
+}
+
 
 /*everything inside a specific tab in navbar*/
 .tabs-content{

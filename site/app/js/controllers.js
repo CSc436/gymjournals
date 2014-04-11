@@ -52,6 +52,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       
     });
 
+    $scope.setItems = [{"set":[{"reps":5, "weight":10}]}, {"set":[{"reps":5, "weight":11}]}, {"set":[{"reps":5, "weight":13}]}]; // testing
 }]);
 
 

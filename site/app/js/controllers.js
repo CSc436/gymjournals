@@ -18,6 +18,7 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 /* INFORMATION AND SETTINGS PAGE CTRL*/
 gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
   var obj=userInfo.getInfo();
+
   $scope.username = obj.username;
   $scope.email=obj.email;
   if(obj.gender=="M")
@@ -26,6 +27,8 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     $scope.gender="♀";
 
   $scope.dob=obj.dob;
+
+  console.log($('div .ng-binding'));
   //$scope.info=userInfo.getInfo();
   //console.log(userInfo.getInfo());
   

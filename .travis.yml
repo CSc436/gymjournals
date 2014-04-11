@@ -20,4 +20,5 @@ before_script:
 
 script:
   - grunt test
-  - py.test --cov gymjournals/
+  - cd ../
+  - py.test

@@ -1,11 +1,25 @@
-<div>Hello World</div>
-<form>
+<label>Profile 50% complete</label>
+
+<div class="progress large-100 secondary alert success radius round">
+  <span class="meter" style="width: 50%">
+</div>
+<form data-abide class="custom">
 	<fieldset>
 	<legend>information</legend>
-	<div id='username'>Username:{{username}}</div>
-	<div id='email'>Email:{{email}}</div>
-	<div id= 'birthday'>Birthday:{{dob}}</div>
-	<div id='gender'>Gender:{{gender}}</div>
+	<label>Username</label>
+
+
+	<div class='editable' ng-mouseleave='leave()' ng-mouseenter='come()' id='{{username}}' >{{username}} 	
+		<a class="button right radius" ng-show='show' ng-click='edit(username)'>Edit</a>
+	</div>
+	<label>Email</label>
+	<div id='email'>{{email}}</div>
+	<label>Birthday</label>
+
+	<div id= 'birthday'>{{dob}}</div>
+	<label>Gender</label>
+
+	<div id='gender'>{{gender}}</div>
 
 
 	</fieldset>

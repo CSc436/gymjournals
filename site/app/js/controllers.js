@@ -28,7 +28,31 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
   $scope.dob=obj.dob;
 
-  console.log($('div .ng-binding'));
+
+  $scope.edit= function(element){
+    //var newLabel = "<label>Username</label>"
+    var newElement = '<input class=username type="text" name="username" required  value='+element+' ng-model='+element+'>';
+    var saveButton = '<input class=username type="submit" class="button radius"  ng-click="save()" value="Save">';
+
+    $('div #'+element)
+    .after(newElement+saveButton)
+    .remove();
+    //console.log("div");
+  }
+
+  $scope.save = function(){
+        console.log('run');
+
+    $('input .username').after('<div>'+$scope.username+'</div>').remove();
+
+  }
+
+  $scope.come = function(){
+    $scope.show='as';
+  }
+  $scope.leave= function(){
+    $scope.show="";
+  }
   //$scope.info=userInfo.getInfo();
   //console.log(userInfo.getInfo());
   

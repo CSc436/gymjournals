@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.3"
+  - "3.3.2"
 
 # command to install dependencies
 install:
@@ -21,4 +21,4 @@ before_script:
 script:
   - grunt test
   - cd ../
-  - DJANGO_SETTINGS_MODULE=settings py.test
+  - DJANGO_SETTINGS_MODULE=gymjournals.settings py.test

@@ -21,4 +21,6 @@ before_script:
 script:
   - grunt test
   - cd ../
+  - pwd
+  - export DJANGO_SETTINGS_MODULE=settings 
   - py.test

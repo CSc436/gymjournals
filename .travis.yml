@@ -21,4 +21,4 @@ before_script:
 script:
   - grunt test
   - pep8 ../ --exclude=node_modules
-  - py.test --create-db
+  - py.test

@@ -43,18 +43,16 @@
 //   padding-right: 0px;
 // }
 
-// /* navbar item bottom border */
+/* navbar item bottom border */
 dd.active{
-
   border-top: solid $primary-color 3px;
-
 }
 
-// dd.active a{
-//   height: 55px;
-// }
+dd.active a{
+  height: 43px;
+}
 
-// everything inside a specific tab in navbar
+/*everything inside a specific tab in navbar*/
 .tabs-content{
   padding: 5px;
 }

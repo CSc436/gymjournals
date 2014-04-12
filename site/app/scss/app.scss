@@ -204,3 +204,19 @@ fieldset legend{
   }
 }
 // end navigation bar
+
+
+/* accordian icon */
+//The accordion is closed
+
+//The accordion is open
+.active{
+  .accordion-state-icon:after{
+    transform: rotate(45deg);
+  }
+}
+
+
+/*.active a .accordion-state-icon {
+    transform: rotate(45deg);
+ }*/

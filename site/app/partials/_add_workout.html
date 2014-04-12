@@ -2,18 +2,25 @@ add a workout here...
 
 <dl class="accordion" data-accordion>
   <dd class="accordionTab">
-    <a href="profile/#logAccordion1">Log Workout</a>
+    <a href="profile/#logAccordion1">
+        <span class="fi-clipboard"></span>
+        Log Workout
+    </a>
 	<div id="logAccordion1" class="content">
       
         <dl class="accordion" data-accordion>
 		  <dd class="accordionWorkout">
-		    <a href="profile/#workoutAccordion1">chest workout</a>
+		    <a href="profile/#workoutAccordion1">
+                <i class="fi-plus accordion-state-icon"></i>
+                <span>chest workout <small>weight</small></span>
+                <i class="right fi-widget size-48"></i>
+            </a>
 			<div id="workoutAccordion1" class="content">
 		      <div class="row">
                 <div class="small-5 columns">
                   <div class="row collapse">
                     <div class="small-7 columns">
-                      <input type="number" placeholder="0" />
+                      <input type="number" placeholder="0" ng-model="reps" min="1" value="1" />
                     </div>
                     <div class="small-5 columns">
                       <span class="postfix">reps</span>
@@ -23,7 +30,7 @@ add a workout here...
                 <div class="small-5 columns">
                   <div class="row collapse">
                     <div class="small-7 columns">
-                      <input type="number" placeholder="0" />
+                      <input type="number" placeholder="0" ng-model="weight" min="0" value="0" />
                     </div>
                     <div class="small-5 columns">
                       <span class="postfix">lbs</span>
@@ -31,11 +38,25 @@ add a workout here...
                   </div>
                 </div>
 
-                <button class="button tiny radius right"><i class="fi-plus"></i></button>
+                <a href="" ng-click="addSet(reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
               </div>
-              <ul>
-                  <li ng-repeat="set in setItems">{{set.set[0].reps}} reps X {{set.set[0].weight}} lbs</li> 
-              </ul>
+
+              <table>
+                  <thead>
+                    <tr>
+                      <th width="150">Set</th>
+                      <th width="150">Reps</th>
+                      <th width="150">Weight</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="set in setItems">
+                      <td>{{$index + 1}}</td>
+                      <td>{{set.set[0].reps}}</td>
+                      <td>{{set.set[0].weight}}</td>
+                    </tr>                      
+                  </tbody>
+                </table>
               
 
 		    </div>
@@ -45,7 +66,10 @@ add a workout here...
     </div>
   </dd>
   <dd class="accordionTab">
-    <a href="profile/#logAccordion2">Log Intake</a>
+    <a href="profile/#logAccordion2">
+        <span class="fi-battery-half"></span>
+        Log Intake
+    </a>
     <div id="logAccordion2" class="content">
       
     </div>

@@ -1,11 +1,13 @@
 "use strict";
 
-angular
+var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
     'ngCookies',
-  ])
-  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+    'nvd3ChartDirectives',
+  ]);
+
+gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -44,9 +46,9 @@ angular
   }]);
 
 
-/* 
+/*
  *
- * EXAMPLE 
+ * EXAMPLE
  *
  */
 // Declare app level module which depends on filters, and services

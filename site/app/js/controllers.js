@@ -51,7 +51,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
     //   "id": i,
     //   "text":"Task A-12458",
     //   "start_date": new Date(2013, 11, 12),
-    //   "end_date": new Date(2013, 11, 13) 
+    //   "end_date": new Date(2013, 11, 13)
     // });
   });
 
@@ -69,15 +69,15 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
   var day = list[2];
 
   $scope.events = [
-    { 
+    {
 
       "id":1,
       "text":"Task A-12458",
       "start_date": new Date(2013, 11, 12),
-      "end_date": new Date(2013, 11, 13) 
+      "end_date": new Date(2013, 11, 13)
     },
-    { 
-      "id":2, 
+    {
+      "id":2,
       "text":"Task A-83473",
       "start_date": new Date(2013, 10, 22 ),
       "end_date": new Date(2013, 10, 24 ) }
@@ -88,11 +88,6 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
   $scope.scheduler = { date : new Date(2013,10,1) };
 
 }]);
-
-
-
-
-
 
 
 /* LOGIN CTRL */
@@ -119,7 +114,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
-        
+
         $scope.alertType = "warning";
         $scope.simessage = data.error;
       });
@@ -146,6 +141,39 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
 
   }); // on valid
 
+}]);
+
+/* Weight tracking bar chart */
+gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
+  $scope.weightData = [{
+    key: "weight",
+    values: [
+      [
+        (new Date(Date.now() - 2345678901)).getTime(),
+        110
+      ],
+      [
+        (new Date(Date.now() - 1234567890)).getTime(),
+        80
+      ],
+      [
+        (new Date(Date.now())).getTime(),
+        200
+      ],
+    ]
+  }];
+
+  $scope.xAxisTickFormatFunction = function(){
+    return function(d){
+      return d3.time.format('%m-%d')(new Date(d));
+    }
+  };
+
+  $scope.toolTipContentFunction = function(){
+    return function(key, x, y, e, graph) {
+      return '<h4>' +  y + ' at ' + x + '</h4>';
+    };
+  };
 }]);
 
 /* EXAMPLE */

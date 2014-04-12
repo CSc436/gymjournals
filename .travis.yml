@@ -21,4 +21,4 @@ before_script:
 script:
   - grunt test
   - cd ../
-  - DJANGO_SETTINGS_MODULE=gymjournals.settings py.test
+  - py.test

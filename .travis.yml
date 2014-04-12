@@ -21,4 +21,5 @@ before_script:
 script:
   - grunt test
   - cd ../
+  - add2virtualenv .
   - py.test

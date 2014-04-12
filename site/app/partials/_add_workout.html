@@ -41,19 +41,27 @@ add a workout here...
                 <a href="" ng-click="addSet(reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
               </div>
 
-              <table>
+              <table> <!-- ng-controller="EditableRowCtrl" -->
                   <thead>
                     <tr>
                       <th width="150">Set</th>
                       <th width="150">Reps</th>
                       <th width="150">Weight</th>
+                      <th width="150">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr ng-repeat="set in setItems">
                       <td>{{$index + 1}}</td>
-                      <td>{{set.set[0].reps}}</td>
-                      <td>{{set.set[0].weight}}</td>
+                      <td>
+                        <span editable-number="set.reps" e-min="1">{{set.reps}}</span>
+                      </td>
+                      <td>
+                        <span editable-number="set.weight" e-min="0">{{set.weight}}</span>
+                      </td>
+                      <td "white-space: nowrap">
+                        <button class="tiny radius alert" ng-click="removeSet($index)"><i class="fi-trash"></i></button>
+                      </td>
                     </tr>                      
                   </tbody>
                 </table>

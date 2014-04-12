@@ -52,16 +52,27 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       
     });
 
-    $scope.setItems = [{"set":[{"reps":5, "weight":10}]}, {"set":[{"reps":5, "weight":11}]}, {"set":[{"reps":5, "weight":13}]}]; // testing
+    /* the following should be moved into EditableRowCtrl */
+    $scope.setItems = [{reps:5, weight:10}, 
+                      {reps:5, weight:13}, 
+                      {reps:5, weight:15}]; // testing
 
     $scope.addSet = function(reps, weight){
       if (reps && weight && reps >= 1 && weight >= 0) {
-        $scope.setItems.push({"set":[{"reps":reps, "weight":weight}]})
+        $scope.setItems.push({reps:reps, weight:weight})
       }
     }
 
+    $scope.removeSet = function(index) {
+      $scope.setItems.splice(index, 1);
+    };
+
 }]);
 
+/* EDITING TABLE FOR ADDING SETS CTRL */
+gymjournals.controller('EditableRowCtrl', ['', function(){
+
+}]);
 
 
 /* CALENDAR CTRL */

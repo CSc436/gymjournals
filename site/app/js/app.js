@@ -4,6 +4,7 @@ var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
     'ngCookies',
+    'xeditable',
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');

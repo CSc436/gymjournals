@@ -270,7 +270,7 @@ def test_user_age_in_border_case():
     jesse.save()
 
     age = jesse.age
-    
+
     jesse.dob = jesse.dob + timedelta(days=1)
     jesse.save()
 

@@ -15,8 +15,9 @@ install:
   - npm install --quiet -g protractor
 
 before_script:
-  - psql -c 'CREATE USER gymjournalsuser;' -U postgres
+  - psql -c "CREATE USER gymjournalsuser WITH PASSWORD 'gymjournalspassword';" -U postgres
   - psql -c 'CREATE DATABASE gymjournals OWNER gymjournalsuser;' -U postgres
+  - psql -c 'CREATE DATABASE test_gymjournals OWNER gymjournalsuser' -U postgres
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - cd site

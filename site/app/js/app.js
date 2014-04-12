@@ -1,6 +1,6 @@
 "use strict";
 
-angular
+var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
   ])
@@ -31,7 +31,6 @@ angular
         }
       })
   }]);
-
 
 /* 
  *

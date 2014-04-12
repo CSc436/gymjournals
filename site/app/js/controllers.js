@@ -26,6 +26,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
   $scope.title = "CALENDAR";
 
+  $scope.events = [{}];
   $scope.save = function() {
     $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
   }
@@ -144,7 +145,7 @@ exampleAPI.controller(
   [
     "$scope", "$http",
     function($scope, $http) {
-      $http.get(server + "api/users/").success(
+      $http.get(server + "api/list/users/").success(
         function(data, status, headers, config) {
           $scope.data = data;
         }

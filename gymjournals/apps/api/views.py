@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 import json
+from datetime import *
 
 
 class SiteUserSerializer(serializers.HyperlinkedModelSerializer):
@@ -116,3 +117,26 @@ class AerobicExerciseListAPIView(generics.ListCreateAPIView):
 class AerobicExerciseGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AerobicExerciseSerializer
     model = AerobicExercise
+
+
+class WeightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Weight
+
+    def to_native(self, obj):
+        if obj:
+            date = datetime.combine(obj.date, datetime.min.time())
+            seconds = (date - datetime.utcfromtimestamp(0)).total_seconds()
+            millis = int(seconds * 1000)
+            return [millis, obj.weight]
+        return None
+
+
+class WeightListAPIView(generics.ListCreateAPIView):
+    serializer_class = WeightSerializer
+    model = Weight
+
+    def get_queryset(self):
+        user_id = self.kwargs['id']
+        user = SiteUser.objects.filter(id=user_id).first()
+        return user.weight_set.order_by("date")

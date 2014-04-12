@@ -5,6 +5,7 @@ var server = "http://localhost:8000/";
 
 var gymjournals = angular.module('gymjournals');
 
+
 /* HOME PAGE CTRL */
 gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
@@ -13,9 +14,43 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
   $cookieStore.put('loggedin', ''); // store session
 }]);
 
+
+/* INFORMATION AND SETTINGS PAGE CTRL*/
+gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
+  var obj=userInfo.getInfo();
+  $scope.username = obj.username;
+  $scope.email=obj.email;
+  if(obj.gender=="M")
+    $scope.gender="♂";
+  else
+    $scope.gender="♀";
+
+  $scope.dob=obj.dob;
+  //$scope.info=userInfo.getInfo();
+  //console.log(userInfo.getInfo());
+  
+}]);
+
+
+
 /* PROFILE CTRL */
-gymjournals.controller("profileCtrl", ["$scope", function($scope) {
+gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
   $scope.title = "PROFILE";
+  $scope.username = userInfo.getName();
+
+  $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
+    .success( function(data, status, headers, config ) {
+      console.log(data);
+      if (data.length != 0){
+        $scope.workouts = data;
+      }
+
+
+    })
+    .error( function(data, status, headers, config ) {
+      console.log(data);
+      
+    });
 
 }]);
 
@@ -96,7 +131,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
 
 /* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", function($scope, $http, $state, $cookieStore) {
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", "userInfo", function($scope, $http, $state, $cookieStore, userInfo) {
   $scope.formData = {};
   $scope.clear=function(){
     $scope.simessage="";
@@ -115,6 +150,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
         $scope.simessage = "SUCCESS!";
         $('#loginModal').foundation('reveal', 'close'); // close modal
         $cookieStore.put('loggedin', 'true'); // store session
+        $cookieStore.put('data', data); // store user info
         $state.go("profile"); // go to profile page
       })
       .error( function(data, status, headers, config ) {

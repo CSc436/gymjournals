@@ -43,18 +43,16 @@
 //   padding-right: 0px;
 // }
 
-// /* navbar item bottom border */
+/* navbar item bottom border */
 dd.active{
-
   border-top: solid $primary-color 3px;
-
 }
 
-// dd.active a{
-//   height: 55px;
-// }
+dd.active a{
+  height: 43px;
+}
 
-// everything inside a specific tab in navbar
+/*everything inside a specific tab in navbar*/
 .tabs-content{
   padding: 5px;
 }
@@ -73,6 +71,7 @@ dd.active{
   background-color: lighten($body-bg, 20%);
   border: 1px solid darken($body-bg, 30%);
   position: relative;
+  max-width: 800px;
 }
 
 .post-header, .post-content{
@@ -107,6 +106,9 @@ dd.active{
   padding-right: 5px;
   height: 50px;
   background-color: darken($body-bg, 20%);
+}
+.post-footer .left{
+  max-width: 70%;
 }
 
 .login_button {
@@ -154,7 +156,11 @@ header#login_header {
 
 .close_mark:hover, .close_mark:focus {
     opacity: 0.5;
-  
+}
+
+/*Set legend field background transparent*/
+fieldset legend{
+  background:transparent;
 
 }
 

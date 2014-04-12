@@ -207,29 +207,27 @@ Set(
     num=3
     ).save()
 
-dan_ex = WeightExercise(
+dan_wex = WeightExercise(
     name="Tricep Pulldowns",
-    min_weight=25,
-    max_weight=95,
     duration=time(minute=10)
     )
-dan_ex.wkout = dan_workout
-dan_ex.save()
+dan_wex.wkout = dan_workout
+dan_wex.save()
 
 Set(
-    ex=dan_ex,
+    ex=dan_wex,
     weight=95,
     num=1
     ).save()
 
 Set(
-    ex=dan_ex,
+    ex=dan_wex,
     weight=60,
     num=2
     ).save()
 
 Set(
-    ex=dan_ex,
+    ex=dan_wex,
     weight=25,
     num=3
     ).save()

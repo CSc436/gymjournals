@@ -4,7 +4,7 @@ Defines a user of GymJournals.
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from datetime import date
 
@@ -67,9 +67,12 @@ class SiteUser(models.Model):
 class Weight(models.Model):
     user = models.ForeignKey(SiteUser)
     date = models.DateField(blank=False, null=False)
-    weight = models.FloatField(
+    weight = models.DecimalField(
+        max_digits=4,
+        decimal_places=1,
         null=False,
-        blank=False
+        blank=False,
+        validators=[MinValueValidator(0)]
         )
 
     def __repr__(self):

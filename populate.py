@@ -124,8 +124,7 @@ dan_ex.save()
 j_ex = AerobicExercise(
     name="Swimming",
     duration=time(minute=35),
-    initial_heartrate=65,
-    final_heartrate=115
+    avg_heartrate=115
     )
 j_ex.wkout = jesse_workout
 j_ex.save()
@@ -133,8 +132,7 @@ j_ex.save()
 dan_ex = AerobicExercise(
     name="Running",
     duration=time(minute=30),
-    initial_heartrate=70,
-    final_heartrate=120
+    avg_heartrate=120
     )
 dan_ex.wkout = dan_workout
 dan_ex.save()

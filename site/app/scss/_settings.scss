@@ -1067,9 +1067,9 @@ $dark-color: #1F2831;
 
 // $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: #efefef  ;
-// $tabs-navigation-active-bg-color: #fff;
+$tabs-navigation-padding: rem-calc(10);
+$tabs-navigation-bg-color: scale-color($body-bg, $lightness: -6%);
+$tabs-navigation-active-bg-color: $body-bg;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: #222;
 // $tabs-navigation-font-size: rem-calc(16);
@@ -1132,15 +1132,15 @@ $dark-color: #1F2831;
 
 // Background color for the top bar
 // $topbar-bg-color: #333;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg: $dark-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 50px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: normal;
-// $topbar-title-font-size: rem-calc(17);
+$topbar-title-font-size: rem-calc(22);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
@@ -1157,10 +1157,10 @@ $dark-color: #1F2831;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(15);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg-hover: #272727  ;
-// $topbar-link-bg-active: $primary-color;
+$topbar-link-bg-active: $dark-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 

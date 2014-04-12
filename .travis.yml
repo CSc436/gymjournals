@@ -22,5 +22,6 @@ before_script:
 script:
   - grunt test
   - cd ../
+  - source /usr/local/bin/virtualenvwrapper.sh
   - add2virtualenv .
   - py.test

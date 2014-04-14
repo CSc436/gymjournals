@@ -6,16 +6,16 @@ add a workout here...
         <span class="fi-clipboard"></span>
         Log Workout
     </a>
-	<div id="logAccordion1" class="content">
+	<div id="logAccordion1" class="content" >
       
         <dl class="accordion" data-accordion>
-		  <dd class="accordionWorkout">
-		    <a href="profile/#workoutAccordion1">
+		  <dd class="accordionWorkout" ng-repeat="workout in workoutItems">
+		    <a href="profile/#workoutAccordion{{$index}}">
                 <i class="fi-plus accordion-state-icon"></i>
-                <span>chest workout <small>weight</small></span>
-                <i class="right fi-widget size-24"></i>
+                <span>{{workout.name}} <small>{{workout.type}}</small></span>
+                <i ng-click="removeWorkout($index)" class="right fi-trash size-24"></i>
             </a>
-			<div id="workoutAccordion1" class="content">
+			<div id="workoutAccordion{{$index}}" class="content">
 		      <div class="row">
                 <div class="small-5 columns">
                   <div class="row collapse">

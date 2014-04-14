@@ -53,9 +53,17 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     });
 
     /* the following should be moved into EditableRowCtrl */
+    $scope.workoutItems = [{name:"chest workout", type:"weight"}, 
+                      {name:"arms workout", type:"weight"},
+                      {name:"cardio workout", type:"aerobic"}];
+
     $scope.setItems = [{reps:5, weight:10}, 
                       {reps:5, weight:13}, 
                       {reps:5, weight:15}]; // testing
+    
+    $scope.removeWorkout = function(index) {
+      $scope.workouts.splice(index, 1);
+    };
 
     $scope.addSet = function(reps, weight){
       if (reps && weight && reps >= 1 && weight >= 0) {

@@ -51,9 +51,18 @@
 .fi-trash{
   color: $alert-color;
 }
+.accordion-icon-options{
+
+}
+.accordion-icon-options i{
+  position: relative;
+  top: -47px;
+  right: 10px;
+  padding-right: 5px;
+}
 /* xediable number width */
-.editable-input.editable-has-buttons {
-  width: 50px;
+td .editable-input.editable-has-buttons {
+  width: 56px;
 }
 .editable{
   margin-left: 5px;

@@ -62,7 +62,10 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
                       {reps:5, weight:15}]; // testing
     
     $scope.removeWorkout = function(index) {
-      $scope.workouts.splice(index, 1);
+      $scope.workoutItems.splice(index, 1);
+    };
+    $scope.addWorkout = function() {
+      $scope.workoutItems.push({name:"Name", type:"Type"});
     };
 
     $scope.addSet = function(reps, weight){

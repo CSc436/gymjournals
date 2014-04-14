@@ -38,7 +38,14 @@ var gymjournals = angular
         }
       })
   }])
-  .run(['$rootScope', '$cookieStore', '$state', function($rootScope, $cookieStore, $state){
+  .run(['$rootScope', '$cookieStore', '$state', 'editableThemes', function($rootScope, $cookieStore, $state, editableThemes){
+    // xeditable
+    // overwrite submit/cancel button templates
+    var submit = '<i ng-click="$form.$submit()" class="editable fi-check size-36"></i>'
+    var cancel = '<i ng-click="$form.$cancel()" class="editable fi-x size-36"></i>'
+    editableThemes['default'].submitTpl = submit;
+    editableThemes['default'].cancelTpl = cancel;
+    
     // make sure they have to be logged in before accessing other parts of the website
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       // if you arent logged in and you are going to a page other than the home page

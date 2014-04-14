@@ -66,6 +66,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     $scope.removeSet = function(index) {
       $scope.setItems.splice(index, 1);
     };
+    
 
 }]);
 

@@ -60,6 +60,12 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     $scope.setItems = [{reps:5, weight:10}, 
                       {reps:5, weight:13}, 
                       {reps:5, weight:15}]; // testing
+
+    $scope.statuses = [
+      {value: 1, text: 'weight'},
+      {value: 2, text: 'aerobic'},
+      {value: 3, text: 'other'},
+    ];
     
     $scope.removeWorkout = function(index) {
       $scope.workoutItems.splice(index, 1);

@@ -51,15 +51,16 @@
 .fi-trash{
   color: $alert-color;
 }
-.accordion-icon-options{
-
-}
+/*.editable-buttons{
+  top:-10px;
+}*/
 .accordion-icon-options i{
   position: relative;
   top: -47px;
   right: 10px;
   padding-right: 5px;
 }
+
 /* xediable number width */
 td .editable-input.editable-has-buttons {
   width: 56px;

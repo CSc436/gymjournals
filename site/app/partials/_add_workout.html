@@ -12,11 +12,11 @@ add a workout here...
 		  <dd class="accordionWorkout" ng-repeat="workout in workoutItems">
 		    <a href="profile/#workoutAccordion{{$index}}">
                 <i class="fi-plus accordion-state-icon"></i>
-                <span editable-text="workout.name" e-form="editNameForm" e-required>{{workout.name}} <small e-form="editNameForm" editable-select="workout.type" e-ng-options="weight, aerobic" buttons="no">{{workout.type}}</small></span>
+                <span editable-text="workout.name" e-form="editNameForm" e-required>{{workout.name}} <small editable-select="workout.type" e-ng-options="s.text as s.text for s in statuses" buttons="no">{{workout.type}}</small></span>
             </a>
             <span class="accordion-icon-options">
-                <i ng-click="editNameForm.$show()" ng-hide="editNameForm.$visible" class=" right fi-info size-24"></i>
                 <i ng-click="removeWorkout($index)" class="right fi-trash size-24"></i>
+                <i ng-click="editNameForm.$show()" ng-hide="editNameForm.$visible" class=" right fi-info size-24"></i>
             </span>
 			<div id="workoutAccordion{{$index}}" class="content">
 		      <div class="row">

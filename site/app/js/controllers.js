@@ -51,27 +51,43 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       console.log(data);
       
     });
-
-    /* the following should be moved into EditableRowCtrl */
-    $scope.workoutItems = [{name:"chest workout", type:"weight"}, 
-                      {name:"arms workout", type:"weight"},
-                      {name:"cardio workout", type:"aerobic"}];
+    
+    // testing
+    $scope.workoutItems = [{name:"bench press", type:"weight"}, 
+                      {name:"dumbell fly", type:"weight"},
+                      {name:"pushups", type:"weight"}];
 
     $scope.setItems = [{reps:5, weight:10}, 
                       {reps:5, weight:13}, 
-                      {reps:5, weight:15}]; // testing
+                      {reps:5, weight:15}]; 
 
     $scope.statuses = [
       {value: 1, text: 'weight'},
       {value: 2, text: 'aerobic'},
-      {value: 3, text: 'other'},
     ];
     
+
+}]);
+
+/* EDITING TABLE FOR ADDING SETS CTRL */
+gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
+
+    $scope.checkValid = function () {
+      console.log($scope.editTypeForm);
+    };
+
     $scope.removeWorkout = function(index) {
       $scope.workoutItems.splice(index, 1);
     };
-    $scope.addWorkout = function() {
-      $scope.workoutItems.push({name:"Name", type:"Type"});
+
+    $scope.newExercise = function() {
+      addWorkout();
+    };
+
+    $scope.addWorkout = function(name, type) {
+      $scope.workoutItems.push({name:name, type:type});
+      // ('editTypeForm').$show();
+      // editTypeForm.$visible;
     };
 
     $scope.addSet = function(reps, weight){
@@ -83,13 +99,6 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     $scope.removeSet = function(index) {
       $scope.setItems.splice(index, 1);
     };
-    
-
-}]);
-
-/* EDITING TABLE FOR ADDING SETS CTRL */
-gymjournals.controller('EditableRowCtrl', ['', function(){
-
 }]);
 
 

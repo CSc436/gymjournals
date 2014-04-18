@@ -20,15 +20,20 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
   var obj=userInfo.getInfo();
   var id = obj.id;
-  $scope.username = obj.username;
-  $scope.email=obj.email;
-  if(obj.gender=="M")
-    $scope.gender_show="♂";
-  else
-    $scope.gender_show="♀";
-
-  $scope.dob=obj.dob;
-
+  $scope.error="";
+  loadInform();
+  function loadInform(){
+    $scope.username = obj.username;
+    $scope.email=obj.email;
+    $scope.gender=obj.gender;
+    if($scope.gender=="M"){
+      $scope.gender_show="♂";
+    }
+    else{
+      $scope.gender_show="♀";
+    }
+    $scope.dob=obj.dob;
+  }
 
   $scope.edit= function(element){
     $scope[element]='edit'; 
@@ -37,12 +42,32 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
   $scope.save = function(index,element){
 
-    $scope['index']=element;
-    var name = index+"_edit";
-    $scope[name]="";
-    console.log( $scope['index']);
-    $http.post(server + getURL +id +"/", $scope['index']);
+    var tempObj;
+    tempObj=angular.copy(obj);
+    console.log(tempObj);
+
+    tempObj[index] = element;
+    var name_edit = index+"_edit";
+    var error=index+"_error";
+
+    $http.put(server + getURL +id +"/", tempObj)
+        .success( function(data, status, headers, config ) {
+      //console.log(data);
+      console.log("success");
+      obj=tempObj;
+      loadInform();
+      $scope[name_edit]="";
+
+    })
+    .error( function(data, status, headers, config ) {
+      //console.log(data);
+      console.log("error");
+      //loadInform();
+      $scope[error]=data[index][0];
+    });
+
   }
+
 
 
   $scope.come = function(element){

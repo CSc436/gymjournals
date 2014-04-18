@@ -7,7 +7,11 @@
   <span class="meter" style="width: 50%">
 </div>
 
+
+
 <form data-abide class="custom">
+	<label>Password</label>
+
 	<!--Information field -->
 	<fieldset class='information radius'>
 	<legend>information</legend>
@@ -20,7 +24,7 @@
 		<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
 
 		{{username}} 	
-
+		
 	</div>
 
 	<div class='editable' ng-show='username_edit'>
@@ -28,6 +32,8 @@
 		<a class='button tiny right radius' ng-click='save("username",username)'>Save</a>
 
 		<input name='username' class='input_field' type=text ng-model=username required>
+
+		<small class="error" id="error" ng-show="username_error">{{username_error}}</small>
 
 	</div>
 
@@ -46,7 +52,9 @@
 
 		<a class='button tiny right radius' ng-click='save("email",email)'>Save</a>
 
-		<input name='email' class='input_field' type=email ng-model=email required>
+		<input name='email' class='input_field' type=text ng-model=email required>
+
+		<small class="error" id="error" ng-show="email_error">{{email_error}}</small>
 
 	</div>
 

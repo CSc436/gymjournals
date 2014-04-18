@@ -4,6 +4,7 @@ var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
     'ngCookies',
+    'gymjournals.directives',
     'nvd3ChartDirectives',
   ]);
 

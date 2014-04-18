@@ -157,8 +157,16 @@ gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
         80
       ],
       [
-        (new Date(Date.now())).getTime(),
+        (new Date(Date.now() - 0335567890)).getTime(),
         200
+      ],
+      [
+        (new Date(Date.now() - 0229567890)).getTime(),
+        160
+      ],
+      [
+        (new Date(Date.now())).getTime(),
+        300
       ],
     ]
   }];

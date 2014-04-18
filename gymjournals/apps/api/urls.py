@@ -55,4 +55,9 @@ urlpatterns = patterns(
         views.AerobicExerciseGetAPIView.as_view(),
         name="get_aerobic_exercise",
     ),
+    url(
+        r"list/weights/(?P<id>\d+)/$",
+        views.WeightListAPIView.as_view(),
+        name="list_weights",
+    ),
 )

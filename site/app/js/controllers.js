@@ -2,7 +2,7 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
-var getURL="get/list/users/id/"
+var getURL="api/get/users/"
 
 var gymjournals = angular.module('gymjournals');
 
@@ -19,34 +19,31 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 /* INFORMATION AND SETTINGS PAGE CTRL*/
 gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
   var obj=userInfo.getInfo();
-
+  var id = obj.id;
   $scope.username = obj.username;
   $scope.email=obj.email;
   if(obj.gender=="M")
-    $scope.gender="♂";
+    $scope.gender_show="♂";
   else
-    $scope.gender="♀";
+    $scope.gender_show="♀";
 
   $scope.dob=obj.dob;
 
 
   $scope.edit= function(element){
     $scope[element]='edit'; 
-    console.log(element);
+    //console.log(element);
   }
 
   $scope.save = function(index,element){
 
     $scope['index']=element;
-
     var name = index+"_edit";
     $scope[name]="";
-
-
-    $http.post(server + "api/list/users/", $scope.formData)
-
-
+    console.log( $scope['index']);
+    $http.post(server + getURL +id +"/", $scope['index']);
   }
+
 
   $scope.come = function(element){
     $scope[element]='show';

@@ -171,8 +171,8 @@ class Tag(models.Model):
     tag = models.CharField(max_length=50)
 
     def __repr__(self):
-        return ("{}: ".format(self.weight_exercise) if self.weight_exercise
-                else "" +
-                "{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
-                else "" +
+        return (("{}: ".format(self.weight_exercise) if self.weight_exercise
+                else "") +
+                ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
+                else "") +
                 "{}".format(self.tag))

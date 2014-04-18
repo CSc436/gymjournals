@@ -29,4 +29,4 @@ before_script:
 script:
   - grunt test
   - cd ../
-  - py.test --pep8 --cov gymjournals
+  - py.test

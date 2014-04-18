@@ -9,7 +9,7 @@
 
 
 
-<form data-abide class="custom" id="infor">
+<form data-abide="ajax" class="custom" id="infor">
 
 	<!--Information field -->
 	<fieldset class='information radius'>
@@ -48,23 +48,23 @@
 
 	<div class='editable' ng-show='pwd_edit'>
 
-		<a class='button tiny right radius' ng-click='save_pwd("pwd",pwd)'>Save</a>
+		<a class='button tiny right radius' ng-click='save_pwd(old_pwd,new_pwd)'>Save</a>
 
-		<label>Old Password <small>required</small>
-		<input name='password' class='input_field' type=password required placeholder="your old password" ng-model="old_pwd">
+		<label>Old Password 
+		<input class='input_field' type=password pattern="[A-z0-9]{0,}" required placeholder="your old password" ng-model="old_pwd">
 		<small class="error" id="error" ng-show="pwd_error">{{pwd_error}}</small>
         <!--new password-->
 
 		<div class="password-field">
-            <label>New Password <small>required</small>
-              <input type="password"  placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="new_pwd" required>
+            <label>New Password 
+              <input type="password"  id="password"  placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="new_pwd" required>
             </label>
             <small  class="error">Your password must match the requirements</small>
         </div>
 
         <!--confirm-password-->
         <div class="password-confirmation-field">
-            <label>Confirm Password <small>required</small>
+            <label>Confirm Password 
               <input type="password"  required  data-equalto="password" name="password" >
             </label>
             <small  class="error">The password did not match</small>

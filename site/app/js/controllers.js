@@ -20,7 +20,6 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
   var obj=userInfo.getInfo();
   var id = obj.id;
-  $scope.error="";
   loadInform();
   function loadInform(){
     $scope.username = obj.username;
@@ -67,15 +66,27 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     });
 
   }
-
-
-
   $scope.come = function(element){
     $scope[element]='show';
   }
 
   $scope.leave= function(element){
     $scope[element]="";
+  }
+  $scope.save_pwd=function(old_pwd,new_pwd){
+    //console.log(old_pwd +", "+new_pwd);
+        console.log("save pwd");
+
+        if(old_pwd==obj.pwd){
+
+          $scope.save('pwd',new_pwd);
+
+        }else{
+          $scope.pwd_error="The old password doesn't match!";
+
+        }
+
+
   }
 
   

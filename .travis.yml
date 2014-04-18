@@ -30,4 +30,4 @@ script:
   - grunt test
   - cd ../
   - pwd
-  - py.test --pep8 --cov-config='/home/travis/build/CSc436/gymjournals/.coveragerc' --cov gymjournals
+  - py.test --pep8 --omit=gymjournals/urls.py,gymjournals/wsgi.py,gymjournals/settings.py --cov gymjournals

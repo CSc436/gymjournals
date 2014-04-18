@@ -174,5 +174,5 @@ class Tag(models.Model):
         return (("{}: ".format(self.weight_exercise) if self.weight_exercise
                 else "") +
                 ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
-                else "") +
+                    else "") +
                 "{}".format(self.tag))

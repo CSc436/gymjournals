@@ -29,4 +29,5 @@ before_script:
 script:
   - grunt test
   - cd ../
+  - ls -al
   - py.test

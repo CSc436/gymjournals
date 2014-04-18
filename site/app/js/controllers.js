@@ -75,7 +75,9 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   }
   $scope.save_pwd=function(old_pwd,new_pwd){
     //console.log(old_pwd +", "+new_pwd);
-        console.log("save pwd");
+    console.log($('#infor'));
+    $('#infor').on('valid', function(old_pwd,new_pwd) {
+          console.log("save pwd");
 
         if(old_pwd==obj.pwd){
 
@@ -86,10 +88,9 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
         }
 
-
+  }).on('invlid',function(){console.log("invlid")});
   }
 
-  
 }]);
 
 

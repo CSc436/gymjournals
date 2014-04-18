@@ -1,0 +1,2 @@
+[run]
+omit = gymjournals/settings.py,gymjournals/wsgi.py,gymjournals/urls.py

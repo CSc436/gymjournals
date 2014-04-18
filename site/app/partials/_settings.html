@@ -9,36 +9,71 @@
 
 
 
-<form data-abide class="custom">
-	<label>Password</label>
+<form data-abide class="custom" id="infor">
 
 	<!--Information field -->
 	<fieldset class='information radius'>
 	<legend>information</legend>
-	<label>Username</label>
+	<label>Username
 
 	
 
-	<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit'>
+		<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit'>
 
-		<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
+			<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
 
-		{{username}} 	
+			{{username}} 	
+			
+		</div>
+
+		<div class='editable' ng-show='username_edit'>
+
+			<a class='button tiny right radius' ng-click='save("username",username)'>Save</a>
+
+			<input name='username' class='input_field' type=text ng-model=username required>
+
+			<small class="error" id="error" ng-show="username_error">{{username_error}}</small>
+
+		</div>
+	</label>
+
+	<label>Password
+	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit'>
+
+		<a class="button tiny right radius" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>
+
+		*********** 	
 		
 	</div>
 
-	<div class='editable' ng-show='username_edit'>
+	<div class='editable' ng-show='pwd_edit'>
 
-		<a class='button tiny right radius' ng-click='save("username",username)'>Save</a>
+		<a class='button tiny right radius' ng-click='save_pwd("pwd",pwd)'>Save</a>
 
-		<input name='username' class='input_field' type=text ng-model=username required>
+		<label>Old Password <small>required</small>
+		<input name='password' class='input_field' type=password required placeholder="your old password" ng-model="old_pwd">
+		<small class="error" id="error" ng-show="pwd_error">{{pwd_error}}</small>
+        <!--new password-->
 
-		<small class="error" id="error" ng-show="username_error">{{username_error}}</small>
+		<div class="password-field">
+            <label>New Password <small>required</small>
+              <input type="password"  placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="new_pwd" required>
+            </label>
+            <small  class="error">Your password must match the requirements</small>
+        </div>
+
+        <!--confirm-password-->
+        <div class="password-confirmation-field">
+            <label>Confirm Password <small>required</small>
+              <input type="password"  required  data-equalto="password" name="password" >
+            </label>
+            <small  class="error">The password did not match</small>
+        </div>
 
 	</div>
+	</label>
 
-
-	<label>Email</label>
+	<label>Email
 
 	<div class='editable' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit'>
 
@@ -58,7 +93,7 @@
 
 	</div>
 
-
+	</label>
 
 
 

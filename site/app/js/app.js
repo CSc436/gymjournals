@@ -22,6 +22,11 @@ gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterP
         templateUrl: 'partials/_profile.html',
         controller: 'profileCtrl'
       })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'partials/_settings.html',
+        controller: 'settingsCtrl'
+      })
       .state('calendar', {
         url: '/calendar',
         templateUrl: 'partials/_calendar.html',
@@ -45,6 +50,28 @@ gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterP
       }
     })
   }]);
+
+/* a factory is useful when we want to compute something from user data 
+ * but this factory does not yet have this functionailty but is here just in case
+ * we add it
+ */
+gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
+  return {
+    getInfo: function () {
+        return $cookieStore.get('data');
+    },
+    getName: function () {
+      return $cookieStore.get('data').username;
+    },
+    getID: function () {
+      return $cookieStore.get('data').id;
+    },
+    setInfo: function(value) {
+      $cookieStore.put('data', value);
+    }
+  };
+}]);
+
 
 
 /*

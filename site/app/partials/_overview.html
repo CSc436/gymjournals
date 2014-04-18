@@ -1,0 +1,44 @@
+<div id="overview-tab">
+	My workouts:
+	<ul data-ng-if="workouts">
+      <li data-ng-repeat="workout in workouts">
+        <ul>
+          <li>date: {{workout.date}}</li>
+          <li>tag: {{workout.tag}}</li>
+          <li>color: {{workout.color}}</li>
+          <li>description: {{workout.description}}</li>
+          <li>duration: {{workout.duration}}</li>
+        </ul>
+			<div class="post">
+                <div class="post-header">
+                  <a class="th" href="#">
+                    <img src="img/default_profile.jpg">
+                  </a>
+                  <span id="profilename" class="post-name">{{workout.tag}}</span>
+                  <span class="label radius success" data-livestamp="{{workout.date}}"></span>
+                  
+                </div>
+                <div class="post-content">
+                  <p class="post-text">{{workout.description}}</p>
+                </div>
+                <!-- comment/share on post -->
+                <div class="post-footer">
+                  <div class="">
+                    <div class="left row collapse">
+                      <div class="small-8 columns">
+                        <input type="text" placeholder="Comment!">
+                      </div>
+                      <div class="small-4 columns">
+                        <a href="#" class="button postfix radius">Share!</a>
+                      </div>
+                    </div>
+                    <button class="right radius tiny" onclick=""><i class="step fi-like size-48"></i></button>
+                  </div>
+                </div>
+              </div>
+      </li>
+    </ul>
+    <h2 data-ng-if="!workouts">
+      You have not completed any workouts...
+    </h2>
+</div>

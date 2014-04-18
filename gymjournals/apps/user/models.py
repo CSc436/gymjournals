@@ -165,6 +165,7 @@ class AerobicExercise(models.Model):
 
 
 class Tag(models.Model):
+    user = models.ForeignKey(SiteUser)
     weight_exercise = models.ForeignKey(WeightExercise, null=True)
     aerobic_exercise = models.ForeignKey(AerobicExercise, null=True)
     tag = models.CharField(max_length=50)

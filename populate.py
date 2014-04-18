@@ -80,6 +80,7 @@ dan_wex.wkout = dan_workout
 dan_wex.save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Chest"
     ).save()
@@ -132,11 +133,13 @@ dan_wex.wkout = dan_workout
 dan_wex.save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Chest"
     ).save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Shoulders"
     ).save()
@@ -173,6 +176,7 @@ dan_wex.wkout = dan_workout
 dan_wex.save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Triceps"
     ).save()
@@ -207,6 +211,7 @@ dan_wex.wkout = dan_workout
 dan_wex.save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Chest"
     ).save()
@@ -240,6 +245,7 @@ dan_wex.wkout = dan_workout
 dan_wex.save()
 
 Tag(
+    user=dan,
     weight_exercise=dan_wex,
     tag="Triceps"
     ).save()
@@ -271,6 +277,7 @@ j_ex.wkout = jesse_workout
 j_ex.save()
 
 Tag(
+    user=jesse,
     aerobic_exercise=j_ex,
     tag="Swimming"
     ).save()
@@ -284,6 +291,7 @@ dan_ex.wkout = dan_workout
 dan_ex.save()
 
 Tag(
+    user=dan,
     aerobic_exercise=dan_ex,
     tag="Running"
     ).save()

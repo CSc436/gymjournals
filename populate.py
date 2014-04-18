@@ -79,6 +79,11 @@ dan_wex = WeightExercise(
 dan_wex.wkout = dan_workout
 dan_wex.save()
 
+Tag(
+    weight_exercise=dan_wex,
+    tag="Chest"
+    ).save()
+
 dan_ex = Set(
     ex=dan_wex,
     weight=105,
@@ -126,6 +131,16 @@ dan_wex = WeightExercise(
 dan_wex.wkout = dan_workout
 dan_wex.save()
 
+Tag(
+    weight_exercise=dan_wex,
+    tag="Chest"
+    ).save()
+
+Tag(
+    weight_exercise=dan_wex,
+    tag="Shoulders"
+    ).save()
+
 dan_ex = Set(
     ex=dan_wex,
     weight=85,
@@ -157,6 +172,11 @@ dan_wex = WeightExercise(
 dan_wex.wkout = dan_workout
 dan_wex.save()
 
+Tag(
+    weight_exercise=dan_wex,
+    tag="Triceps"
+    ).save()
+
 dan_ex = Set(
     ex=dan_wex,
     weight=45,
@@ -186,6 +206,11 @@ dan_wex = WeightExercise(
 dan_wex.wkout = dan_workout
 dan_wex.save()
 
+Tag(
+    weight_exercise=dan_wex,
+    tag="Chest"
+    ).save()
+
 Set(
     ex=dan_wex,
     weight=110,
@@ -214,6 +239,11 @@ dan_wex = WeightExercise(
 dan_wex.wkout = dan_workout
 dan_wex.save()
 
+Tag(
+    weight_exercise=dan_wex,
+    tag="Triceps"
+    ).save()
+
 Set(
     ex=dan_wex,
     weight=95,
@@ -240,6 +270,11 @@ j_ex = AerobicExercise(
 j_ex.wkout = jesse_workout
 j_ex.save()
 
+Tag(
+    aerobic_exercise=j_ex,
+    tag="Swimming"
+    ).save()
+
 dan_ex = AerobicExercise(
     name="Running",
     duration=time(minute=30),
@@ -247,3 +282,8 @@ dan_ex = AerobicExercise(
     )
 dan_ex.wkout = dan_workout
 dan_ex.save()
+
+Tag(
+    aerobic_exercise=dan_ex,
+    tag="Running"
+    ).save()

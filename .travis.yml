@@ -29,4 +29,5 @@ before_script:
 script:
   - grunt test
   - cd ../
+  - pwd
   - py.test --pep8 --cov gymjournals

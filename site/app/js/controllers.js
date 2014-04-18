@@ -2,6 +2,7 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
+var getURL="get/list/users/id/"
 
 var gymjournals = angular.module('gymjournals');
 
@@ -30,31 +31,31 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
 
   $scope.edit= function(element){
-    //var newLabel = "<label>Username</label>"
-    var newElement = '<input class=username type="text" name="username" required  value='+element+' ng-model='+element+'>';
-    var saveButton = '<input class=username type="submit" class="button radius"  ng-click="save()" value="Save">';
-
-    $('div #'+element)
-    .after(newElement+saveButton)
-    .remove();
-    //console.log("div");
+    $scope[element]='edit'; 
+    console.log(element);
   }
 
-  $scope.save = function(){
-        console.log('run');
+  $scope.save = function(index,element){
 
-    $('input .username').after('<div>'+$scope.username+'</div>').remove();
+    $scope['index']=element;
+
+    var name = index+"_edit";
+    $scope[name]="";
+
+
+    $http.post(server + "api/list/users/", $scope.formData)
+
 
   }
 
-  $scope.come = function(){
-    $scope.show='as';
+  $scope.come = function(element){
+    $scope[element]='show';
   }
-  $scope.leave= function(){
-    $scope.show="";
+
+  $scope.leave= function(element){
+    $scope[element]="";
   }
-  //$scope.info=userInfo.getInfo();
-  //console.log(userInfo.getInfo());
+
   
 }]);
 

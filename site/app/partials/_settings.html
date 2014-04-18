@@ -4,22 +4,93 @@
   <span class="meter" style="width: 50%">
 </div>
 <form data-abide class="custom">
-	<fieldset>
+	<fieldset class='information radius'>
 	<legend>information</legend>
 	<label>Username</label>
 
+	
 
-	<div class='editable' ng-mouseleave='leave()' ng-mouseenter='come()' id='{{username}}' >{{username}} 	
-		<a class="button right radius" ng-show='show' ng-click='edit(username)'>Edit</a>
+	<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit'>
+
+		<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
+
+		{{username}} 	
+
 	</div>
+
+	<div class='editable' ng-show='username_edit'>
+
+		<a class='button tiny right radius' ng-click='save("username",username)'>Save</a>
+
+		<input name='username' class='input_field' type=text ng-model=username required>
+
+	</div>
+
+
 	<label>Email</label>
-	<div id='email'>{{email}}</div>
+
+	<div class='editable' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit'>
+
+		<a class="button tiny right radius" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>
+
+		{{email}} 	
+
+	</div>
+
+	<div class='editable' ng-show='email_edit'>
+
+		<a class='button tiny right radius' ng-click='save("email",email)'>Save</a>
+
+		<input name='email' class='input_field' type=email ng-model=email required>
+
+	</div>
+
+
+
+
+
 	<label>Birthday</label>
 
-	<div id= 'birthday'>{{dob}}</div>
+
+
+	<div class='editable' ng-mouseleave='leave("bday_show")' ng-mouseenter='come("bday_show")' id='birthday' ng-hide='dob_edit'>
+
+		<a class="button tiny right radius" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>
+
+		{{dob}} 	
+
+	</div>
+
+	<div class='editable' ng-show='dob_edit'>
+
+		<a class='button tiny right radius' ng-click='save("dob",dob)'>Save</a>
+
+		<input name='birthday' class='input_field' type=date ng-model=dob required>
+
+	</div>
+
+
+
 	<label>Gender</label>
 
-	<div id='gender'>{{gender}}</div>
+
+	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'>
+
+		<a class="button tiny right radius" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>
+
+		{{gender}} 	
+
+	</div>
+
+	<div class='editable' ng-show='gender_edit'>
+
+		<a class='button tiny right radius' ng-click='save("gender",gender)'>Save</a>
+
+		<input type="radio" name="gender" ng-model='gender' value="M"><span class='gender'> Male</span>
+		<input type="radio" name="gender" ng-model='gender' value="F"><span class='gender'> Female</span>
+	</div>
+
+
 
 
 	</fieldset>

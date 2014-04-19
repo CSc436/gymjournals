@@ -168,7 +168,8 @@ class Tag(models.Model):
     user = models.ForeignKey(SiteUser)
     weight_exercise = models.ForeignKey(WeightExercise, null=True)
     aerobic_exercise = models.ForeignKey(AerobicExercise, null=True)
-    tag = models.CharField(max_length=50)
+    tag = models.CharField(max_length=50,
+                            validators=[RegexValidator(regex='[A-Za-z0-9_-]*')])
 
     def __repr__(self):
         return (("{}: ".format(self.weight_exercise) if self.weight_exercise

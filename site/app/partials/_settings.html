@@ -1,4 +1,7 @@
 
+<header ng-include src="'partials/_nav.html'"></header>   
+
+
 <!--Progess bar -->
 
 <label>Profile 50% complete</label>
@@ -75,11 +78,11 @@
 
 	<label>Email
 
-	<div class='editable' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit'>
+	<div class='editable email' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit'>
 
 		<a class="button tiny right radius" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>
 
-		{{email}} 	
+		<span class="email">{{email}}</span> 	
 
 	</div>
 

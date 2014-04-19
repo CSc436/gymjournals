@@ -1,6 +1,11 @@
 {
   "name": "foundation-libsass-template",
   "dependencies": {
-    "foundation": "zurb/bower-foundation"
+    "foundation": "zurb/bower-foundation",
+    "d3": "~3.4.6",
+    "nvd3": "~1.1.15-beta"
+  },
+  "resolutions": {
+    "d3": "~3.4.6"
   }
 }

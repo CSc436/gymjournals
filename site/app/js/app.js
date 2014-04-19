@@ -51,7 +51,7 @@ gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterP
     })
   }]);
 
-/* a factory is useful when we want to compute something from user data 
+/* a factory is useful when we want to compute something from user data
  * but this factory does not yet have this functionailty but is here just in case
  * we add it
  */
@@ -61,10 +61,18 @@ gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
         return $cookieStore.get('data');
     },
     getName: function () {
-      return $cookieStore.get('data').username;
+      if ($cookieStore.get('data')) {
+        return $cookieStore.get('data').username;
+      } else {
+        return null;
+      }
     },
     getID: function () {
-      return $cookieStore.get('data').id;
+      if ($cookieStore.get('data')) {
+        return $cookieStore.get('data').id;
+      } else {
+        return null;
+      }
     },
     setInfo: function(value) {
       $cookieStore.put('data', value);

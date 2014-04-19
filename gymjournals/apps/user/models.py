@@ -166,10 +166,11 @@ class AerobicExercise(models.Model):
 
 class Tag(models.Model):
     user = models.ForeignKey(SiteUser)
-    weight_exercise = models.ForeignKey(WeightExercise, null=True)
-    aerobic_exercise = models.ForeignKey(AerobicExercise, null=True)
+    weight_exercise = models.ForeignKey(WeightExercise, null=True, blank=True)
+    aerobic_exercise = models.ForeignKey(AerobicExercise,
+                                         null=True, blank=True)
     tag = models.CharField(max_length=50,
-                            validators=[RegexValidator(regex='[A-Za-z0-9_-]*')])
+                           validators=[RegexValidator(regex='^[\w-]+$')])
 
     def __repr__(self):
         return (("{}: ".format(self.weight_exercise) if self.weight_exercise
@@ -177,3 +178,10 @@ class Tag(models.Model):
                 ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
                     else "") +
                 "{}".format(self.tag))
+
+    def save(self, *args, **kwargs):
+        if self.weight_exercise:
+            self.full_clean(exclude=[self.aerobic_exercise])
+        else:
+            self.full_clean(exclude=[self.weight_exercise])
+        super().save(*args, **kwargs)

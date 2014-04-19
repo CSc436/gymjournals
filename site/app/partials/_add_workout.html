@@ -7,19 +7,21 @@ add a workout here...
         Log Workout
     </a>
 	<div id="logAccordion1" class="content" >
-      editable-select="workout.type" e-ng-options="s.text as s.text for s in statuses" buttons="no"
-        <dl class="accordion" data-accordion>
-		  <dd class="accordionWorkout" ng-repeat="workout in workoutItems">
-		    <a href="profile/#workoutAccordion{{$index}}">
+    
+    <span editable-text="workout" e-min="1" e-required>{{workout}}</span>
+    
+    <dl class="accordion" data-accordion>
+		  <dd class="accordionExercise" ng-repeat="exercise in exerciseItems">
+		    <a href="profile/#exerciseAccordion{{$index}}">
                 <i class="fi-plus accordion-state-icon"></i>
-                <span editable-text="workout.name" e-form="editNameForm" e-required buttons="no">{{workout.name || 'empty'}}</span>
-                <small>{{workout.type || 'empty'}}</small>
+                <span editable-text="exercise.name" e-form="editNameForm" e-required buttons="no">{{exercise.name || 'empty'}}</span>
+                <small>{{exercise.type || 'empty'}}</small>
             </a>
             <span class="accordion-icon-options">
-                <i ng-click="removeWorkout($index)" class="right fi-trash size-24"></i>
+                <i ng-click="removeExercise($index)" class="right fi-trash size-24"></i>
                 <i ng-click="editNameForm.$show()" ng-hide="editNameForm.$visible" class="right fi-info size-24"></i>
             </span>
-			<div id="workoutAccordion{{$index}}" class="content">
+		    <div id="exerciseAccordion{{$index}}" class="content">
 		      <div class="row">
                 <div class="small-5 columns">
                   <div class="row collapse">
@@ -72,24 +74,22 @@ add a workout here...
 
 		    </div>
 		  </dd>
-            
-
-            <dd class="accordionWorkout">
-                <a ng-click="editableForm.$show()">
-                    <i class="fi-plus accordion-state-icon"></i>
-                    <form editable-form name="editableForm" onbeforesave="checkValid()" onaftersave="addWorkout(name, type)" ng-show="editableForm.$visible">
-                        <span editable-text="name" e-required buttons="no">{{name}}</span>
-                        <small editable-select="type" e-ng-options="s.text as s.text for s in statuses" buttons="no"> {{type}}</small>
-                    </form>
-                    <span ng-show="!editableForm.$visible">Add new exercise <small></small></span>
-                </a>
-                
-            </dd>
-        
-        </dl>
+        <!-- Add new Exercise -->
+        <dd class="accordionExercise">
+            <a ng-click="editableForm.$show()">
+                <i class="fi-plus accordion-state-icon"></i>
+                <form editable-form name="editableForm" onbeforesave="checkValid()" onaftersave="addExercise(name, type)" ng-show="editableForm.$visible">
+                    <span editable-text="name" e-required buttons="no">{{name}}</span>
+                    <small editable-select="type" e-ng-options="s.text as s.text for s in statuses" buttons="no"> {{type}}</small>
+                </form>
+                <span ng-show="!editableForm.$visible">Add new exercise</span>
+            </a>
+        </dd>
+      </dl>
 
     </div>
   </dd>
+
   <dd class="accordionTab">
     <a href="profile/#logAccordion2">
         <span class="fi-battery-half"></span>

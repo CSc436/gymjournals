@@ -53,7 +53,8 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     });
     
     // testing
-    $scope.workoutItems = [{name:"bench press", type:"weight"}, 
+    $scope.workout = "myWorkout";
+    $scope.exerciseItems = [{name:"bench press", type:"weight"}, 
                       {name:"dumbell fly", type:"weight"},
                       {name:"pushups", type:"weight"}];
 
@@ -80,16 +81,12 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
       console.log('isValid?');
     };
 
-    $scope.removeWorkout = function(index) {
-      $scope.workoutItems.splice(index, 1);
+    $scope.removeExercise = function(index) {
+      $scope.exerciseItems.splice(index, 1);
     };
 
-    $scope.newExercise = function() {
-      addWorkout();
-    };
-
-    $scope.addWorkout = function(name, type) {
-      $scope.workoutItems.push({name:name, type:type});
+    $scope.addExercise = function(name, type) {
+      $scope.exerciseItems.push({name:name, type:type});
     };
 
     $scope.addSet = function(reps, weight){

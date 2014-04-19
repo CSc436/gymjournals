@@ -7,8 +7,20 @@ jesse.save()
 
 jw = Weight(
     user=jesse,
+    weight=550,
+    date=date(year=2013, month=3, day=29)
+    )
+jw.save()
+jw = Weight(
+    user=jesse,
     weight=150,
-    date=date(year=2014, month=3, day=29)
+    date=date(year=2014, month=1, day=11)
+    )
+jw.save()
+jw = Weight(
+    user=jesse,
+    weight=75,
+    date=date(year=2010, month=3, day=7)
     )
 jw.save()
 
@@ -72,60 +84,170 @@ dan_workout.save()
 dan_workout_two = Workout(user=dan, date=date(year=2015, month=6, day=10))
 dan_workout_two.save()
 
-dan_ex = WeightExercise(
+dan_wex = WeightExercise(
     name="Bench Press",
-    min_weight=105,
-    num_sets=5,
-    num_reps=5,
     duration=time(minute=15)
     )
-dan_ex.wkout = dan_workout
+dan_wex.wkout = dan_workout
+dan_wex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=105,
+    num=1,
+    reps=5
+    )
 dan_ex.save()
 
-dan_ex = WeightExercise(
+dan_ex = Set(
+    ex=dan_wex,
+    weight=105,
+    num=2,
+    reps=5
+    )
+dan_ex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=105,
+    num=3,
+    reps=5
+    )
+dan_ex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=105,
+    num=4,
+    reps=5
+    )
+dan_ex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=105,
+    num=5,
+    reps=5
+    )
+dan_ex.save()
+
+dan_wex = WeightExercise(
     name="Shoulder Press",
-    min_weight=85,
-    num_sets=3,
-    num_reps=5,
     duration=time(minute=10)
     )
-dan_ex.wkout = dan_workout
+dan_wex.wkout = dan_workout
+dan_wex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=85,
+    reps=5,
+    num=1
+    )
 dan_ex.save()
 
-dan_ex = WeightExercise(
+dan_ex = Set(
+    ex=dan_wex,
+    weight=85,
+    reps=5,
+    num=2
+    )
+dan_ex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=85,
+    reps=5,
+    num=3
+    )
+dan_ex.save()
+
+dan_wex = WeightExercise(
     name="Tricep Extension",
-    min_weight=45,
-    num_sets=3,
-    num_reps=8,
     duration=time(minute=10)
     )
-dan_ex.wkout = dan_workout
+dan_wex.wkout = dan_workout
+dan_wex.save()
+
+dan_ex = Set(
+    ex=dan_wex,
+    weight=45,
+    reps=8,
+    num=1
+    )
 dan_ex.save()
 
-dan_ex = WeightExercise(
+Set(
+    ex=dan_wex,
+    weight=45,
+    reps=8,
+    num=2
+    ).save()
+
+Set(
+    ex=dan_wex,
+    weight=45,
+    reps=8,
+    num=3
+    ).save()
+
+dan_wex = WeightExercise(
     name="Pec Fly",
-    min_weight=110,
-    num_sets=3,
-    num_reps=5,
     duration=time(minute=10)
     )
-dan_ex.wkout = dan_workout
-dan_ex.save()
+dan_wex.wkout = dan_workout
+dan_wex.save()
 
-dan_ex = WeightExercise(
+Set(
+    ex=dan_wex,
+    weight=110,
+    reps=5,
+    num=1
+    ).save()
+
+Set(
+    ex=dan_wex,
+    weight=110,
+    reps=5,
+    num=2
+    ).save()
+
+Set(
+    ex=dan_wex,
+    weight=110,
+    reps=5,
+    num=3
+    ).save()
+
+dan_wex = WeightExercise(
     name="Tricep Pulldowns",
-    min_weight=25,
-    max_weight=95,
     duration=time(minute=10)
     )
-dan_ex.wkout = dan_workout
-dan_ex.save()
+dan_wex.wkout = dan_workout
+dan_wex.save()
+
+Set(
+    ex=dan_wex,
+    weight=95,
+    num=1
+    ).save()
+
+Set(
+    ex=dan_wex,
+    weight=60,
+    num=2
+    ).save()
+
+Set(
+    ex=dan_wex,
+    weight=25,
+    num=3
+    ).save()
 
 j_ex = AerobicExercise(
     name="Swimming",
     duration=time(minute=35),
-    initial_heartrate=65,
-    final_heartrate=115
+    avg_heartrate=115
     )
 j_ex.wkout = jesse_workout
 j_ex.save()
@@ -133,8 +255,7 @@ j_ex.save()
 dan_ex = AerobicExercise(
     name="Running",
     duration=time(minute=30),
-    initial_heartrate=70,
-    final_heartrate=120
+    avg_heartrate=120
     )
 dan_ex.wkout = dan_workout
 dan_ex.save()

@@ -38,23 +38,21 @@
 "foundation/components/visibility";
 
 /* no overflow of words on tabs */
-.tabs dd > a{
-  padding-left: 0px;
-  padding-right: 0px;
-}
+// .tabs dd > a{
+//   padding-left: 0px;
+//   padding-right: 0px;
+// }
 
 /* navbar item bottom border */
 dd.active{
-  font-weight: bold;
-  border-bottom: solid $secondary-color 3px;
-  padding: 0px;
+  border-top: solid $primary-color 3px;
 }
 
 dd.active a{
-  height: 55px;
+  height: 43px;
 }
 
-/* everything inside a specific tab in navbar */
+/*everything inside a specific tab in navbar*/
 .tabs-content{
   padding: 5px;
 }
@@ -73,6 +71,7 @@ dd.active a{
   background-color: lighten($body-bg, 20%);
   border: 1px solid darken($body-bg, 30%);
   position: relative;
+  max-width: 800px;
 }
 
 .post-header, .post-content{
@@ -108,6 +107,9 @@ dd.active a{
   height: 50px;
   background-color: darken($body-bg, 20%);
 }
+.post-footer .left{
+  max-width: 70%;
+}
 
 .login_button {
   display: flex;
@@ -139,3 +141,58 @@ header#login_header {
 .reveal-modal{
   padding: 0;
 }
+/*close mark for alert box*/ 
+.close_mark {
+    font-size: 1.375rem;
+    padding: 9px 6px 4px;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.6875rem;
+    right: 0.25rem;
+    color: #333333;
+    opacity: 0.3; }
+
+
+.close_mark:hover, .close_mark:focus {
+    opacity: 0.5;
+}
+
+/*Set legend field background transparent*/
+fieldset legend{
+  background:transparent;
+
+}
+
+
+// Navigation bar
+#title-name {
+  padding-right: 0px;
+}
+
+#navBarTabs{
+  height: 50px;
+  margin-top: -1px; // gets rid of gap
+
+  dd {
+    height: 100%;
+    width: 25%;
+    text-align: center;
+
+    a {
+      height: 100%;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  // i {
+  //  font-size: 1.5em;
+  // }
+  .tabLabel {
+    display: none;
+  }
+}
+// end navigation bar

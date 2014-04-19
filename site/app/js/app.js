@@ -3,8 +3,12 @@
 var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
-  ])
-  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+    'ngCookies',
+    'gymjournals.directives',
+    'nvd3ChartDirectives',
+  ]);
+
+gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -18,6 +22,11 @@ var gymjournals = angular
         templateUrl: 'partials/_profile.html',
         controller: 'profileCtrl'
       })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'partials/_settings.html',
+        controller: 'settingsCtrl'
+      })
       .state('calendar', {
         url: '/calendar',
         templateUrl: 'partials/_calendar.html',
@@ -30,11 +39,44 @@ var gymjournals = angular
           }]
         }
       })
+  }])
+  .run(['$rootScope', '$cookieStore', '$state', function($rootScope, $cookieStore, $state){
+    // make sure they have to be logged in before accessing other parts of the website
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      // if you arent logged in and you are going to a page other than the home page
+      if ( (! $cookieStore.get('loggedin')) && toState.name != 'home' ) {
+        event.preventDefault();
+        $state.go("home"); // go to home page
+      }
+    })
   }]);
 
-/* 
+/* a factory is useful when we want to compute something from user data 
+ * but this factory does not yet have this functionailty but is here just in case
+ * we add it
+ */
+gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
+  return {
+    getInfo: function () {
+        return $cookieStore.get('data');
+    },
+    getName: function () {
+      return $cookieStore.get('data').username;
+    },
+    getID: function () {
+      return $cookieStore.get('data').id;
+    },
+    setInfo: function(value) {
+      $cookieStore.put('data', value);
+    }
+  };
+}]);
+
+
+
+/*
  *
- * EXAMPLE 
+ * EXAMPLE
  *
  */
 // Declare app level module which depends on filters, and services

@@ -1,7 +1,19 @@
-nav
-<ul>
-	<li class="" ui-sref="about" ui-sref-active="active">Sample link</li>
+<!-- top bar -->
+<div class="sticky contain-to-grid"> 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name"><h1><a id="title-name">Gym Journals</a></h1></li>
+      <li class="toggle-topbar menu-icon"><a>Menu</a></li>
+    </ul>
 
-	<li class="" ui-sref="home">Log out</li>
-</ul>
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="active"><a ui-sref="settings"><i class="fi-widget"></i>  Settings</a></li>
+        <li class="active"><a ui-sref="home"><i class="fi-power"></i>  Logout</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
 
+<script type="text/javascript">$(document).foundation();</script>

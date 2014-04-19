@@ -21,9 +21,9 @@
 
 	
 
-		<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit'>
+		<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit' ng-click='edit("username_edit")'>
 
-			<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
+			<!--<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>-->
 
 			{{username}} 	
 			
@@ -41,9 +41,9 @@
 	</label>
 
 	<label>Password
-	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit'>
+	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit' ng-click='edit("pwd_edit")'>
 
-		<a class="button tiny right radius" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>
+		<!--<a class="button tiny right radius" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>-->
 
 		*********** 	
 		
@@ -78,11 +78,11 @@
 
 	<label>Email
 
-	<div class='editable email' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit'>
+	<div class='editable email' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit' ng-click='edit("email_edit")'>
 
-		<a class="button tiny right radius" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>
+		<!--<a class="button tiny right radius" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>-->
 
-		<span class="email">{{email}}</span> 	
+		<span class="email" >{{email}}</span> 	
 
 	</div>
 
@@ -104,9 +104,9 @@
 
 
 
-	<div class='editable' ng-mouseleave='leave("bday_show")' ng-mouseenter='come("bday_show")' id='birthday' ng-hide='dob_edit'>
+	<div class='editable' ng-mouseleave='leave("bday_show")' ng-mouseenter='come("bday_show")' id='birthday' ng-hide='dob_edit' ng-click='edit("dob_edit")'>
 
-		<a class="button tiny right radius" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>
+		<!--<a class="button tiny right radius" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>-->
 
 		{{dob}} 	
 
@@ -125,9 +125,9 @@
 	<label>Gender
 
 
-	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'>
+	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'  ng-click='edit("gender_edit")'>
 
-		<a class="button tiny right radius" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>
+		<!--<a class="button tiny right radius" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>-->
 
 		{{gender_show}} 	
 

@@ -79,7 +79,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     //console.log("saving password.");
     //console.log($('.password-field'));
     //console.log($('#infor'));
-    if(new_pwd==confirm_pwd){
+    if(new_pwd==confirm_pwd && new_pwd.length>=6){
           if(old_pwd==obj.pwd){
 
             $scope.save('pwd',new_pwd);

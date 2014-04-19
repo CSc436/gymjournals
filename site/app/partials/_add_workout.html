@@ -77,9 +77,9 @@ add a workout here...
             <dd class="accordionWorkout">
                 <a ng-click="editableForm.$show()">
                     <i class="fi-plus accordion-state-icon"></i>
-                    <form editable-form name="editableForm" onaftersave="checkValid()" ng-show="editableForm.$visible">
-                        <span editable-text="name" e-required buttons="no">{{name || 'empty'}}</span>
-                        <small editable-select="type" e-ng-options="s.text as s.text for s in statuses" buttons="no">{{type || 'empty'}}</small>
+                    <form editable-form name="editableForm" onbeforesave="checkValid()" onaftersave="addWorkout(name, type)" ng-show="editableForm.$visible">
+                        <span editable-text="name" e-required buttons="no">{{name}}</span>
+                        <small editable-select="type" e-ng-options="s.text as s.text for s in statuses" buttons="no"> {{type}}</small>
                     </form>
                     <span ng-show="!editableForm.$visible">Add new exercise <small></small></span>
                 </a>

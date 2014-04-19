@@ -61,19 +61,22 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
                       {reps:5, weight:13}, 
                       {reps:5, weight:15}]; 
 
-    $scope.statuses = [
-      {value: 1, text: 'weight'},
-      {value: 2, text: 'aerobic'},
-    ];
+
     
 
 }]);
 
 /* EDITING TABLE FOR ADDING SETS CTRL */
 gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
+    
+    $scope.type = 'weight'; // default status/type
+    $scope.statuses = [
+      {value: 1, text: 'weight'},
+      {value: 2, text: 'aerobic'},
+    ];
 
     $scope.checkValid = function () {
-      console.log($scope.editTypeForm);
+      console.log('isValid?');
     };
 
     $scope.removeWorkout = function(index) {
@@ -86,8 +89,6 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
 
     $scope.addWorkout = function(name, type) {
       $scope.workoutItems.push({name:name, type:type});
-      // ('editTypeForm').$show();
-      // editTypeForm.$visible;
     };
 
     $scope.addSet = function(reps, weight){

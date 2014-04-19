@@ -36,7 +36,6 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
   $scope.edit= function(element){
     $scope[element]='edit'; 
-    //console.log(element);
   }
 
   $scope.save = function(index,element){
@@ -66,31 +65,30 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     });
 
   }
+  //animation for editable
   $scope.come = function(element){
     $scope[element]='show';
   }
-
+  //animation for editable
   $scope.leave= function(element){
     $scope[element]="";
   }
-  $scope.save_pwd=function(old_pwd,new_pwd){
-    //console.log(old_pwd +", "+new_pwd);
-    console.log($('#infor'));
-    $('#infor').on('valid', function(old_pwd,new_pwd) {
-          console.log("save pwd");
+  //validate the password 
+  $scope.save_pwd=function(old_pwd,new_pwd,confirm_pwd){
+    //console.log("saving password.");
+    //console.log($('.password-field'));
+    //console.log($('#infor'));
+    if(new_pwd==confirm_pwd){
+          if(old_pwd==obj.pwd){
 
-        if(old_pwd==obj.pwd){
+            $scope.save('pwd',new_pwd);
 
-          $scope.save('pwd',new_pwd);
+          }else{
+            $scope.pwd_error="The old password doesn't match!";
 
-        }else{
-          $scope.pwd_error="The old password doesn't match!";
-
-        }
-
-  }).on('invlid',function(){console.log("invlid")});
+          }
+    }      
   }
-
 }]);
 
 

@@ -9,7 +9,7 @@
 
 
 
-<form data-abide="ajax" class="custom" id="infor">
+<form  class="custom" id="infor" data-abide="ajax">
 
 	<!--Information field -->
 	<fieldset class='information radius'>
@@ -48,7 +48,7 @@
 
 	<div class='editable' ng-show='pwd_edit'>
 
-		<a class='button tiny right radius' ng-click='save_pwd(old_pwd,new_pwd)'>Save</a>
+		<a class='button tiny right radius' ng-click='save_pwd(old_pwd,new_pwd,confirm_pwd)'>Save</a>
 
 		<label>Old Password 
 		<input class='input_field' type=password pattern="[A-z0-9]{0,}" required placeholder="your old password" ng-model="old_pwd">
@@ -65,7 +65,7 @@
         <!--confirm-password-->
         <div class="password-confirmation-field">
             <label>Confirm Password 
-              <input type="password"  required  data-equalto="password" name="password" >
+              <input type="password"  required  data-equalto="password" name="password" ng-model="confirm_pwd" >
             </label>
             <small  class="error">The password did not match</small>
         </div>
@@ -97,7 +97,7 @@
 
 
 
-	<label>Birthday</label>
+	<label>Birthday
 
 
 
@@ -116,10 +116,10 @@
 		<input name='birthday' class='input_field' type=date ng-model=dob required>
 
 	</div>
+	</label>
 
 
-
-	<label>Gender</label>
+	<label>Gender
 
 
 	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'>
@@ -137,7 +137,7 @@
 		<input type="radio" name="gender" ng-model='gender' value="M"><span class='gender'> Male</span>
 		<input type="radio" name="gender" ng-model='gender' value="F"><span class='gender'> Female</span>
 	</div>
-
+	</label>
 
 
 
@@ -150,5 +150,6 @@
   //   $("#loginModal").addClass("reveal-modal");
   // }
   $(document).foundation();
+  
 
 </script>

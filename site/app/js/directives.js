@@ -2,10 +2,11 @@
 
 /* Directives */
 
+var directives = angular.module('gymjournals.directives', []);
 
-angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+directives.directive('weightChart', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/_weightChart.html'
+  };
+});

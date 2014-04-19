@@ -4,8 +4,11 @@ var gymjournals = angular
   .module('gymjournals', [
     'ui.router',
     'ngCookies',
-  ])
-  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+    'gymjournals.directives',
+    'nvd3ChartDirectives',
+  ]);
+
+gymjournals.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -71,9 +74,9 @@ gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
 
 
 
-/* 
+/*
  *
- * EXAMPLE 
+ * EXAMPLE
  *
  */
 // Declare app level module which depends on filters, and services

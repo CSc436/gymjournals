@@ -41,7 +41,7 @@ class SiteUser(models.Model):
     def age(self):
         if self.dob is None:
             return -1
-        return ((date.today()-self.dob)/365).days
+        return ((date.today()-self.dob)/365.25).days
 
     @property
     def current_weight(self):

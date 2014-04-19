@@ -2,15 +2,23 @@ language: python
 python:
   - "3.3"
 
+env:
+  - DB=psql
+
 # command to install dependencies
 install:
   - pip install -r requirements.txt
   - pip install -r requirements_test.txt
+  - pip install -e .
   - npm install --quiet -g karma
   - npm install --quiet -g grunt-cli
   - npm install --quiet -g protractor
 
 before_script:
+  - psql -c "CREATE USER gymjournalsuser WITH PASSWORD 'gymjournalspassword';" -U postgres
+  - psql -c 'CREATE DATABASE gymjournals OWNER gymjournalsuser;' -U postgres
+  - psql -c 'ALTER USER gymjournalsuser CREATEDB;' -U postgres
+  #- psql -c 'CREATE DATABASE test_gymjournals OWNER gymjournalsuser' -U postgres
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - cd site
@@ -20,5 +28,5 @@ before_script:
 
 script:
   - grunt test
-  - pep8 ../ --exclude=node_modules
-  #- py.test --reuse-db
+  - cd ../
+  - py.test

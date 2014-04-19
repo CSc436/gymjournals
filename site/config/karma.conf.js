@@ -9,6 +9,7 @@ module.exports = function(config) {
       'app/js/app.js',
       'app/js/**/*.js',
       'test/unit/**/*Spec.js',
+      'app/bower_components/jquery/jquery.js',
       'app/bower_components/*/*.js',
     ],
 

@@ -21,6 +21,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   var obj=userInfo.getInfo();
   var id = obj.id;
   loadInform();
+  //load information of user
   function loadInform(){
     $scope.username = obj.username;
     $scope.email=obj.email;
@@ -33,11 +34,11 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     }
     $scope.dob=obj.dob;
   }
-
+  //make the field editable
   $scope.edit= function(element){
     $scope[element]='edit'; 
   }
-
+  //conncet the database and save the changed information
   $scope.save = function(index,element){
 
     var tempObj;

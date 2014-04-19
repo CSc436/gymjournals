@@ -69,6 +69,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
 /* EDITING TABLE FOR ADDING SETS CTRL */
 gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
     
+    $scope.name = 'Exercise'; // default exercise name
     $scope.type = 'weight'; // default status/type
     $scope.statuses = [
       {value: 1, text: 'weight'},

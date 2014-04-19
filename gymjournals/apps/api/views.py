@@ -125,9 +125,7 @@ class WeightSerializer(serializers.ModelSerializer):
 
     def to_native(self, obj):
         if obj:
-            date = datetime.combine(obj.date, datetime.min.time())
-            seconds = (date - datetime.utcfromtimestamp(0)).total_seconds()
-            millis = int(seconds * 1000)
+            millis - get_millis(obj.date)
             return [millis, obj.weight]
         return None
 
@@ -140,3 +138,40 @@ class WeightListAPIView(generics.ListCreateAPIView):
         user_id = self.kwargs['id']
         user = SiteUser.objects.filter(id=user_id).first()
         return user.weight_set.order_by("date")
+
+
+class ExerciseListAPIView(generics.ListCreateAPIView):
+    model = Workout
+
+    def get(self, request, format=None, **kwargs):
+        user_id = kwargs['user_id']
+        tag = kwargs['tag']
+        user = SiteUser.objects.filter(id=user_id).first()
+
+        to_return = []
+
+        for w in user.workout_set.order_by("date"):
+            exercises = list(w.aerobicexercise_set.filter(name=tag))
+
+            if exercises:
+                exercises_json = []
+                for exercise in exercises:
+                    h, m, s = [int(i) for i in
+                               str(exercise.duration).split(':')]
+                    exercise_millis = (3600 * h + 60 * m + s) * 1000
+                    millis = get_millis(w.date)
+                    e_json = {
+                        "heartrate": exercise.avg_heartrate,
+                        "duration": exercise_millis
+                    }
+                    exercises_json.append(e_json)
+                to_return.append([millis, exercises_json])
+
+        return Response(to_return)
+
+
+def get_millis(my_date):
+    date = datetime.combine(my_date, datetime.min.time())
+    seconds = (date - datetime.utcfromtimestamp(0)).total_seconds()
+    millis = int(seconds * 1000)
+    return millis

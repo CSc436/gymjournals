@@ -105,3 +105,17 @@ describe("profileCtrl", function(){
     expect($scope.title).toBe("PROFILE");
   }));
 });
+
+/*
+describe("CreateWorkout", function(){
+    var scope;
+
+    beforeEach(angular.mock.module("CreateWorkout"));
+    breakEach(angular.mock.inject(function($rootScope, $controller) {
+        scope = $rootScope.$new();
+        $controller("CreateWorkout", {$scope: scope});
+    }));
+
+
+}
+*/

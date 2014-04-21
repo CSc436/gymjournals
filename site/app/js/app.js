@@ -5,8 +5,11 @@ var gymjournals = angular
     'ui.router',
     'ngCookies',
     'xeditable',
+    'gymjournals.directives',
+    'nvd3ChartDirectives',
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -56,7 +59,7 @@ var gymjournals = angular
     })
   }]);
 
-/* a factory is useful when we want to compute something from user data 
+/* a factory is useful when we want to compute something from user data
  * but this factory does not yet have this functionailty but is here just in case
  * we add it
  * Example: userInfo.getInfo();
@@ -67,10 +70,18 @@ gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
         return $cookieStore.get('data');
     },
     getName: function () {
-      return $cookieStore.get('data').username;
+      if ($cookieStore.get('data')) {
+        return $cookieStore.get('data').username;
+      } else {
+        return null;
+      }
     },
     getID: function () {
-      return $cookieStore.get('data').id;
+      if ($cookieStore.get('data')) {
+        return $cookieStore.get('data').id;
+      } else {
+        return null;
+      }
     },
     setInfo: function(value) {
       $cookieStore.put('data', value);
@@ -80,9 +91,9 @@ gymjournals.factory('userInfo', ["$cookieStore", function($cookieStore){
 
 
 
-/* 
+/*
  *
- * EXAMPLE 
+ * EXAMPLE
  *
  */
 // Declare app level module which depends on filters, and services

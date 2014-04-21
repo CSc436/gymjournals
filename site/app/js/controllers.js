@@ -28,7 +28,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   $scope.dob=obj.dob;
   //$scope.info=userInfo.getInfo();
   //console.log(userInfo.getInfo());
-  
+
 }]);
 
 
@@ -49,14 +49,15 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     })
     .error( function(data, status, headers, config ) {
       console.log(data);
-      
+
     });
     
     // testing
     $scope.workout = "myWorkout";
     $scope.exerciseItems = [{name:"bench press", type:"weight"}, 
                       {name:"dumbell fly", type:"weight"},
-                      {name:"pushups", type:"weight"}];
+                      {name:"pushups", type:"weight"},
+                      {name:"running", type:"aerobic"}];
 
     $scope.setItems = [{reps:5, weight:10}, 
                       {reps:5, weight:13}, 
@@ -107,6 +108,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
   $scope.title = "CALENDAR";
 
+  $scope.events = [{}];
   $scope.save = function() {
     $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
   }
@@ -131,7 +133,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
     //   "id": i,
     //   "text":"Task A-12458",
     //   "start_date": new Date(2013, 11, 12),
-    //   "end_date": new Date(2013, 11, 13) 
+    //   "end_date": new Date(2013, 11, 13)
     // });
   });
 
@@ -149,15 +151,15 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
   var day = list[2];
 
   $scope.events = [
-    { 
+    {
 
       "id":1,
       "text":"Task A-12458",
       "start_date": new Date(2013, 11, 12),
-      "end_date": new Date(2013, 11, 13) 
+      "end_date": new Date(2013, 11, 13)
     },
-    { 
-      "id":2, 
+    {
+      "id":2,
       "text":"Task A-83473",
       "start_date": new Date(2013, 10, 22 ),
       "end_date": new Date(2013, 10, 24 ) }
@@ -168,11 +170,6 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
   $scope.scheduler = { date : new Date(2013,10,1) };
 
 }]);
-
-
-
-
-
 
 
 /* LOGIN CTRL */
@@ -200,7 +197,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
-        
+
         $scope.alertType = "warning";
         $scope.simessage = data.error;
       });
@@ -229,6 +226,47 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
 
 }]);
 
+/* Weight tracking bar chart */
+gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
+  $scope.weightData = [{
+    key: "weight",
+    values: [
+      [
+        (new Date(Date.now() - 2345678901)).getTime(),
+        110
+      ],
+      [
+        (new Date(Date.now() - 1234567890)).getTime(),
+        80
+      ],
+      [
+        (new Date(Date.now() - 0335567890)).getTime(),
+        200
+      ],
+      [
+        (new Date(Date.now() - 0229567890)).getTime(),
+        160
+      ],
+      [
+        (new Date(Date.now())).getTime(),
+        300
+      ],
+    ]
+  }];
+
+  $scope.xAxisTickFormatFunction = function(){
+    return function(d){
+      return d3.time.format('%m-%d')(new Date(d));
+    }
+  };
+
+  $scope.toolTipContentFunction = function(){
+    return function(key, x, y, e, graph) {
+      return '<h4>' +  y + ' at ' + x + '</h4>';
+    };
+  };
+}]);
+
 /* EXAMPLE */
 var exampleAPI = angular.module('exampleAPI', []);
 exampleAPI.controller(
@@ -236,7 +274,7 @@ exampleAPI.controller(
   [
     "$scope", "$http",
     function($scope, $http) {
-      $http.get(server + "api/users/").success(
+      $scope.getUsers = $http.get(server + "api/list/users/").success(
         function(data, status, headers, config) {
           $scope.data = data;
         }

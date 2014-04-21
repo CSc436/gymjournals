@@ -22,56 +22,62 @@ add a workout here...
                 <i ng-click="editNameForm.$show()" ng-hide="editNameForm.$visible" class="right fi-info size-24"></i>
             </span>
 		    <div id="exerciseAccordion{{$index}}" class="content">
-		      <div class="row">
-                <div class="small-5 columns">
-                  <div class="row collapse">
-                    <div class="small-7 columns">
-                      <input type="number" placeholder="0" ng-model="reps" min="1" value="1" />
+          
+          <div data-ng-if="exercise.type == 'weight'">
+  		      <div class="row">
+                  <div class="small-5 columns">
+                    <div class="row collapse">
+                      <div class="small-7 columns">
+                        <input type="number" placeholder="0" ng-model="reps" min="1" value="1" />
+                      </div>
+                      <div class="small-5 columns">
+                        <span class="postfix">reps</span>
+                      </div>
                     </div>
-                    <div class="small-5 columns">
-                      <span class="postfix">reps</span>
+                  </div> 
+                  <div class="small-5 columns">
+                    <div class="row collapse">
+                      <div class="small-7 columns">
+                        <input type="number" placeholder="0" ng-model="weight" min="0" value="0" />
+                      </div>
+                      <div class="small-5 columns">
+                        <span class="postfix">lbs</span>
+                      </div>
                     </div>
                   </div>
-                </div> 
-                <div class="small-5 columns">
-                  <div class="row collapse">
-                    <div class="small-7 columns">
-                      <input type="number" placeholder="0" ng-model="weight" min="0" value="0" />
-                    </div>
-                    <div class="small-5 columns">
-                      <span class="postfix">lbs</span>
-                    </div>
-                  </div>
+
+                  <a ng-click="addSet(reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
                 </div>
 
-                <a ng-click="addSet(reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
-              </div>
+                <table>
+                    <thead>
+                      <tr>
+                        <th width="150">Set</th>
+                        <th width="150">Reps</th>
+                        <th width="150">Weight</th>
+                        <th width="150">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="set in setItems">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                          <span editable-number="set.reps" e-min="1" e-required>{{set.reps}}</span>
+                        </td>
+                        <td>
+                          <span editable-number="set.weight" e-min="0" e-required>{{set.weight}}</span>
+                        </td>
+                        <td "white-space: nowrap">
+                          <a ng-click="removeSet($index)"><i class="fi-trash size-24"></i></a>
+                        </td>
+                      </tr>                      
+                    </tbody>
+                  </table>
+            </div>
+            
+            <div data-ng-if="exercise.type == 'aerobic'">
 
-              <table>
-                  <thead>
-                    <tr>
-                      <th width="150">Set</th>
-                      <th width="150">Reps</th>
-                      <th width="150">Weight</th>
-                      <th width="150">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="set in setItems">
-                      <td>{{$index + 1}}</td>
-                      <td>
-                        <span editable-number="set.reps" e-min="1" e-required>{{set.reps}}</span>
-                      </td>
-                      <td>
-                        <span editable-number="set.weight" e-min="0" e-required>{{set.weight}}</span>
-                      </td>
-                      <td "white-space: nowrap">
-                        <a ng-click="removeSet($index)"><i class="fi-trash size-24"></i></a>
-                      </td>
-                    </tr>                      
-                  </tbody>
-                </table>
-
+            </div>
 		    </div>
 		  </dd>
         <!-- Add new Exercise -->

@@ -41,11 +41,10 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
    
     $scope.dob=obj.dob;
 
-  
-    
+
 
     $scope.weight_goal=obj.weight_goal;
-    console.log(obj.weight_goal);
+    //console.log(obj.weight_goal);
     if(obj.weight_goal){
       count++;
 
@@ -63,7 +62,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   //make the field editable
   $scope.edit= function(element){
     $scope[element]='edit'; 
-        console.log($scope.weight_goal_edit);
+    //console.log($scope.weight_goal_edit);
 
   }
   //conncet the database and save the changed information
@@ -71,7 +70,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
     var tempObj;
     tempObj=angular.copy(obj);
-    console.log(tempObj);
+    //console.log(tempObj);
 
     tempObj[index] = element;
     var name_edit = index+"_edit";

@@ -65,4 +65,24 @@ urlpatterns = patterns(
         views.WeightListAPIView.as_view(),
         name="list_weights",
     ),
+    url(
+        r"list/tags_user/(?P<id>\d+)/$",
+        views.TagUserListAPIView.as_view(),
+        name="list_tags_user",
+    ),
+    url(
+        r"list/tags_weightexercise/(?P<id>\d+)/$",
+        views.TagWeightExerciseListAPIView.as_view(),
+        name="list_tags_weight_exercise",
+    ),
+    url(
+        r"list/tags_aerobicexercise/(?P<id>\d+)/$",
+        views.TagAerobicExerciseListAPIView.as_view(),
+        name="list_tags_aerobic_exercise",
+    ),
+    url(
+        r"get/tag/(?P<pk>\d+)/$",
+        views.TagGetAPIView.as_view(),
+        name="get_tag",
+    ),
 )

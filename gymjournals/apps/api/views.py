@@ -189,7 +189,7 @@ class TagUserListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         user_id = self.kwargs['id']
         return Tag.objects.filter(user=user_id).distinct()
-        
+
 
 class TagWeightExerciseListAPIView(generics.ListCreateAPIView):
     serializer_class = TagSerializer
@@ -200,7 +200,7 @@ class TagWeightExerciseListAPIView(generics.ListCreateAPIView):
         return Tag.objects.filter(weight_exercise=exercise_id).distinct()
 
 
-class TagAerobicListAPIView(generics.ListCreateAPIView):
+class TagAerobicExerciseListAPIView(generics.ListCreateAPIView):
     serializer_class = TagSerializer
     model = Tag
 
@@ -216,7 +216,7 @@ class TagWorkoutListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         workout_id = self.kwargs['id']
         workout = Workout.objects.filter(id=workout_id)
-
+        return Tag.objects.all()
 
 
 class TagGetAPIView(generics.RetrieveUpdateDestroyAPIView):

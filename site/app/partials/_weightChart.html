@@ -48,8 +48,6 @@ function resize() {
   width = 960 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%d-%b-%y").parse;
-
 var x = d3.time.scale()
   .range([0, width]);
 
@@ -76,13 +74,7 @@ var area = d3.svg.area()
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var data = [
-[1396081200000,  "582.13"],
-[1396061100000, "587.44"],
-[1396050200000, "242.29"],
-[1395041200000, "93.24"],
-  ];
-
+d3.json("http://localhost:8000/api/list/weights/1/", function(data) {
   data.forEach(function(d) {
     d.date = new Date(d[0]);
     d.close = parseFloat(d[1]);
@@ -110,5 +102,7 @@ y.domain([0, d3.max(data, function(d) { return d.close; })]);
   .attr("dy", ".71em")
   .style("text-anchor", "end")
   .text("Price ($)");
+
+});
 
 </script>

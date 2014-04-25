@@ -90,6 +90,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
           }
     }      
   }
+
 }]);
 
 
@@ -110,7 +111,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     })
     .error( function(data, status, headers, config ) {
       console.log(data);
-      
+
     });
 
 }]);
@@ -123,6 +124,7 @@ console.log("gymjournals.controller('mainSchedulerCtrl'")
 
   $scope.title = "CALENDAR";
 
+  $scope.events = [{}];
   $scope.save = function() {
     $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
   }

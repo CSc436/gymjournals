@@ -41,7 +41,7 @@ class SiteUser(models.Model):
     def age(self):
         if self.dob is None:
             return -1
-        return ((date.today()-self.dob)/365).days
+        return ((date.today()-self.dob)/365.25).days
 
     @property
     def current_weight(self):
@@ -88,10 +88,9 @@ class Workout(models.Model):
     user = models.ForeignKey(SiteUser)
     date = models.DateField()
     fields_to_serialize = (
-        "id", "user", "date", "tag", "color",
+        "id", "user", "date", "color",
         "description", "time"
     )
-    tag = models.CharField(max_length=50)
     color = models.CharField(max_length=6)
     description = models.TextField()
     duration = models.TimeField(null=True)
@@ -163,3 +162,26 @@ class AerobicExercise(models.Model):
                 self.duration) +
                 (" at {} bpm".format(self.avg_heartrate)
                     if self.avg_heartrate else ""))
+
+
+class Tag(models.Model):
+    user = models.ForeignKey(SiteUser)
+    weight_exercise = models.ForeignKey(WeightExercise, null=True, blank=True)
+    aerobic_exercise = models.ForeignKey(AerobicExercise,
+                                         null=True, blank=True)
+    tag = models.CharField(max_length=50,
+                           validators=[RegexValidator(regex='^[\w-]+$')])
+
+    def __repr__(self):
+        return (("{}: ".format(self.weight_exercise) if self.weight_exercise
+                else "") +
+                ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
+                    else "") +
+                "{}".format(self.tag))
+
+    def save(self, *args, **kwargs):
+        if self.weight_exercise:
+            self.full_clean(exclude=[self.aerobic_exercise])
+        else:
+            self.full_clean(exclude=[self.weight_exercise])
+        super().save(*args, **kwargs)

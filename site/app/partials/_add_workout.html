@@ -1,5 +1,3 @@
-add a workout here...
-
 <dl class="accordion" data-accordion ng-controller="LoggingWorkoutCtrl">
   <dd class="accordionTab">
     <a href="profile/#logAccordion1">
@@ -8,7 +6,8 @@ add a workout here...
     </a>
 	<div id="logAccordion1" class="content" >
     
-    <span editable-text="workout" e-min="1" e-required>{{workout}}</span>
+    <span editable-text="workout.name" e-required>{{workout.name}}</span>
+    <span editable-text="workout.description" e-required>{{workout.description}}</span>
     
     <dl class="accordion" data-accordion>
 		  <dd class="accordionExercise" ng-repeat="exercise in exerciseItems">
@@ -46,7 +45,7 @@ add a workout here...
                     </div>
                   </div>
 
-                  <a ng-click="addSet(reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
+                  <a ng-click="addSet($parent.$index, reps, weight)" class="right"><i class="fi-plus size-24"></i></a>
                 </div>
 
                 <table>
@@ -59,7 +58,7 @@ add a workout here...
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="set in setItems">
+                      <tr ng-repeat="set in exercise.setItems">
                         <td>{{$index + 1}}</td>
                         <td>
                           <span editable-number="set.reps" e-min="1" e-required>{{set.reps}}</span>
@@ -68,7 +67,7 @@ add a workout here...
                           <span editable-number="set.weight" e-min="0" e-required>{{set.weight}}</span>
                         </td>
                         <td "white-space: nowrap">
-                          <a ng-click="removeSet($index)"><i class="fi-trash size-24"></i></a>
+                          <a ng-click="removeSet($parent.$index, $index)"><i class="fi-trash size-24"></i></a>
                         </td>
                       </tr>                      
                     </tbody>

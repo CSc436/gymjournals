@@ -125,7 +125,7 @@ class WeightSerializer(serializers.ModelSerializer):
 
     def to_native(self, obj):
         if obj:
-            millis - get_millis(obj.date)
+            millis = get_millis(obj.date)
             return [millis, obj.weight]
         return None
 

@@ -23,20 +23,48 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   loadInform();
   //load information of user
   function loadInform(){
+    var count = 5;
+
     $scope.username = obj.username;
+    
     $scope.email=obj.email;
+    
+    
     $scope.gender=obj.gender;
+
     if($scope.gender=="M"){
       $scope.gender_show="♂";
     }
-    else{
+    else if ($scope.gender=="F"){
       $scope.gender_show="♀";
     }
+   
     $scope.dob=obj.dob;
+
+  
+    
+
+    $scope.weight_goal=obj.weight_goal;
+    console.log(obj.weight_goal);
+    if(obj.weight_goal){
+      count++;
+
+    }else
+    {
+      $scope.weight_goal="Empty..";
+    }
+
+    compute_percentage(count);
+  }
+  function compute_percentage(count){
+    $scope.percentage=count/6*100;
+
   }
   //make the field editable
   $scope.edit= function(element){
     $scope[element]='edit'; 
+        console.log($scope.weight_goal_edit);
+
   }
   //conncet the database and save the changed information
   $scope.save = function(index,element){
@@ -223,10 +251,17 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
   // process the registration form
   $('#signupForm').on('valid', function () {
 
+    $scope.formData.dob="1990-1-1";
+    $scope.formData.gender="M";
+    console.log($scope.formData);
     $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
         $scope.spmessage = "SUCCESS!";
+        $('#loginModal').foundation('reveal', 'close'); // close modal
+        $cookieStore.put('loggedin', 'true'); // store session
+        $cookieStore.put('data', data); // store user info
+        $state.go("settings"); // go to profile page
       })
       .error( function(data, status, headers, config ) {
         console.log(data);

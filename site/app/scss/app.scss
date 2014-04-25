@@ -242,6 +242,17 @@ background-color:#BEBEBE;
   display: block;
 
 }
+
+.editable #weight{
+    width: 60%;
+  display: block;
+
+}
+
+.small_underline{
+  border-bottom: 1px dashed #999;
+  display: inline;
+}
 /*
 
 //$padding - Used to build padding for buttons Default: $button-med or rem-calc(12)

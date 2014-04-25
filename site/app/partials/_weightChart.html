@@ -16,6 +16,34 @@
 </style>
 <script src="http://d3js.org/d3.v3.js"></script>
 <script>
+
+// Beginning of Daniel's attempt at Javascript
+
+d3.select(window).on('resize', resize);
+
+function resize() {
+    // update width
+    width = parseInt(d3.select('#weightChart').style('width'));
+    width = width - margin.left - margin.right;
+
+    // update height
+    height = parseInt(d3.select('#weightChart').style('height'));
+    height = height - margin.top - margin.bottom;
+
+    // specify ranges for x and y axes
+    x.range([0, width]);
+    y.range([height, 0]);
+    console.log('did the thing!');
+
+}
+
+
+
+
+// end of Daniel's attempt
+
+
+
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
   width = 960 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
@@ -42,6 +70,7 @@ var area = d3.svg.area()
   .y1(function(d) { return y(d.close); });
 
   var svg = d3.select("body").append("svg")
+  .attr("id", "weightChart")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")

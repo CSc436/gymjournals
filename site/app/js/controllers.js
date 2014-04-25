@@ -57,7 +57,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     $scope.exerciseItems = [{name:"bench press", type:"weight"}, 
                       {name:"dumbell fly", type:"weight"},
                       {name:"pushups", type:"weight"},
-                      {name:"running", type:"aerobic"}];
+                      {name:"running", type:"aerobic", duration:'00:15:00'}];
 
     $scope.setItems = [{reps:5, weight:10}, 
                       {reps:5, weight:13}, 

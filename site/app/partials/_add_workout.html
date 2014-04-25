@@ -76,7 +76,8 @@ add a workout here...
             </div>
             
             <div data-ng-if="exercise.type == 'aerobic'">
-
+              Duration:
+              <span editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:\d{2}\:\d{2}" e-title="xx:xx:xx">{{exercise.duration || 'empty'}}</span>
             </div>
 		    </div>
 		  </dd>

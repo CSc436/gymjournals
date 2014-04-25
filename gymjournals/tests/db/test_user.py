@@ -1,6 +1,7 @@
 import pytest
 from django.db import IntegrityError
 from imports import *
+import decimal
 
 
 def create_user(u_email, u_username, u_pwd, u_dob, u_gender):
@@ -275,3 +276,42 @@ def test_user_age_in_border_case():
     jesse.save()
 
     assert jesse.age == age - 1
+
+
+@pytest.mark.django_db
+def test_user_weight_goal_can_be_saved():
+    '''
+    Test that, in the regular case, a user
+    can save their weight goal to the database
+    '''
+    user = create_user('blah@email.com', 'bleh', 'lalala', date.today(), 'M')
+    user.weight_goal = 123.4
+    user.save()
+
+    assert user.weight_goal == 123.4
+
+
+@pytest.mark.django_db
+def test_user_cant_save_negative_weight():
+    '''
+    Test that a negative weight will
+    raise a ValidationError
+    '''
+    user = create_user('blah@email.com', 'bleh', 'lalala', date.today(), 'M')
+    user.weight_goal = -0.1
+
+    with pytest.raises(ValidationError):
+        user.save()
+
+
+@pytest.mark.django_db
+def test_user_cant_save_over_999_9():
+    '''
+    Test that the user can't save a weight
+    over  999.9
+    '''
+    user = create_user('blah@email.com', 'bleh', 'lalala', date.today(), 'M')
+    user.weight_goal = 1000.0
+
+    with pytest.raises(decimal.InvalidOperation):
+        user.save()

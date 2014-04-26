@@ -215,8 +215,22 @@ class TagWorkoutListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         workout_id = self.kwargs['id']
-        workout = Workout.objects.filter(id=workout_id)
-        return Tag.objects.all()
+        workout = Workout.objects.filter(id=workout_id).first()
+        weight_w = workout.weightexercise_set.all()
+        aerobic_w = workout.aerobicexercise_set.all()
+        weight_list = []
+        aerobic_list = []
+        for i in weight_w:
+            weight_list.append(i.id)
+        for i in aerobic_w:
+            weight_list.append(i.id)
+        to_return = []
+        for i in Tag.objects.all():
+            if i.weight_exercise_id in weight_list:
+                to_return.append(i)
+            elif i.aerobic_exercise_id in aerobic_list:
+                to_return.append(i)
+        return set(to_return)
 
 
 class TagGetAPIView(generics.RetrieveUpdateDestroyAPIView):

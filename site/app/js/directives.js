@@ -11,6 +11,7 @@ directives.directive('weightChart', function() {
     scope: {},
     link: function(scope, element, attrs) {
       // Beginning of Daniel's attempt at Javascript {{{
+      console.log(scope.$parent.user_id);
 
       d3.select(window).on('resize', resize);
 
@@ -63,7 +64,7 @@ directives.directive('weightChart', function() {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      d3.json("http://localhost:8000/api/list/weights/1/", function(data) {
+      d3.json("http://localhost:8000/api/list/weights/" + scope.$parent.user_id + "/", function(data) {
         data.forEach(function(d) {
           d.date = new Date(d[0]);
           d.close = parseFloat(d[1]);

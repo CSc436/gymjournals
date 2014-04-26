@@ -213,3 +213,77 @@ fieldset legend{
 }
 
 // weight chart }}}
+
+/*Editable CSS effect*/
+div.editable:hover
+{
+background-color:#BEBEBE;
+}
+.editable{
+  padding: 2% 2%;
+  display: block;
+  width: 95%;
+  //height: 2em;
+  font-size:1.5rem;
+}
+
+
+.editable .button
+{
+
+//margin: -4% -5%;
+//width: 10px;
+//height: 0.8em;
+//text-align:center;
+}
+.editable .gender{
+  font-size: 50%;
+
+}
+/*The CSS for information set*/
+.information{
+  margin:auto;
+  width:90%;
+}
+
+.information .input_field{
+  width: 60%;
+  margin: 0px;
+}
+
+/*CSS for */
+.editable #error {
+  width: 60%;
+  display: block;
+
+}
+
+.editable #weight{
+    width: 60%;
+  display: block;
+
+}
+
+.small_underline{
+  border-bottom: 1px dashed #999;
+  display: inline;
+}
+/*
+
+//$padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+$padding: 12px;
+// Primary color set in settings file. Default: $primary-color.
+$bg: orange;
+// If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+$radius: true;
+// We can set $full-width:true to remove side padding extend width. Default:false
+$full-width: false;
+// We can set $disabled:true to create a disabled transparent button. Default:false
+$disabled: false;
+// $is-input - <input>'s and <button>'s take on strange padding. We added this to help fix that. Default:false
+$is-input: false;
+.custom-button-class{
+  @include button($padding, $bg, $radius, $full-width, $disabled, $is-input);
+
+}
+*/

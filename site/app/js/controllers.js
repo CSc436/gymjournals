@@ -2,6 +2,7 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
+var getURL="api/get/users/"
 
 var gymjournals = angular.module('gymjournals');
 
@@ -18,16 +19,104 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $
 /* INFORMATION AND SETTINGS PAGE CTRL*/
 gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
   var obj=userInfo.getInfo();
-  $scope.username = obj.username;
-  $scope.email=obj.email;
-  if(obj.gender=="M")
-    $scope.gender="♂";
-  else
-    $scope.gender="♀";
+  var id = obj.id;
+  loadInform();
+  //load information of user
+  function loadInform(){
+    var count = 5;
 
-  $scope.dob=obj.dob;
-  //$scope.info=userInfo.getInfo();
-  //console.log(userInfo.getInfo());
+    $scope.username = obj.username;
+    
+    $scope.email=obj.email;
+    
+    
+    $scope.gender=obj.gender;
+
+    if($scope.gender=="M"){
+      $scope.gender_show="♂";
+    }
+    else if ($scope.gender=="F"){
+      $scope.gender_show="♀";
+    }
+   
+    $scope.dob=obj.dob;
+
+
+
+    $scope.weight_goal=obj.weight_goal;
+    //console.log(obj.weight_goal);
+    if(obj.weight_goal){
+      count++;
+
+    }else
+    {
+      $scope.weight_goal="Empty..";
+    }
+
+    compute_percentage(count);
+  }
+  function compute_percentage(count){
+    $scope.percentage=count/6*100;
+
+  }
+  //make the field editable
+  $scope.edit= function(element){
+    $scope[element]='edit'; 
+    //console.log($scope.weight_goal_edit);
+
+  }
+  //conncet the database and save the changed information
+  $scope.save = function(index,element){
+
+    var tempObj;
+    tempObj=angular.copy(obj);
+    //console.log(tempObj);
+
+    tempObj[index] = element;
+    var name_edit = index+"_edit";
+    var error=index+"_error";
+
+    $http.put(server + getURL +id +"/", tempObj)
+        .success( function(data, status, headers, config ) {
+      //console.log(data);
+      console.log("success");
+      obj=tempObj;
+      loadInform();
+      $scope[name_edit]="";
+
+    })
+    .error( function(data, status, headers, config ) {
+      //console.log(data);
+      console.log("error");
+      //loadInform();
+      $scope[error]=data[index][0];
+    });
+
+  }
+  //animation for editable
+  $scope.come = function(element){
+    $scope[element]='show';
+  }
+  //animation for editable
+  $scope.leave= function(element){
+    $scope[element]="";
+  }
+  //validate the password 
+  $scope.save_pwd=function(old_pwd,new_pwd,confirm_pwd){
+    //console.log("saving password.");
+    //console.log($('.password-field'));
+    //console.log($('#infor'));
+    if(new_pwd==confirm_pwd && new_pwd.length>=6){
+          if(old_pwd==obj.pwd){
+
+            $scope.save('pwd',new_pwd);
+
+          }else{
+            $scope.pwd_error="The old password doesn't match!";
+
+          }
+    }      
+  }
 
 }]);
 
@@ -162,10 +251,17 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
   // process the registration form
   $('#signupForm').on('valid', function () {
 
+    $scope.formData.dob="1990-1-1";
+    $scope.formData.gender="M";
+    console.log($scope.formData);
     $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
         $scope.spmessage = "SUCCESS!";
+        $('#loginModal').foundation('reveal', 'close'); // close modal
+        $cookieStore.put('loggedin', 'true'); // store session
+        $cookieStore.put('data', data); // store user info
+        $state.go("settings"); // go to profile page
       })
       .error( function(data, status, headers, config ) {
         console.log(data);

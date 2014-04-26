@@ -37,6 +37,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
   $scope.title = "PROFILE";
   $scope.username = userInfo.getName();
+  $scope.user_id = userInfo.getID();
 
   $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
     .success( function(data, status, headers, config ) {
@@ -182,6 +183,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
 
 /* Weight tracking bar chart */
 gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
+  $scope.user_id = $scope.user_id;
   $scope.weightData = [{
     key: "weight",
     values: [

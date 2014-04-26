@@ -175,3 +175,50 @@ def get_millis(my_date):
     seconds = (date - datetime.utcfromtimestamp(0)).total_seconds()
     millis = int(seconds * 1000)
     return millis
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+
+
+class TagUserListAPIView(generics.ListCreateAPIView):
+    serializer_class = TagSerializer
+    model = Tag
+
+    def get_queryset(self):
+        user_id = self.kwargs['id']
+        return Tag.objects.filter(user=user_id).distinct()
+
+
+class TagWeightExerciseListAPIView(generics.ListCreateAPIView):
+    serializer_class = TagSerializer
+    model = Tag
+
+    def get_queryset(self):
+        exercise_id = self.kwargs['id']
+        return Tag.objects.filter(weight_exercise=exercise_id).distinct()
+
+
+class TagAerobicExerciseListAPIView(generics.ListCreateAPIView):
+    serializer_class = TagSerializer
+    model = Tag
+
+    def get_queryset(self):
+        exercise_id = self.kwargs['id']
+        return Tag.objects.filter(aerobic_exercise=exercise_id).distinct()
+
+
+class TagWorkoutListAPIView(generics.ListCreateAPIView):
+    serializer_class = TagSerializer
+    model = Tag
+
+    def get_queryset(self):
+        workout_id = self.kwargs['id']
+        workout = Workout.objects.filter(id=workout_id)
+        return Tag.objects.all()
+
+
+class TagGetAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TagSerializer
+    model = Tag

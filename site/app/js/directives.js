@@ -3,36 +3,29 @@
 /* Directives */
 
 var directives = angular.module('gymjournals.directives', []);
-
 directives.directive('weightChart', function() {
 
   return {
     restrict: "EA",
     scope: {},
     link: function(scope, element, attrs) {
-      // Beginning of Daniel's attempt at Javascript {{{
-      console.log(scope.$parent.user_id);
+      var svg = d3.select(element[0]).append("svg");
+
+      var data;
+
+      d3.json("http://localhost:8000/api/list/weights/" + scope.$parent.user_id + "/", function(myData) {
+        myData.forEach(function(d) {
+          d.date = new Date(d[0]);
+          d.close = parseFloat(d[1]);
+        });
+        data = myData;
+        resize();
+      });
 
       d3.select(window).on('resize', resize);
 
       function resize() {
-        // update width
-        width = parseInt(d3.select('#weightChart').style('width'));
-        width = width - margin.left - margin.right;
-
-        // update height
-        height = parseInt(d3.select('#weightChart').style('height'));
-        height = height - margin.top - margin.bottom;
-
-        // specify ranges for x and y axes
-        x.range([0, width]);
-        y.range([height, 0]);
-        console.log('did the thing!');
-
-      }
-
-
-      // end of Daniel's attempt }}}
+        svg.selectAll('*').remove();
 
       var margin = {top: 20, right: 20, bottom: 30, left: 50},
           width = window.innerWidth - margin.left - margin.right,
@@ -57,18 +50,12 @@ directives.directive('weightChart', function() {
         .y0(height)
         .y1(function(d) { return y(d.close); });
 
-      var svg = d3.select(element[0]).append("svg")
-        .attr("id", "weightChart")
+      svg.attr("id", "weightChart")
         .attr("width", "100%")
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
+        .attr("id", "outerGroup")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-      d3.json("http://localhost:8000/api/list/weights/" + scope.$parent.user_id + "/", function(data) {
-        data.forEach(function(d) {
-          d.date = new Date(d[0]);
-          d.close = parseFloat(d[1]);
-        });
 
         x.domain(d3.extent(data, function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.close; })]);
@@ -92,6 +79,6 @@ directives.directive('weightChart', function() {
           .attr("dy", ".71em")
           .style("text-anchor", "end")
           .text("Price ($)");
-      });
+      }
     }};
 });

@@ -81,6 +81,11 @@ urlpatterns = patterns(
         name="list_tags_aerobic_exercise",
     ),
     url(
+        r"list/tags_workout/(?P<id>\d+)/$",
+        views.TagWorkoutListAPIView.as_view(),
+        name="list_tags_workout",
+    ),
+    url(
         r"get/tag/(?P<pk>\d+)/$",
         views.TagGetAPIView.as_view(),
         name="get_tag",

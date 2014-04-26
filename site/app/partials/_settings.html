@@ -41,7 +41,7 @@
 
 		</div>
 	</label>
-
+	<!--Password field-->
 	<label>Password
 	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit' ng-click='edit("pwd_edit")'>
 
@@ -153,7 +153,7 @@
 	</label>
 
 
-	<label>Target Weight
+	<label>Target Weight (lbs)
 
 		<div class='editable' ng-mouseleave='leave("weight_goal_show")' ng-mouseenter='come("weight_goal_show")' id='weight_goal' ng-hide='weight_goal_edit'  ng-click='edit("weight_goal_edit")'>
 
@@ -168,7 +168,7 @@
 
 		<a class='button tiny right radius' ng-click='save("weight_goal",weight_goal)'>Save</a>
 
-		<input id="weight"type="number" name="weight_goal" ng-model='weight_goal'>
+		<input id="weight" min="0" type="number" name="weight_goal" ng-model='weight_goal'>
 
 		</div>
 

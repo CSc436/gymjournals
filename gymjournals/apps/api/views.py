@@ -69,7 +69,7 @@ class WorkoutListAPIView(generics.ListCreateAPIView):
     model = Workout
 
     def get_queryset(self):
-        user_id = self.kwargs['id']
+        user_id = self.kwargs['user_id']
         user = SiteUser.objects.filter(id=user_id).first()
         return user.workout_set.all()
 
@@ -119,6 +119,26 @@ class AerobicExerciseGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     model = AerobicExercise
 
 
+class SetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Set
+
+
+class SetListAPIView(generics.ListCreateAPIView):
+    serializer_class = SetSerializer
+    model = Set
+
+    def get_queryset(self):
+        weight_ex = self.kwargs['weight_id']
+        exercise = WeightExercise.objects.filter(id=weight_ex).first()
+        return exercise.set_set.all()
+
+
+class SetGetAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SetSerializer
+    model = Set
+
+
 class WeightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weight
@@ -135,9 +155,14 @@ class WeightListAPIView(generics.ListCreateAPIView):
     model = Weight
 
     def get_queryset(self):
-        user_id = self.kwargs['id']
+        user_id = self.kwargs['user_id']
         user = SiteUser.objects.filter(id=user_id).first()
         return user.weight_set.order_by("date")
+
+
+class WeightGetAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = WeightSerializer
+    model = Tag
 
 
 class ExerciseListAPIView(generics.ListCreateAPIView):
@@ -187,7 +212,7 @@ class TagUserListAPIView(generics.ListCreateAPIView):
     model = Tag
 
     def get_queryset(self):
-        user_id = self.kwargs['id']
+        user_id = self.kwargs['user_id']
         return Tag.objects.filter(user=user_id).distinct()
 
 
@@ -196,7 +221,7 @@ class TagWeightExerciseListAPIView(generics.ListCreateAPIView):
     model = Tag
 
     def get_queryset(self):
-        exercise_id = self.kwargs['id']
+        exercise_id = self.kwargs['weight_id']
         return Tag.objects.filter(weight_exercise=exercise_id).distinct()
 
 
@@ -205,7 +230,7 @@ class TagAerobicExerciseListAPIView(generics.ListCreateAPIView):
     model = Tag
 
     def get_queryset(self):
-        exercise_id = self.kwargs['id']
+        exercise_id = self.kwargs['aerobic_id']
         return Tag.objects.filter(aerobic_exercise=exercise_id).distinct()
 
 
@@ -214,7 +239,7 @@ class TagWorkoutListAPIView(generics.ListCreateAPIView):
     model = Tag
 
     def get_queryset(self):
-        workout_id = self.kwargs['id']
+        workout_id = self.kwargs['workout_id']
         workout = Workout.objects.filter(id=workout_id).first()
         weight_w = workout.weightexercise_set.all()
         aerobic_w = workout.aerobicexercise_set.all()

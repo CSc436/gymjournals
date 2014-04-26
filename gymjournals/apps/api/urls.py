@@ -27,7 +27,7 @@ urlpatterns = patterns(
         name="get_login_user"
     ),
     url(
-        r"^list/workouts/(?P<id>\d+)/$",
+        r"^list/workouts/(?P<user_id>\d+)/$",
         views.WorkoutListAPIView.as_view(),
         name="list_workouts"),
     url(
@@ -61,27 +61,37 @@ urlpatterns = patterns(
         name="get_aerobic_exercise",
     ),
     url(
-        r"list/weights/(?P<id>\d+)/$",
+        r"^list/sets/(?P<weight_id>\d+)/$",
+        views.SetListAPIView.as_view(),
+        name="list_sets",
+    ),
+    url(
+        r"^get/set/(?P<pk>\d+)/$",
+        views.SetGetAPIView.as_view(),
+        name="get_set",
+    ),
+    url(
+        r"list/weights/(?P<user_id>\d+)/$",
         views.WeightListAPIView.as_view(),
         name="list_weights",
     ),
     url(
-        r"list/tags_user/(?P<id>\d+)/$",
+        r"list/tags_user/(?P<user_id>\d+)/$",
         views.TagUserListAPIView.as_view(),
         name="list_tags_user",
     ),
     url(
-        r"list/tags_weightexercise/(?P<id>\d+)/$",
+        r"list/tags_weightexercise/(?P<weight_id>\d+)/$",
         views.TagWeightExerciseListAPIView.as_view(),
         name="list_tags_weight_exercise",
     ),
     url(
-        r"list/tags_aerobicexercise/(?P<id>\d+)/$",
+        r"list/tags_aerobicexercise/(?P<aerobic_id>\d+)/$",
         views.TagAerobicExerciseListAPIView.as_view(),
         name="list_tags_aerobic_exercise",
     ),
     url(
-        r"list/tags_workout/(?P<id>\d+)/$",
+        r"list/tags_workout/(?P<workout_id>\d+)/$",
         views.TagWorkoutListAPIView.as_view(),
         name="list_tags_workout",
     ),

@@ -1,11 +1,178 @@
-<div>Hello World</div>
-<form>
-	<fieldset>
+
+<header ng-include src="'partials/_nav.html'"></header>   
+
+
+<!--Progess bar -->
+<div class='information'>
+
+<label>Profile {{percentage|number:2}}% complete</label>
+
+<div class="progress large-100 secondary alert success radius round">
+  <span class="meter" style="width: {{percentage|number:2}}%">
+</div>
+</div>
+
+
+<form  class="custom" id="infor" data-abide="ajax">
+
+	<!--Information field -->
+	<fieldset class='information radius'>
 	<legend>information</legend>
-	<div>Username:{{username}}</div>
-	<div>Email:{{email}}</div>
-	<div>Birthday:{{dob}}</div>
-	<div>Gender:{{gender}}</div>
+	<label>Username
+
+	
+
+		<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit' ng-click='edit("username_edit")'>
+
+			<a class="button tiny right radius show-for-large-only" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
+
+			<span class="show-for-small-only small_underline" >{{username}}</span>
+			<span class="hide-for-small-only small_underline" >{{username}}</span> 		
+			
+		</div>
+
+		<div class='editable' ng-show='username_edit'>
+
+			<a class='button tiny right radius' ng-click='save("username",username)'>Save</a>
+
+			<input name='username' class='input_field' type=text ng-model=username required>
+
+			<small class="error" id="error" ng-show="username_error">{{username_error}}</small>
+
+		</div>
+	</label>
+
+	<label>Password
+	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit' ng-click='edit("pwd_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>
+
+		<span class="show-for-small-only small_underline" >***********</span> 	
+
+		<span class="hide-for-small-only small_underline" >***********</span> 	
+
+	</div>
+
+	<div class='editable' ng-show='pwd_edit'>
+
+		<a class='button tiny right radius' ng-click='save_pwd(old_pwd,new_pwd,confirm_pwd)'>Save</a>
+
+		<label>Old Password 
+		<input class='input_field' type=password pattern="[A-z0-9]{0,}" required placeholder="your old password" ng-model="old_pwd">
+		<small class="error" id="error" ng-show="pwd_error">{{pwd_error}}</small>
+        <!--new password-->
+
+		<div class="password-field">
+            <label>New Password 
+              <input type="password"  id="password"  placeholder="at least 6 characters" pattern="[A-z0-9]{6,}" maxlength="20" ng-model="new_pwd" required>
+            </label>
+            <small  class="error">Your password must match the requirements</small>
+        </div>
+
+        <!--confirm-password-->
+        <div class="password-confirmation-field">
+            <label>Confirm Password 
+              <input type="password"  required  data-equalto="password" name="password" ng-model="confirm_pwd" >
+            </label>
+            <small  class="error">The password did not match</small>
+        </div>
+
+	</div>
+	</label>
+
+	<label>Email
+
+	<div class='editable email' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit' ng-click='edit("email_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>
+
+		<span class="show-for-small-only small_underline" >{{email}}</span> 	
+		<span class="hide-for-small-only small_underline" >{{email}}</span> 	
+
+	</div>
+
+	<div class='editable' ng-show='email_edit'>
+
+		<a class='button tiny right radius' ng-click='save("email",email)'>Save</a>
+
+		<input name='email' class='input_field' type=text ng-model=email required>
+
+		<small class="error" id="error" ng-show="email_error">{{email_error}}</small>
+
+	</div>
+
+	</label>
+
+
+
+	<label>Birthday
+
+
+
+	<div class='editable' ng-mouseleave='leave("bday_show")' ng-mouseenter='come("bday_show")' id='birthday' ng-hide='dob_edit' ng-click='edit("dob_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>
+
+
+		<span class="show-for-small-only small_underline">{{dob}}</span>
+		<span class="hide-for-small-only small_underline">{{dob}}</span>
+
+
+	</div>
+
+	<div class='editable' ng-show='dob_edit'>
+
+		<a class='button tiny right radius' ng-click='save("dob",dob)'>Save</a>
+
+		<input name='birthday' class='input_field' type=date ng-model=dob required>
+
+	</div>
+	</label>
+
+
+	<label>Gender
+
+
+	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'  ng-click='edit("gender_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>
+
+		<span class="show-for-small-only small_underline">{{gender_show}}</span>
+	
+		<span class="hide-for-small-only small_underline">{{gender_show}}</span>
+
+	</div>
+
+	<div class='editable' ng-show='gender_edit'>
+
+		<a class='button tiny right radius' ng-click='save("gender",gender)'>Save</a>
+
+		<input type="radio" name="gender" ng-model='gender' value="M"><span class='gender'> Male</span>
+		<input type="radio" name="gender" ng-model='gender' value="F"><span class='gender'> Female</span>
+	</div>
+	</label>
+
+
+	<label>Target Weight
+
+		<div class='editable' ng-mouseleave='leave("weight_goal_show")' ng-mouseenter='come("weight_goal_show")' id='weight_goal' ng-hide='weight_goal_edit'  ng-click='edit("weight_goal_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show='weight_goal_show' ng-click='edit("weight_goal_edit")'>Edit</a>
+
+		<span class="show-for-small-only small_underline">{{weight_goal}}</span>
+		<span class="hide-for-small-only small_underline">{{weight_goal}}</span>
+
+		</div>
+
+		<div class='editable' ng-show='weight_goal_edit'>
+
+		<a class='button tiny right radius' ng-click='save("weight_goal",weight_goal)'>Save</a>
+
+		<input id="weight"type="number" name="weight_goal" ng-model='weight_goal'>
+
+		</div>
+
+	</label>
 
 
 	</fieldset>
@@ -17,5 +184,6 @@
   //   $("#loginModal").addClass("reveal-modal");
   // }
   $(document).foundation();
+  
 
 </script>

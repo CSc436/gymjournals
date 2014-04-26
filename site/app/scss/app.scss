@@ -141,7 +141,7 @@ header#login_header {
 .reveal-modal{
   padding: 0;
 }
-/*close mark for alert box*/ 
+/*close mark for alert box*/
 .close_mark {
     font-size: 1.375rem;
     padding: 9px 6px 4px;
@@ -197,7 +197,22 @@ fieldset legend{
 }
 // end navigation bar
 
+// weight chart {{{
 
+#weightChart {
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .area {
+    fill: steelblue;
+  }
+}
+
+// weight chart }}}
 
 /*Editable CSS effect*/
 div.editable:hover
@@ -272,9 +287,3 @@ $is-input: false;
 
 }
 */
-
-
-
-
-
-

@@ -110,6 +110,7 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
 
     $scope.save = function() {
       var date = new Date().toJSON().slice(0,10);
+      console.log(date);
       $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
         .success( function(data, status, headers, config ) {
           console.log(data);

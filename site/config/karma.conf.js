@@ -9,6 +9,8 @@ module.exports = function(config) {
       'app/bower_components/jquery/jquery.js',
       'app/bower_components/momentjs/moment.js',
       'app/bower_components/angularjs-nvd3-directives/src/directives/*.js',
+      'app/bower_components/angular-xeditable/dist/js/*.js',
+      'app/bower_components/angular-ui-router/src/*.js',
       'app/bower_components/*/*.js',
       'app/js/app.js',
       'app/js/**/*.js',

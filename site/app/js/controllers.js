@@ -140,9 +140,78 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       console.log(data);
 
     });
+    
+    // testing
+    $scope.workout = {name:"WorkoutName", description:"Description"}; // default workout info
+
+
+
+
+
+    $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00', 
+                            setItems:[{reps:5, weight:10}, 
+                                      {reps:5, weight:13}, 
+                                      {reps:5, weight:15}] }, 
+                      {name:"dumbell fly", type:"weight", duration:'00:10:00',
+                            setItems:[{reps:5, weight:10}, 
+                                      {reps:105, weight:103}, 
+                                      {reps:5, weight:15}] },
+                      {name:"pushups", type:"weight", duration:'00:15:00'},
+                      {name:"running", type:"aerobic", duration:'00:20:00'}];
+
+
+
+    
 
 }]);
 
+/* EDITING TABLE FOR ADDING SETS CTRL */
+gymjournals.controller('LoggingWorkoutCtrl', ['$scope', function($scope){
+    
+    $scope.name = 'Exercise'; // default exercise name
+    $scope.type = 'weight'; // default status/type
+    $scope.statuses = [
+      {value: 1, text: 'weight'},
+      {value: 2, text: 'aerobic'},
+    ];
+
+    $scope.checkValid = function () {
+      console.log('isValid?');
+    };
+
+    $scope.removeExercise = function(index) {
+      $scope.exerciseItems.splice(index, 1);
+    };
+
+    $scope.addExercise = function(name, type) {
+      $scope.exerciseItems.push({name:name, type:type});
+    };
+
+    $scope.addSet = function(exerciseIndex, reps, weight){
+      if (reps && weight && reps >= 1 && weight >= 0) {
+        $scope.exerciseItems[exerciseIndex].setItems.push({reps:reps, weight:weight})
+      }
+    }
+
+    $scope.removeSet = function(exerciseIndex, setIndex) {
+      $scope.exerciseItems[exerciseIndex].setItems.splice(setIndex, 1);
+    };
+
+    $scope.save = function() {
+      var date = new Date().toJSON().slice(0,10);
+      console.log(date);
+      $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
+        .success( function(data, status, headers, config ) {
+          console.log(data);
+
+
+        })
+        .error( function(data, status, headers, config ) {
+          console.log(data);
+        });
+    };
+
+}]);
 
 
 /* CALENDAR CTRL */

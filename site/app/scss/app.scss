@@ -36,6 +36,42 @@
 "foundation/components/type",
 "foundation/components/offcanvas",
 "foundation/components/visibility";
+/* For icon fonts */
+.size-12 { font-size: 12px; }
+.size-14 { font-size: 14px; }
+.size-16 { font-size: 16px; }
+.size-18 { font-size: 18px; }
+.size-21 { font-size: 21px; }
+.size-24 { font-size: 24px; }
+.size-36 { font-size: 36px; }
+.size-48 { font-size: 48px; }
+.size-60 { font-size: 60px; }
+.size-72 { font-size: 72px; }
+
+.fi-trash{
+  color: $alert-color;
+}
+/*.editable-buttons{
+  top:-10px;
+}*/
+.accordion-icon-options i{
+  position: relative;
+  top: -47px;
+  right: 10px;
+  padding-right: 5px;
+}
+
+/* xediable number width */
+td .editable-input.editable-has-buttons {
+  width: 56px;
+}
+.editable{
+  margin-left: 5px;
+  margin-right: 2px;
+}
+.fi-check{
+  color: $success-color;
+}
 
 /* no overflow of words on tabs */
 // .tabs dd > a{
@@ -48,9 +84,17 @@ dd.active{
   border-top: solid $primary-color 3px;
 }
 
-dd.active a{
-  height: 43px;
+#navBarTabs{
+  .dd.active a{
+    height: 43px;
+    line-height: 50%;
+  }
 }
+
+.accordion dd{
+  margin-bottom: 10px;
+}
+
 
 /*everything inside a specific tab in navbar*/
 .tabs-content{
@@ -197,7 +241,20 @@ fieldset legend{
 }
 // end navigation bar
 
+/* accordian icon */
+//The accordion is closed
 
+//The accordion is open
+.active{
+  .accordion-state-icon:after{
+    transform: rotate(45deg);
+  }
+}
+
+
+/*.active a .accordion-state-icon {
+    transform: rotate(45deg);
+ }*/
 
 /*Editable CSS effect*/
 div.editable:hover
@@ -272,9 +329,4 @@ $is-input: false;
 
 }
 */
-
-
-
-
-
 

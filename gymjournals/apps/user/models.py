@@ -97,7 +97,7 @@ class Workout(models.Model):
         "id", "user", "date", "color",
         "description", "time"
     )
-    color = models.CharField(max_length=6)
+    color = models.CharField(max_length=7)
     description = models.TextField()
     duration = models.TimeField(null=True)
 

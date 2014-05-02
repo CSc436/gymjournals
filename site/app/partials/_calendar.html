@@ -1,80 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="calendarDemoApp" id="top">
-<head>
-    <title>AngularUI Calendar for AngularJS</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="../../better_calendar/bower_components/bootstrap-css/css/bootstrap.css" />
-    <link rel="stylesheet" href="../../better_calendar/bower_components/fullcalendar/fullcalendar.css">
-    <link rel="stylesheet" href="../../better_calendar/demo/calendarDemo.css" />
-
-
-
-    <script src="../../better_calendar/bower_components/jquery/dist/jquery.js"></script>
-    <script src="../../better_calendar/bower_components/jquery-ui/ui/jquery-ui.js"></script>
-    <script src="../../better_calendar/bower_components/moment/moment.js"></script>
-
-    <script src="../../better_calendar/bower_components/angular/angular.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
-    <script src="../../better_calendar/bower_components/fullcalendar/fullcalendar.js"></script>
-    <script src="../../better_calendar/bower_components/fullcalendar/gcal.js"></script>
-    <script src="../../better_calendar/src/calendar.js"></script>
-    <script src="../../better_calendar/demo/calendarDemo.js"></script>
-
-    
-</head>
-<body data-spy="scroll">
-<div id="wrapper">
-<header class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="dropdown pull-left">
-                
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
-                    <li class="divider"></li>
-                    <li><a href="http://angular-ui.github.com/bootstrap/">Bootstrap</a></li>
-                    <li><a href="http://angular-ui.github.com/ng-grid/">Grid</a></li>
-                    <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
-                    <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span
-                            class="label label-success">New!</span></a></li>
-                    <li><a href="http://angular-ui.github.com/Tips-n-Tricks/">Tips-n-Tricks <span
-                            class="label">WIP</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
+<link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css">
 
 <div role="main">
-    <div class="container">
-        <section id="directives-calendar" ng-controller="CalendarCtrl">
-            <div class="page-header">
-                <h1>Workout Calendar</h1>
-            </div>
+    <div class="container" id="directives-calendar" ng-controller="CalendarCtrl">
             <div class="well">
                 <div class="row-fluid">
                     <div class="span4">
-                       
                         
-                        <div class="btn-group calTools">
-                          
+                        <div class="btn-group calTools">           
+                          <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
+                            Toggle Source
+                          </button>
                           <button type="button" class="btn btn-primary" ng-click="addEvent()">
-                            Add Workout
+                            Add Event
                           </button>
                         </div>
 
                         <ul class="unstyled">
                             <li ng-repeat="e in events">
                                 <div class="alert alert-info">
-                                    <button type="button" class="btn btn-primary" ng-click="remove($index)">
-                                    Remove Workout
-                                  </button>
-                                  <button type="button" class="btn btn-primary" ng-click="">
-                                    Save Workout
-                                  </button>
-                                    
+                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
                                     <b> <input ng-model="e.title"></b> 
-
                                     {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
                                 </div>
                             </li>
@@ -82,59 +27,22 @@
 
                     </div>
 
-                    <div class="span8">
-                        <tabset>
-                            <tab select="renderCalender(myCalendar1);">
-                              
+                    <div class="span8" select="renderCalender(myCalendar1);">
                               <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                                 <h4>{{alertMessage}}</h4>
-                              </div>
-                              <div class="btn-toolbar">
-                               
                               </div>
                             <div class="calendar" ng-model="eventSources" calendar="myCalendar1" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-                           </tab>
-                           <tab select="renderCalender(myCalendar2);">
-                            
-                              <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
-                                <h4>{{alertMessage}}</h4>
-                              </div>
-                              <div class="btn-toolbar">
-                                <p class="pull-right lead">Calendar Two View Options</p>
-                                <div class="btn-group">
-                                    <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar2)">AgendaDay</button>
-                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar2)">AgendaWeek</button>
-                                    <button class="btn btn-success" ng-click="changeView('month', myCalendar2)">Month</button>
-                                </div>
-                              </div>
-                            <div class="calendar" ng-model="eventSources" calendar="myCalendar2" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-                           </tab>
-                           <tab select="renderCalender(myCalendar3);">
-                           
-                              <div class="alert-success calAlert">
-                                <h4>This calendar uses the extended form</h4>
-                              </div>
-                              <div class="btn-toolbar">
-                                <p class="pull-right lead">Calendar Three View Options</p>
-                                <div class="btn-group">
-                                    <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar3)">AgendaDay</button>
-                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar3)">AgendaWeek</button>
-                                    <button class="btn btn-success" ng-click="changeView('month', myCalendar3)">Month</button>
-                                </div>
-                              </div>
-                            <div class="calendar" ng-model="eventSources2" calendar="myCalendar3" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-                           </tab>
-                        </tabset>
                     </div>
                 </div>
             </div>
-     
-        </section>
     </div>
 </div>
-        <script type="text/javascript">
 
-            var _gaq = _gaq || [];
+<script type="text/javascript">
+    $(document).foundation();
+
+
+                var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-17352735-3']);
             _gaq.push(['_trackPageview']);
 
@@ -147,7 +55,4 @@
                 s.parentNode.insertBefore(ga, s);
             })();
 
-        </script>
-</div>
-    </body>
-</html>
+</script>

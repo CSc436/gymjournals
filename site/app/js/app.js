@@ -5,7 +5,9 @@ var gymjournals = angular
     'ui.router',
     'ngCookies',
     'xeditable',
+    'ngTagsInput',
     'gymjournals.directives',
+
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
 

@@ -91,6 +91,8 @@
                 <form editable-form name="editableForm" onbeforesave="checkValid()" onaftersave="addExercise(name, type)" ng-show="editableForm.$visible">
                     <span editable-text="name" e-required buttons="no">{{name}}</span>
                     <small editable-select="type" e-ng-options="s.text as s.text for s in statuses" buttons="no"> {{type}}</small>
+                    <div ng-include src="'partials/_tagging.html'"></div>
+
                 </form>
                 <span ng-show="!editableForm.$visible">Add new exercise</span>
             </a>

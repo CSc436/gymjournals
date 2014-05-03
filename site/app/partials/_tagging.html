@@ -1,10 +1,12 @@
-<div style="border:3px black solid ;margin:10px"ng-controller="tagCtrl">
 <ul>
 
-<li ng-repeat="tag in tags"><div class="label button round">{{tag}}</div></li>
+<li ng-repeat="tag in tags"><div class="label button round">{{tag.text}}</div></li>
 
 
 </ul>
+<tags-input class="bootstrap" ng-model="tags">
 
 
-</div>
+
+</tags-input>
+

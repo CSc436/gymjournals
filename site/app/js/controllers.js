@@ -11,7 +11,6 @@ var gymjournals = angular.module('gymjournals');
 gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
   $scope.items = ["one", "two", "three"]; // testing
-
   $cookieStore.put('loggedin', ''); // store session
 }]);
 
@@ -120,7 +119,13 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
 }]);
 
+gymjournals.controller("tagCtrl",["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
+  var tags = ["one","two","three"]
+  $scope.tags =tags;
+  
 
+
+}]);
 
 /* PROFILE CTRL */
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {

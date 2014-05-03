@@ -29,10 +29,13 @@
           <div id="exerciseAccordion{{$index}}" class="content">
 
             <div data-ng-if="exercise.type == 'weight'">
-              Duration:
-              <span editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
+              
               <div class="row">
-                <div class="small-5 columns">
+                <div class="medium-4 columns">
+                  Duration:
+                  <span class="wtf" editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
+                </div>
+                <div class="medium-3 columns reps-field">
                   <div class="row collapse">
                     <div class="small-7 columns">
                       <input type="number" placeholder="0" ng-model="reps" min="1" value="1" />
@@ -42,7 +45,7 @@
                     </div>
                   </div>
                 </div> 
-                <div class="small-5 columns">
+                <div class="medium-3 columns weight-field">
                   <div class="row collapse">
                     <div class="small-7 columns">
                       <input type="number" placeholder="0" ng-model="weight" min="0" value="0" />
@@ -53,7 +56,9 @@
                   </div>
                 </div>
 
-                <button ng-click="addSet($parent.$index, reps, weight)" class="button tiny"><i class="fi-plus"></i></button>
+                <div class="medium-2 columns add-button">
+                 <button ng-click="addSet($parent.$index, reps, weight)" class="button tiny expand"><i class="fi-plus"></i></button>
+                </div>
               </div>
 
               <table>
@@ -103,8 +108,10 @@
         </dd>
       </dl>
       
-      <div id="log-workout">
-        <button ng-click="save()" class="radius">Save Workout!</button>
+      <div class="row">
+        <div id="log-workout" class="medium-4 columns medium-offset-8">
+          <button ng-click="save()" class="button expand">Save Workout!</button>
+      </div>
       </div>
 
     </div>

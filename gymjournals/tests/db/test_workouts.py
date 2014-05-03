@@ -201,5 +201,99 @@ def test_set_repr():
     we_set = Set(ex=ls_ex, weight=100, num=3, reps=20)
     we_set.save()
 
-    assert (ls_ex.set_set.first().__repr__() == "blah: bench for 00:15:00: " +
+    assert (repr(ls_ex.set_set.first()) == "blah: bench for 00:15:00: " +
             "Set 3 at 100 lbs for 20 reps")
+
+
+@pytest.mark.django_db
+def test_Tag_save_with_weight_exercise():
+    blah = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'M')
+    blah.save()
+    workout = create_workout(blah, date.today())
+    workout.save()
+
+    wex = create_weight_exercise('Pec Fly', time(minute=20))
+    wex.wkout = workout
+    wex.save()
+
+    t = Tag(user=blah, weight_exercise=wex, tag='Chest')
+    t.save()
+
+
+@pytest.mark.django_db
+def test_Tag_save_with_aerobic_exercise():
+    blah = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'M')
+    blah.save()
+    workout = create_workout(blah, date.today())
+    workout.save()
+
+    aex = AerobicExercise()
+    aex.wkout = workout
+    aex.name = 'Swimming'
+    aex.duration = time(minute=30)
+    aex.save()
+
+    t = Tag(user=blah, aerobic_exercise=aex, tag='Chest')
+    t.save()
+
+
+@pytest.mark.django_db
+def test_Tag_repr_when_no_parent_exercise():
+    '''
+    This tests that the result of a repr call on
+    a Tag object that has not been given a parent
+    weight or aerobic exercise will just be the
+    tag itself
+    '''
+    t = Tag()
+    t.tag = 'GETFIT'
+
+    assert repr(t) == 'GETFIT'
+
+
+@pytest.mark.django_db
+def test_Tag_repr_with_weight_exercise_parent():
+    '''
+    This tests the result of a repr call on
+    a Tag object that has a weight_exercise foreign key
+    '''
+    blah = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'M')
+    blah.save()
+    workout = create_workout(blah, date.today())
+    workout.save()
+
+    wex = create_weight_exercise('Pec Fly', time(minute=20))
+    wex.wkout = workout
+    wex.save()
+
+    t = Tag(user=blah, weight_exercise=wex, tag='Chest')
+    t.save()
+
+    assert repr(t) == 'blah: Pec Fly for 00:20:00: Chest'
+
+
+@pytest.mark.django_db
+def test_Tag_repr_with_aerobic_exercise_parent():
+    '''
+    This tests the result of a repr call on a Tag
+    object that has an aerobic_exercise foreign key
+    '''
+    blah = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'M')
+    blah.save()
+    workout = create_workout(blah, date.today())
+    workout.save()
+
+    aex = AerobicExercise()
+    aex.wkout = workout
+    aex.name = 'Swimming'
+    aex.duration = time(minute=30)
+    aex.save()
+
+    t = Tag(user=blah, aerobic_exercise=aex, tag='Full-body')
+    t.save()
+
+    assert repr(t) == 'blah: Swimming for 00:30:00: Full-body'

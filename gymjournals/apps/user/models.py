@@ -157,11 +157,12 @@ class AerobicExercise(models.Model):
                       (self.duration.hour * 60 + self.duration.minute) /
                       4.184))
 
+    def __str__(self):
+        return ("{}: {}".format(self.wkout.user.username, self.name) +
+                " for {}".format(self.duration) if self.duration else "")
+
     def __repr__(self):
-        return ("{}: {} for {}".format(self.wkout.user.username, self.name,
-                self.duration) +
-                (" at {} bpm".format(self.avg_heartrate)
-                    if self.avg_heartrate else ""))
+        return str(self)
 
 
 class Tag(models.Model):
@@ -175,7 +176,8 @@ class Tag(models.Model):
     def __repr__(self):
         return (("{}: ".format(self.weight_exercise) if self.weight_exercise
                 else "") +
-                ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
+                ("{}: ".format(str(self.aerobic_exercise))
+                    if self.aerobic_exercise
                     else "") +
                 "{}".format(self.tag))
 

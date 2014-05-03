@@ -39,8 +39,6 @@ class SiteUser(models.Model):
 
     @property
     def age(self):
-        if self.dob is None:
-            return -1
         return ((date.today()-self.dob)/365.25).days
 
     @property
@@ -97,7 +95,8 @@ class Workout(models.Model):
 
     def __repr__(self):
         """Return the User and date"""
-        return str(self.__dict__)
+        return ("Username: {}, id: {}, date: {}, description: {}".format(
+                self.user.username, self.id, self.date, self.description))
 
 
 class WeightExercise(models.Model):
@@ -121,7 +120,7 @@ class Set(models.Model):
 
     def __repr__(self):
         return ("{}: Set {} at {} lbs".format(self.ex, self.num, self.weight) +
-                (" for {} reps".format(self.num, self.weight, self.reps)
+                (" for {} reps".format(self.reps)
                     if self.reps else ""))
 
 

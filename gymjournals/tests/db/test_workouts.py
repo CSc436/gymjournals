@@ -103,13 +103,59 @@ def test_aero_calories_male():
     workout = create_workout(user, date.today())
     workout.save()
 
+    aer = AerobicExercise(name='Running', duration=time(minute=15),
+                          avg_heartrate=150)
+    aer.wkout = workout
+    aer.save()
+
+    ls_aer = user.workout_set.all()[0].aerobicexercise_set.all()[0]
+    cal_burned = ls_aer.calories_burned
+    assert cal_burned == 141
+
+
+@pytest.mark.django_db
+def test_aero_calories_female():
+    '''
+    This test case ensures the calorie burning
+    method is working properly, so the calories
+    here should be different from the above method
+    '''
+    user = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'F')
+    user.save()
+    workout = create_workout(user, date.today())
+    workout.save()
+
+    aer = AerobicExercise(name='Running', duration=time(minute=15),
+                          avg_heartrate=150)
+    aer.wkout = workout
+    aer.save()
+
+    ls_aer = user.workout_set.all()[0].aerobicexercise_set.all()[0]
+    cal_burned = ls_aer.calories_burned
+    assert cal_burned == 167
+
+
+@pytest.mark.django_db
+def test_aero_calories_zero():
+    '''
+    This test case ensures the calorie burning
+    method is working properly when no heartrate
+    is passed in
+    '''
+    user = create_user('blah@email.com', 'blah', 'la',
+                       date.today(), 'M')
+    user.save()
+    workout = create_workout(user, date.today())
+    workout.save()
+
     aer = AerobicExercise(name='Running', duration=time(minute=15))
     aer.wkout = workout
     aer.save()
 
     ls_aer = user.workout_set.all()[0].aerobicexercise_set.all()[0]
-    cal_burned = ls_aer.calories_burned()
-    assert cal_burned == 50.3
+    cal_burned = ls_aer.calories_burned
+    assert cal_burned == 0
 
 
 @pytest.mark.django_db

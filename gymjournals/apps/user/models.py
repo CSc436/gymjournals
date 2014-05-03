@@ -2,6 +2,7 @@
 Defines a user of GymJournals.
 """
 
+from math import floor
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, MinValueValidator
@@ -151,10 +152,10 @@ class AerobicExercise(models.Model):
             weightm = -0.05741
             hrm = .4472
             const = 20.4022
-        return (((user.age * agem) + (user.current_weight * weightm) +
-                (self.avg_heartrate * hrm) - const) *
-                (self.duration.hour * 60 + self.duration.minute) /
-                4.184)
+        return floor((((user.age * agem) + (user.current_weight * weightm) +
+                      (self.avg_heartrate * hrm) - const) *
+                      (self.duration.hour * 60 + self.duration.minute) /
+                      4.184))
 
     def __repr__(self):
         return ("{}: {} for {}".format(self.wkout.user.username, self.name,

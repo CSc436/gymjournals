@@ -23,27 +23,54 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   loadInform();
   //load information of user
   function loadInform(){
+    var count = 5;
+
     $scope.username = obj.username;
+    
     $scope.email=obj.email;
+    
+    
     $scope.gender=obj.gender;
+
     if($scope.gender=="M"){
       $scope.gender_show="♂";
     }
-    else{
+    else if ($scope.gender=="F"){
       $scope.gender_show="♀";
     }
+   
     $scope.dob=obj.dob;
+
+
+
+    $scope.weight_goal=obj.weight_goal;
+    //console.log(obj.weight_goal);
+    if(obj.weight_goal){
+      count++;
+
+    }else
+    {
+      $scope.weight_goal="Empty..";
+    }
+
+    compute_percentage(count);
+  }
+  function compute_percentage(count){
+    $scope.percentage=count/6*100;
+
   }
   //make the field editable
   $scope.edit= function(element){
     $scope[element]='edit'; 
+    //console.log($scope.weight_goal_edit);
+
   }
   //conncet the database and save the changed information
   $scope.save = function(index,element){
 
     var tempObj;
     tempObj=angular.copy(obj);
-    console.log(tempObj);
+    //console.log(tempObj);
 
     tempObj[index] = element;
     var name_edit = index+"_edit";
@@ -99,6 +126,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
   $scope.title = "PROFILE";
   $scope.username = userInfo.getName();
+  $scope.user_id = userInfo.getID();
 
   $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
     .success( function(data, status, headers, config ) {
@@ -113,9 +141,113 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       console.log(data);
 
     });
+    
+    var date = new Date().toJSON().slice(0,10);
 
+    // default workout info
+    $scope.workout = {
+      user: userInfo.getID(),
+      date: date,
+      color: "#6a4415",
+      description:"Description",
+      duration: "00:00:00"
+    }; 
+
+    $scope.exerciseItems = [];
+    // FOR TESTING
+    // $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00', 
+    //                         setItems:[{reps:5, weight:10}, 
+    //                                   {reps:5, weight:13}, 
+    //                                   {reps:5, weight:15}] }, 
+    //                   {name:"dumbell fly", type:"weight", duration:'00:10:00',
+    //                         setItems:[{reps:5, weight:10}, 
+    //                                   {reps:105, weight:103}, 
+    //                                   {reps:5, weight:15}] },
+    //                   {name:"pushups", type:"weight", duration:'00:15:00'},
+    //                   {name:"running", type:"aerobic", duration:'00:20:00', avg_heartrate:92}];
 }]);
 
+/* EDITING TABLE FOR ADDING SETS CTRL */
+gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", function($scope, $http, userInfo){
+    
+    $scope.name = 'Exercise'; // default exercise name
+    $scope.type = 'weight'; // default status/type
+    $scope.statuses = [
+      {value: 1, text: 'weight'},
+      {value: 2, text: 'aerobic'},
+    ];
+
+    $scope.checkValid = function () {
+      console.log('isValid?');
+    };
+
+    $scope.removeExercise = function(index) {
+      $scope.exerciseItems.splice(index, 1);
+    };
+
+    $scope.addExercise = function(name, type) {
+      $scope.exerciseItems.push({name:name, type:type, duration:"00:00:00"});
+    };
+
+    $scope.addSet = function(exerciseIndex, reps, weight){
+      if (reps && weight && reps >= 1 && weight >= 0) {
+        // create list if this is the first set
+        if(! $scope.exerciseItems[exerciseIndex].setItems)
+          $scope.exerciseItems[exerciseIndex].setItems = [];
+        $scope.exerciseItems[exerciseIndex].setItems.push({reps:reps, weight:weight})
+      }
+    }
+
+    $scope.removeSet = function(exerciseIndex, setIndex) {
+      $scope.exerciseItems[exerciseIndex].setItems.splice(setIndex, 1);
+    };
+
+    $scope.save = function() {
+      // post workout
+      $http.post(server + "api/list/workouts/" + userInfo.getID() + "/", $scope.workout)
+        .success( function(data, status, headers, config ) {
+          var workoutID = data.id;
+
+          angular.forEach($scope.exerciseItems, function(exercise){
+            var data = {};
+            data.wkout = workoutID;
+            data.name = exercise.name;
+            data.duration = exercise.duration;
+
+            if (exercise.type == 'aerobic') {
+              data.avg_heartrate = exercise.avg_heartrate;
+            }
+
+          // post exercises
+          $http.post(server + "api/list/" +exercise.type+ "exercises/" + workoutID + "/", data)
+            .success( function(data, status, headers, config ) {
+                if (exercise.type == 'weight') {
+                  // insert each set in this weighted exercise
+                  angular.forEach(exercise.setItems, function(set, index){
+                    set.num = index+1;
+                    set.ex = data.id;
+                    $http.post(server + "api/list/sets/" + set.ex + "/", set)
+                      .error( function(data, status, headers, config ) {
+                        console.log(data);
+                      }); // error
+                    });
+                }
+            })
+            .error( function(data, status, headers, config ) {
+              console.log(data);
+            }); // error
+          });
+
+          $scope.workout.description = "Description"; // clear workout data
+          $scope.exerciseItems = []; // clear exercise data
+
+        }) // success
+        .error( function(data, status, headers, config ) {
+          console.log(data);
+        }); // error
+    };
+
+}]);
 
 
 /* CALENDAR CTRL */
@@ -322,10 +454,17 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
   // process the registration form
   $('#signupForm').on('valid', function () {
 
+    $scope.formData.dob="1990-1-1";
+    $scope.formData.gender="M";
+    console.log($scope.formData);
     $http.post(server + "api/list/users/", $scope.formData)
       .success( function(data, status, headers, config ) {
         $scope.alertType = "success";
         $scope.spmessage = "SUCCESS!";
+        $('#loginModal').foundation('reveal', 'close'); // close modal
+        $cookieStore.put('loggedin', 'true'); // store session
+        $cookieStore.put('data', data); // store user info
+        $state.go("settings"); // go to profile page
       })
       .error( function(data, status, headers, config ) {
         console.log(data);
@@ -343,6 +482,7 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
 
 /* Weight tracking bar chart */
 gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
+  $scope.user_id = $scope.user_id;
   $scope.weightData = [{
     key: "weight",
     values: [

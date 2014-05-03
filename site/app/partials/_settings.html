@@ -3,13 +3,14 @@
 
 
 <!--Progess bar -->
+<div class='information'>
 
-<label>Profile 50% complete</label>
+<label>Profile {{percentage|number:2}}% complete</label>
 
 <div class="progress large-100 secondary alert success radius round">
-  <span class="meter" style="width: 50%">
+  <span class="meter" style="width: {{percentage|number:2}}%">
 </div>
-
+</div>
 
 
 <form  class="custom" id="infor" data-abide="ajax">
@@ -23,9 +24,10 @@
 
 		<div class='editable' ng-mouseleave='leave("name_show")' ng-mouseenter='come("name_show")' id='username' ng-hide='username_edit' ng-click='edit("username_edit")'>
 
-			<!--<a class="button tiny right radius" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>-->
+			<a class="button tiny right radius show-for-large-only" ng-show="name_show" ng-click='edit("username_edit")'>Edit</a>
 
-			{{username}} 	
+			<span class="show-for-small-only small_underline" >{{username}}</span>
+			<span class="hide-for-small-only small_underline" >{{username}}</span> 		
 			
 		</div>
 
@@ -39,14 +41,16 @@
 
 		</div>
 	</label>
-
+	<!--Password field-->
 	<label>Password
 	<div class='editable' ng-mouseleave='leave("pwd_show")' ng-mouseenter='come("pwd_show")' id='pwd' ng-hide='pwd_edit' ng-click='edit("pwd_edit")'>
 
-		<!--<a class="button tiny right radius" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>-->
+		<a class="button tiny right radius show-for-large-only" ng-show="pwd_show" ng-click='edit("pwd_edit")'>Edit</a>
 
-		*********** 	
-		
+		<span class="show-for-small-only small_underline" >***********</span> 	
+
+		<span class="hide-for-small-only small_underline" >***********</span> 	
+
 	</div>
 
 	<div class='editable' ng-show='pwd_edit'>
@@ -80,9 +84,10 @@
 
 	<div class='editable email' ng-mouseleave='leave("email_show")' ng-mouseenter='come("email_show")' id='{{email}}' ng-hide='email_edit' ng-click='edit("email_edit")'>
 
-		<!--<a class="button tiny right radius" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>-->
+		<a class="button tiny right radius show-for-large-only" ng-show="email_show" ng-click='edit("email_edit")'>Edit</a>
 
-		<span class="email" >{{email}}</span> 	
+		<span class="show-for-small-only small_underline" >{{email}}</span> 	
+		<span class="hide-for-small-only small_underline" >{{email}}</span> 	
 
 	</div>
 
@@ -106,9 +111,12 @@
 
 	<div class='editable' ng-mouseleave='leave("bday_show")' ng-mouseenter='come("bday_show")' id='birthday' ng-hide='dob_edit' ng-click='edit("dob_edit")'>
 
-		<!--<a class="button tiny right radius" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>-->
+		<a class="button tiny right radius show-for-large-only" ng-show='bday_show' ng-click='edit("dob_edit")'>Edit</a>
 
-		{{dob}} 	
+
+		<span class="show-for-small-only small_underline">{{dob}}</span>
+		<span class="hide-for-small-only small_underline">{{dob}}</span>
+
 
 	</div>
 
@@ -127,9 +135,11 @@
 
 	<div class='editable' ng-mouseleave='leave("gen_show")' ng-mouseenter='come("gen_show")' id='gender' ng-hide='gender_edit'  ng-click='edit("gender_edit")'>
 
-		<!--<a class="button tiny right radius" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>-->
+		<a class="button tiny right radius show-for-large-only" ng-show='gen_show' ng-click='edit("gender_edit")'>Edit</a>
 
-		{{gender_show}} 	
+		<span class="show-for-small-only small_underline">{{gender_show}}</span>
+	
+		<span class="hide-for-small-only small_underline">{{gender_show}}</span>
 
 	</div>
 
@@ -142,6 +152,27 @@
 	</div>
 	</label>
 
+
+	<label>Target Weight (lbs)
+
+		<div class='editable' ng-mouseleave='leave("weight_goal_show")' ng-mouseenter='come("weight_goal_show")' id='weight_goal' ng-hide='weight_goal_edit'  ng-click='edit("weight_goal_edit")'>
+
+		<a class="button tiny right radius show-for-large-only" ng-show='weight_goal_show' ng-click='edit("weight_goal_edit")'>Edit</a>
+
+		<span class="show-for-small-only small_underline">{{weight_goal}}</span>
+		<span class="hide-for-small-only small_underline">{{weight_goal}}</span>
+
+		</div>
+
+		<div class='editable' ng-show='weight_goal_edit'>
+
+		<a class='button tiny right radius' ng-click='save("weight_goal",weight_goal)'>Save</a>
+
+		<input id="weight" min="0" type="number" name="weight_goal" ng-model='weight_goal'>
+
+		</div>
+
+	</label>
 
 
 	</fieldset>

@@ -36,6 +36,12 @@ class SiteUser(models.Model):
         blank=False,
         null=False
         )
+    weight_goal = models.DecimalField(
+        max_digits=4,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0)])
 
     @property
     def age(self):
@@ -50,7 +56,7 @@ class SiteUser(models.Model):
         return w.weight if w else 0
 
     fields_to_serialize = (
-        "id", "username", "email", "pwd", "gender", "dob"
+        "id", "username", "email", "pwd", "gender", "dob", "weight_goal"
     )
 
     def __str__(self):
@@ -91,7 +97,7 @@ class Workout(models.Model):
         "id", "user", "date", "color",
         "description", "time"
     )
-    color = models.CharField(max_length=6)
+    color = models.CharField(max_length=7)
     description = models.TextField()
     duration = models.TimeField(null=True)
 

@@ -125,7 +125,7 @@ def test_user_cant_save_no_dob():
     Test that a SiteUser with no DOB cannot
     be saved
     '''
-    blank_dob = create_user("blah", "bleh", "", '', 'M')
+    blank_dob = create_user("blah@email.com", "bleh", "lala", '', 'M')
 
     with pytest.raises(ValidationError) as excinfo:
         blank_dob.save()
@@ -260,6 +260,22 @@ def test_user_current_weight_is_most_recent():
 
 
 @pytest.mark.django_db
+def test_weight_repr():
+    '''
+    This test case will ensure repr is working
+    for a user's weight
+    '''
+    jesse = create_user('jbright@email.com', 'jbright', 'lol',
+                        date.today(), 'M')
+    jesse.save()
+
+    w1 = create_weight(jesse, date(year=1993, month=6, day=14), 10)
+    w1.save()
+
+    assert str(jesse.weight_set.all()) == "[jbright: 10.0 lbs on 1993-06-14]"
+
+
+@pytest.mark.django_db
 def test_user_age_in_border_case():
     '''
     Test that if a user was born 20 year's ago, today,
@@ -315,3 +331,17 @@ def test_user_cant_save_over_999_9():
 
     with pytest.raises(decimal.InvalidOperation):
         user.save()
+
+
+@pytest.mark.django_db
+def test_user_repr():
+    '''
+    This will test that repr is working properly
+    for a SiteUser
+    '''
+    jesse = create_user('jbright@email.com', 'jbright', 'lol',
+                        date.today(), 'M')
+    jesse.save()
+
+    assert str(jesse) == "Username: jbright, Email: jbright@email.com"
+    assert jesse.__repr__() == "Username: jbright, Email: jbright@email.com"

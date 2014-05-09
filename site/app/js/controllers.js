@@ -2,156 +2,160 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
-var getURL="api/get/users/"
+var getURL = "api/get/users/"
 
 var gymjournals = angular.module('gymjournals');
 
 
 /* HOME PAGE CTRL */
-gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
-  $scope.title = "Home";
-  $scope.items = ["one", "two", "three"]; // testing
+gymjournals.controller("homeCtrl", ["$scope", "$cookieStore",
+  function($scope, $cookieStore) {
+    $scope.title = "Home";
+    $scope.items = ["one", "two", "three"]; // testing
 
-  $cookieStore.put('loggedin', ''); // store session
-}]);
+    $cookieStore.put('loggedin', ''); // store session
+  }
+]);
 
 
 /* INFORMATION AND SETTINGS PAGE CTRL*/
-gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo){
-  var obj=userInfo.getInfo();
-  var id = obj.id;
-  loadInform();
-  //load information of user
-  function loadInform(){
-    var count = 5;
+gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo",
+  function($scope, $http, userInfo) {
+    var obj = userInfo.getInfo();
+    var id = obj.id;
+    loadInform();
+    //load information of user
+    function loadInform() {
+      var count = 5;
 
-    $scope.username = obj.username;
-    
-    $scope.email=obj.email;
-    
-    
-    $scope.gender=obj.gender;
+      $scope.username = obj.username;
 
-    if($scope.gender=="M"){
-      $scope.gender_show="♂";
+      $scope.email = obj.email;
+
+
+      $scope.gender = obj.gender;
+
+      if ($scope.gender == "M") {
+        $scope.gender_show = "♂";
+      } else if ($scope.gender == "F") {
+        $scope.gender_show = "♀";
+      }
+
+      $scope.dob = obj.dob;
+
+
+
+      $scope.weight_goal = obj.weight_goal;
+      //console.log(obj.weight_goal);
+      if (obj.weight_goal) {
+        count++;
+
+      } else {
+        $scope.weight_goal = "Empty..";
+      }
+
+      compute_percentage(count);
     }
-    else if ($scope.gender=="F"){
-      $scope.gender_show="♀";
+
+    function compute_percentage(count) {
+      $scope.percentage = count / 6 * 100;
+
     }
-   
-    $scope.dob=obj.dob;
+    //make the field editable
+    $scope.edit = function(element) {
+      $scope[element] = 'edit';
+      //console.log($scope.weight_goal_edit);
 
+    }
+    //conncet the database and save the changed information
+    $scope.save = function(index, element) {
 
+      var tempObj;
+      tempObj = angular.copy(obj);
+      //console.log(tempObj);
 
-    $scope.weight_goal=obj.weight_goal;
-    //console.log(obj.weight_goal);
-    if(obj.weight_goal){
-      count++;
+      tempObj[index] = element;
+      var name_edit = index + "_edit";
+      var error = index + "_error";
 
-    }else
-    {
-      $scope.weight_goal="Empty..";
+      $http.put(server + getURL + id + "/", tempObj)
+        .success(function(data, status, headers, config) {
+          //console.log(data);
+          console.log("success");
+          obj = tempObj;
+          loadInform();
+          $scope[name_edit] = "";
+
+        })
+        .error(function(data, status, headers, config) {
+          //console.log(data);
+          console.log("error");
+          //loadInform();
+          $scope[error] = data[index][0];
+        });
+
+    }
+    //animation for editable
+    $scope.come = function(element) {
+      $scope[element] = 'show';
+    }
+    //animation for editable
+    $scope.leave = function(element) {
+      $scope[element] = "";
+    }
+    //validate the password 
+    $scope.save_pwd = function(old_pwd, new_pwd, confirm_pwd) {
+      //console.log("saving password.");
+      //console.log($('.password-field'));
+      //console.log($('#infor'));
+      if (new_pwd == confirm_pwd && new_pwd.length >= 6) {
+        if (old_pwd == obj.pwd) {
+
+          $scope.save('pwd', new_pwd);
+
+        } else {
+          $scope.pwd_error = "The old password doesn't match!";
+
+        }
+      }
     }
 
-    compute_percentage(count);
   }
-  function compute_percentage(count){
-    $scope.percentage=count/6*100;
-
-  }
-  //make the field editable
-  $scope.edit= function(element){
-    $scope[element]='edit'; 
-    //console.log($scope.weight_goal_edit);
-
-  }
-  //conncet the database and save the changed information
-  $scope.save = function(index,element){
-
-    var tempObj;
-    tempObj=angular.copy(obj);
-    //console.log(tempObj);
-
-    tempObj[index] = element;
-    var name_edit = index+"_edit";
-    var error=index+"_error";
-
-    $http.put(server + getURL +id +"/", tempObj)
-        .success( function(data, status, headers, config ) {
-      //console.log(data);
-      console.log("success");
-      obj=tempObj;
-      loadInform();
-      $scope[name_edit]="";
-
-    })
-    .error( function(data, status, headers, config ) {
-      //console.log(data);
-      console.log("error");
-      //loadInform();
-      $scope[error]=data[index][0];
-    });
-
-  }
-  //animation for editable
-  $scope.come = function(element){
-    $scope[element]='show';
-  }
-  //animation for editable
-  $scope.leave= function(element){
-    $scope[element]="";
-  }
-  //validate the password 
-  $scope.save_pwd=function(old_pwd,new_pwd,confirm_pwd){
-    //console.log("saving password.");
-    //console.log($('.password-field'));
-    //console.log($('#infor'));
-    if(new_pwd==confirm_pwd && new_pwd.length>=6){
-          if(old_pwd==obj.pwd){
-
-            $scope.save('pwd',new_pwd);
-
-          }else{
-            $scope.pwd_error="The old password doesn't match!";
-
-          }
-    }      
-  }
-
-}]);
+]);
 
 
 
 /* PROFILE CTRL */
-gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
-  $scope.title = "PROFILE";
-  $scope.username = userInfo.getName();
-  $scope.user_id = userInfo.getID();
+gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo",
+  function($scope, $http, userInfo) {
+    $scope.title = "PROFILE";
+    $scope.username = userInfo.getName();
+    $scope.user_id = userInfo.getID();
 
-  $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
-    .success( function(data, status, headers, config ) {
-      console.log(data);
-      if (data.length != 0){
-        $scope.workouts = data;
-      }
+    $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
+      .success(function(data, status, headers, config) {
+        console.log(data);
+        if (data.length != 0) {
+          $scope.workouts = data;
+        }
 
 
-    })
-    .error( function(data, status, headers, config ) {
-      console.log(data);
+      })
+      .error(function(data, status, headers, config) {
+        console.log(data);
 
-    });
-    
-    var date = new Date().toJSON().slice(0,10);
+      });
+
+    var date = new Date().toJSON().slice(0, 10);
 
     // default workout info
     $scope.workout = {
       user: userInfo.getID(),
       date: date,
       color: "#6a4415",
-      description:"Description",
+      description: "Description",
       duration: "00:00:00"
-    }; 
+    };
 
     $scope.exerciseItems = [];
     // FOR TESTING
@@ -165,19 +169,24 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
     //                                   {reps:5, weight:15}] },
     //                   {name:"pushups", type:"weight", duration:'00:15:00'},
     //                   {name:"running", type:"aerobic", duration:'00:20:00', avg_heartrate:92}];
-}]);
+  }
+]);
 
 /* EDITING TABLE FOR ADDING SETS CTRL */
-gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", function($scope, $http, userInfo){
-    
+gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
+  function($scope, $http, userInfo) {
+
     $scope.name = 'Exercise'; // default exercise name
     $scope.type = 'weight'; // default status/type
-    $scope.statuses = [
-      {value: 1, text: 'weight'},
-      {value: 2, text: 'aerobic'},
-    ];
+    $scope.statuses = [{
+      value: 1,
+      text: 'weight'
+    }, {
+      value: 2,
+      text: 'aerobic'
+    }, ];
 
-    $scope.checkValid = function () {
+    $scope.checkValid = function() {
       console.log('isValid?');
     };
 
@@ -186,15 +195,22 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
     };
 
     $scope.addExercise = function(name, type) {
-      $scope.exerciseItems.push({name:name, type:type, duration:"00:00:00"});
+      $scope.exerciseItems.push({
+        name: name,
+        type: type,
+        duration: "00:00:00"
+      });
     };
 
-    $scope.addSet = function(exerciseIndex, reps, weight){
+    $scope.addSet = function(exerciseIndex, reps, weight) {
       if (reps && weight && reps >= 1 && weight >= 0) {
         // create list if this is the first set
-        if(! $scope.exerciseItems[exerciseIndex].setItems)
+        if (!$scope.exerciseItems[exerciseIndex].setItems)
           $scope.exerciseItems[exerciseIndex].setItems = [];
-        $scope.exerciseItems[exerciseIndex].setItems.push({reps:reps, weight:weight})
+        $scope.exerciseItems[exerciseIndex].setItems.push({
+          reps: reps,
+          weight: weight
+        })
       }
     }
 
@@ -205,10 +221,10 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
     $scope.save = function() {
       // post workout
       $http.post(server + "api/list/workouts/" + userInfo.getID() + "/", $scope.workout)
-        .success( function(data, status, headers, config ) {
+        .success(function(data, status, headers, config) {
           var workoutID = data.id;
 
-          angular.forEach($scope.exerciseItems, function(exercise){
+          angular.forEach($scope.exerciseItems, function(exercise) {
             var data = {};
             data.wkout = workoutID;
             data.name = exercise.name;
@@ -218,315 +234,347 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
               data.avg_heartrate = exercise.avg_heartrate;
             }
 
-          // post exercises
-          $http.post(server + "api/list/" +exercise.type+ "exercises/" + workoutID + "/", data)
-            .success( function(data, status, headers, config ) {
+            // post exercises
+            $http.post(server + "api/list/" + exercise.type + "exercises/" + workoutID + "/", data)
+              .success(function(data, status, headers, config) {
                 if (exercise.type == 'weight') {
                   // insert each set in this weighted exercise
-                  angular.forEach(exercise.setItems, function(set, index){
-                    set.num = index+1;
+                  angular.forEach(exercise.setItems, function(set, index) {
+                    set.num = index + 1;
                     set.ex = data.id;
                     $http.post(server + "api/list/sets/" + set.ex + "/", set)
-                      .error( function(data, status, headers, config ) {
+                      .error(function(data, status, headers, config) {
                         console.log(data);
                       }); // error
-                    });
+                  });
                 }
-            })
-            .error( function(data, status, headers, config ) {
-              console.log(data);
-            }); // error
+              })
+              .error(function(data, status, headers, config) {
+                console.log(data);
+              }); // error
           });
 
           $scope.workout.description = "Description"; // clear workout data
           $scope.exerciseItems = []; // clear exercise data
 
         }) // success
-        .error( function(data, status, headers, config ) {
-          console.log(data);
-        }); // error
+      .error(function(data, status, headers, config) {
+        console.log(data);
+      }); // error
     };
 
-}]);
+  }
+]);
 
 
 /* CALENDAR CTRL */
 gymjournals.controller('CalendarCtrl', function($scope) {
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-    
-    /* event source that pulls from google.com */
-    $scope.eventSource = {
-            url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
-            className: 'gcal-event',           // an option!
-            currentTimezone: 'America/Chicago' // an option!
-    };
-    /* event source that contains custom events on the scope */
-    $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ];
-    /* event source that calls a function on every view switch */
-    $scope.eventsF = function (start, end, callback) {
-      var s = new Date(start).getTime() / 1000;
-      var e = new Date(end).getTime() / 1000;
-      var m = new Date(start).getMonth();
-      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
-      callback(events);
-    };
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
 
-    /* alert on eventClick */
-    $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
-        $scope.alertMessage = (event.title + ' was clicked ');
-    };
-    /* alert on Drop */
-     $scope.alertOnDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
-       $scope.alertMessage = ('Event Droped to make dayDelta ' + dayDelta);
-    };
-    /* alert on Resize */
-    $scope.alertOnResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
-       $scope.alertMessage = ('Event Resized to make dayDelta ' + minuteDelta);
-    };
-    /* add and removes an event source of choice */
-    $scope.addRemoveEventSource = function(sources,source) {
-      var canAdd = 0;
-      angular.forEach(sources,function(value, key){
-        if(sources[key] === source){
-          sources.splice(key,1);
-          canAdd = 1;
-        }
-      });
-      if(canAdd === 0){
-        sources.push(source);
-      }
-    };
-    /* add custom event*/
-    $scope.addEvent = function() {
-      $scope.events.push({
-        title: 'Enter name',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-      });
-    };
-    /* remove event */
-    $scope.remove = function(index) {
-      $scope.events.splice(index,1);
-    };
-    /* Change View */
-    $scope.changeView = function(view,calendar) {
-      calendar.fullCalendar('changeView',view);
-    };
-    /* Change View */
-    $scope.renderCalender = function(calendar) {
-      if(calendar){
-        calendar.fullCalendar('render');
-      }
-    };
-    /* config object */
-    $scope.uiConfig = {
-      calendar:{
-        height: 450,
-        editable: true,
-        header:{
-          left: 'title',
-          center: '',
-          right: 'today prev,next'
-        },
-        eventClick: $scope.alertOnEventClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
-      }
-    };
-
-    /* event sources array*/
-    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
-    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-});
-
-/* prev */
-gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData", function($scope, $http, calendarData) {
-console.log("gymjournals.controller('mainSchedulerCtrl'")
-
-  $scope.title = "CALENDAR";
-
-  $scope.events = [{}];
-  $scope.save = function() {
-    $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
-  }
-
-// console.log(calendarData);
-// calendarData = JSON.parse( JSON.stringify(calendarData) );
-
-  // $scope.events = calendarData;
-
-  $.each(calendarData, function(i, datePair) {
-    // console.log(datePair);
-    // var date = datePair.start_date;
-    // var list = date.split("-");
-    // var year = list[0];
-    // var month = list[1] + 1;
-    // var day = list[2];
-
-    // var startDate = new Date(year, month, day);
-    // var endDate = new Date(year, month, day+1);
-
-    // $scope.events[i]({
-    //   "id": i,
-    //   "text":"Task A-12458",
-    //   "start_date": new Date(2013, 11, 12),
-    //   "end_date": new Date(2013, 11, 13)
-    // });
-  });
-
-//   $scope.events = calendarData;
-// console.log($scope.events);
-
-
-  //Get list of dates from database
-  //For each, append to scope.events?
-
-  var date = "2014-12-02";
-  var list = date.split("-");
-  var year = list[0];
-  var month = list[1] + 1;
-  var day = list[2];
-
-  $scope.events = [
-    {
-
-      "id":1,
-      "text":"Task A-12458",
-      "start_date": new Date(2013, 11, 12),
-      "end_date": new Date(2013, 11, 13)
-    },
-    {
-      "id":2,
-      "text":"Task A-83473",
-      "start_date": new Date(2013, 10, 22 ),
-      "end_date": new Date(2013, 10, 24 ) }
-  ];
-
-  console.log($scope.events);
-
-  $scope.scheduler = { date : new Date(2013,10,1) };
-
-}]);
-
-
-/* LOGIN CTRL */
-gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", "userInfo", function($scope, $http, $state, $cookieStore, userInfo) {
-  $scope.formData = {};
-  $scope.clear=function(){
-    $scope.simessage="";
-    $scope.spmessage="";
-    //console.log("change");
-  }
-
-  // process the login form
-  $('#signinForm').on('valid', function () {
-
-    $http.post(server + "api/login/", $scope.formData)
-      .success( function(data, status, headers, config ) {
-        $scope.data = data;
-
-        $scope.alertType = "success";
-        $scope.simessage = "SUCCESS!";
-        $('#loginModal').foundation('reveal', 'close'); // close modal
-        $cookieStore.put('loggedin', 'true'); // store session
-        $cookieStore.put('data', data); // store user info
-        $state.go("profile"); // go to profile page
-      })
-      .error( function(data, status, headers, config ) {
-        console.log(data);
-
-        $scope.alertType = "warning";
-        $scope.simessage = data.error;
-      });
-
-  }); // on valid
-
-  // process the registration form
-  $('#signupForm').on('valid', function () {
-
-    $scope.formData.dob="1990-1-1";
-    $scope.formData.gender="M";
-    console.log($scope.formData);
-    $http.post(server + "api/list/users/", $scope.formData)
-      .success( function(data, status, headers, config ) {
-        $scope.alertType = "success";
-        $scope.spmessage = "SUCCESS!";
-        $('#loginModal').foundation('reveal', 'close'); // close modal
-        $cookieStore.put('loggedin', 'true'); // store session
-        $cookieStore.put('data', data); // store user info
-        $state.go("settings"); // go to profile page
-      })
-      .error( function(data, status, headers, config ) {
-        console.log(data);
-        $scope.alertType = "warning";
-        if(data.username!=null)
-          $scope.spmessage = data.username[0];
-        else if(data.email!=null)
-          $scope.spmessage = data.email[0];
-
-      });
-
-  }); // on valid
-
-}]);
-
-/* Weight tracking bar chart */
-gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
-  $scope.user_id = $scope.user_id;
-  $scope.weightData = [{
-    key: "weight",
-    values: [
-      [
-        (new Date(Date.now() - 2345678901)).getTime(),
-        110
-      ],
-      [
-        (new Date(Date.now() - 1234567890)).getTime(),
-        80
-      ],
-      [
-        (new Date(Date.now() - 0335567890)).getTime(),
-        200
-      ],
-      [
-        (new Date(Date.now() - 0229567890)).getTime(),
-        160
-      ],
-      [
-        (new Date(Date.now())).getTime(),
-        300
-      ],
-    ]
+  /* event source that pulls from google.com */
+  $scope.eventSource = {
+    url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+    className: 'gcal-event', // an option!
+    currentTimezone: 'America/Chicago' // an option!
+  };
+  /* event source that contains custom events on the scope */
+  $scope.events = [{
+    title: 'All Day Event',
+    start: new Date(y, m, 1)
+  }, {
+    title: 'Long Event',
+    start: new Date(y, m, d - 5),
+    end: new Date(y, m, d - 2)
+  }, {
+    id: 999,
+    title: 'Repeating Event',
+    start: new Date(y, m, d - 3, 16, 0),
+    allDay: false
+  }, {
+    id: 999,
+    title: 'Repeating Event',
+    start: new Date(y, m, d + 4, 16, 0),
+    allDay: false
+  }, {
+    title: 'Birthday Party',
+    start: new Date(y, m, d + 1, 19, 0),
+    end: new Date(y, m, d + 1, 22, 30),
+    allDay: false
+  }, {
+    title: 'Click for Google',
+    start: new Date(y, m, 28),
+    end: new Date(y, m, 29),
+    url: 'http://google.com/'
   }];
+  /* event source that calls a function on every view switch */
+  $scope.eventsF = function(start, end, callback) {
+    var s = new Date(start).getTime() / 1000;
+    var e = new Date(end).getTime() / 1000;
+    var m = new Date(start).getMonth();
+    var events = [{
+      title: 'Feed Me ' + m,
+      start: s + (50000),
+      end: s + (100000),
+      allDay: false,
+      className: ['customFeed']
+    }];
+    callback(events);
+  };
 
-  $scope.xAxisTickFormatFunction = function(){
-    return function(d){
-      return d3.time.format('%m-%d')(new Date(d));
+  /* alert on eventClick */
+  $scope.alertOnEventClick = function(event, allDay, jsEvent, view) {
+    $scope.alertMessage = (event.title + ' was clicked ');
+  };
+  /* alert on Drop */
+  $scope.alertOnDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
+    $scope.alertMessage = ('Event Droped to make dayDelta ' + dayDelta);
+  };
+  /* alert on Resize */
+  $scope.alertOnResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {
+    $scope.alertMessage = ('Event Resized to make dayDelta ' + minuteDelta);
+  };
+  /* add and removes an event source of choice */
+  $scope.addRemoveEventSource = function(sources, source) {
+    var canAdd = 0;
+    angular.forEach(sources, function(value, key) {
+      if (sources[key] === source) {
+        sources.splice(key, 1);
+        canAdd = 1;
+      }
+    });
+    if (canAdd === 0) {
+      sources.push(source);
+    }
+  };
+  /* add custom event*/
+  $scope.addEvent = function() {
+    $scope.events.push({
+      title: 'Enter name',
+      start: new Date(y, m, 28),
+      end: new Date(y, m, 29),
+    });
+  };
+  /* remove event */
+  $scope.remove = function(index) {
+    $scope.events.splice(index, 1);
+  };
+  /* Change View */
+  $scope.changeView = function(view, calendar) {
+    calendar.fullCalendar('changeView', view);
+  };
+  /* Change View */
+  $scope.renderCalender = function(calendar) {
+    if (calendar) {
+      calendar.fullCalendar('render');
+    }
+  };
+  /* config object */
+  $scope.uiConfig = {
+    calendar: {
+      height: 450,
+      editable: true,
+      header: {
+        left: 'title',
+        center: '',
+        right: 'today prev,next'
+      },
+      eventClick: $scope.alertOnEventClick,
+      eventDrop: $scope.alertOnDrop,
+      eventResize: $scope.alertOnResize
     }
   };
 
-  $scope.toolTipContentFunction = function(){
-    return function(key, x, y, e, graph) {
-      return '<h4>' +  y + ' at ' + x + '</h4>';
+  /* event sources array*/
+  $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+  $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+});
+
+/* prev */
+gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData",
+  function($scope, $http, calendarData) {
+    console.log("gymjournals.controller('mainSchedulerCtrl'")
+
+    $scope.title = "CALENDAR";
+
+    $scope.events = [{}];
+    $scope.save = function() {
+      $http.post(server + 'api/calendar/', JSON.stringify($scope.events));
+    }
+
+    // console.log(calendarData);
+    // calendarData = JSON.parse( JSON.stringify(calendarData) );
+
+    // $scope.events = calendarData;
+
+    $.each(calendarData, function(i, datePair) {
+      // console.log(datePair);
+      // var date = datePair.start_date;
+      // var list = date.split("-");
+      // var year = list[0];
+      // var month = list[1] + 1;
+      // var day = list[2];
+
+      // var startDate = new Date(year, month, day);
+      // var endDate = new Date(year, month, day+1);
+
+      // $scope.events[i]({
+      //   "id": i,
+      //   "text":"Task A-12458",
+      //   "start_date": new Date(2013, 11, 12),
+      //   "end_date": new Date(2013, 11, 13)
+      // });
+    });
+
+    //   $scope.events = calendarData;
+    // console.log($scope.events);
+
+
+    //Get list of dates from database
+    //For each, append to scope.events?
+
+    var date = "2014-12-02";
+    var list = date.split("-");
+    var year = list[0];
+    var month = list[1] + 1;
+    var day = list[2];
+
+    $scope.events = [{
+
+      "id": 1,
+      "text": "Task A-12458",
+      "start_date": new Date(2013, 11, 12),
+      "end_date": new Date(2013, 11, 13)
+    }, {
+      "id": 2,
+      "text": "Task A-83473",
+      "start_date": new Date(2013, 10, 22),
+      "end_date": new Date(2013, 10, 24)
+    }];
+
+    console.log($scope.events);
+
+    $scope.scheduler = {
+      date: new Date(2013, 10, 1)
     };
-  };
-}]);
+
+  }
+]);
+
+
+/* LOGIN CTRL */
+gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore", "userInfo",
+  function($scope, $http, $state, $cookieStore, userInfo) {
+    $scope.formData = {};
+    $scope.clear = function() {
+      $scope.simessage = "";
+      $scope.spmessage = "";
+      //console.log("change");
+    }
+
+    // process the login form
+    $('#signinForm').on('valid', function() {
+
+      $http.post(server + "api/login/", $scope.formData)
+        .success(function(data, status, headers, config) {
+          $scope.data = data;
+
+          $scope.alertType = "success";
+          $scope.simessage = "SUCCESS!";
+          $('#loginModal').foundation('reveal', 'close'); // close modal
+          $cookieStore.put('loggedin', 'true'); // store session
+          $cookieStore.put('data', data); // store user info
+          $state.go("profile"); // go to profile page
+        })
+        .error(function(data, status, headers, config) {
+          console.log(data);
+
+          $scope.alertType = "warning";
+          $scope.simessage = data.error;
+        });
+
+    }); // on valid
+
+    // process the registration form
+    $('#signupForm').on('valid', function() {
+
+      $scope.formData.dob = "1990-1-1";
+      $scope.formData.gender = "M";
+      console.log($scope.formData);
+      $http.post(server + "api/list/users/", $scope.formData)
+        .success(function(data, status, headers, config) {
+          $scope.alertType = "success";
+          $scope.spmessage = "SUCCESS!";
+          $('#loginModal').foundation('reveal', 'close'); // close modal
+          $cookieStore.put('loggedin', 'true'); // store session
+          $cookieStore.put('data', data); // store user info
+          $state.go("settings"); // go to profile page
+        })
+        .error(function(data, status, headers, config) {
+          console.log(data);
+          $scope.alertType = "warning";
+          if (data.username != null)
+            $scope.spmessage = data.username[0];
+          else if (data.email != null)
+            $scope.spmessage = data.email[0];
+
+        });
+
+    }); // on valid
+
+  }
+]);
+
+/* Weight tracking bar chart */
+gymjournals.controller("userWeightBarChart", ["$scope",
+  function($scope) {
+    $scope.user_id = $scope.user_id;
+    $scope.weightData = [{
+      key: "weight",
+      values: [
+        [
+          (new Date(Date.now() - 2345678901)).getTime(),
+          110
+        ],
+        [
+          (new Date(Date.now() - 1234567890)).getTime(),
+          80
+        ],
+        [
+          (new Date(Date.now() - 0335567890)).getTime(),
+          200
+        ],
+        [
+          (new Date(Date.now() - 0229567890)).getTime(),
+          160
+        ],
+        [
+          (new Date(Date.now())).getTime(),
+          300
+        ],
+      ]
+    }];
+
+    $scope.xAxisTickFormatFunction = function() {
+      return function(d) {
+        return d3.time.format('%m-%d')(new Date(d));
+      }
+    };
+
+    $scope.toolTipContentFunction = function() {
+      return function(key, x, y, e, graph) {
+        return '<h4>' + y + ' at ' + x + '</h4>';
+      };
+    };
+  }
+]);
 
 /* EXAMPLE */
 var exampleAPI = angular.module('exampleAPI', []);
 exampleAPI.controller(
-  "GetUsers",
-  [
+  "GetUsers", [
     "$scope", "$http",
     function($scope, $http) {
       $scope.getUsers = $http.get(server + "api/list/users/").success(
@@ -534,9 +582,9 @@ exampleAPI.controller(
           $scope.data = data;
         }
       ).error(
-          function(data, status, headers, config) {
-            $scope.error = "There was an error.";
-          }
+        function(data, status, headers, config) {
+          $scope.error = "There was an error.";
+        }
       );
 
       $scope.testData = "TEST DATA"
@@ -545,8 +593,7 @@ exampleAPI.controller(
 );
 
 exampleAPI.controller(
-  "CreateWorkout",
-  [
+  "CreateWorkout", [
     "$scope", "$http",
     function($scope, $http) {
       $scope.workoutData = null;

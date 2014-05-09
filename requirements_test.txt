@@ -9,3 +9,5 @@ pytest-cov==1.6
 pytest-django==2.6
 pytest-pep8==1.0.5
 pytest==2.5.2
+six==1.6.1
+jsbeautifier==1.5.1

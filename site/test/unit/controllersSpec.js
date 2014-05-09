@@ -1,6 +1,6 @@
 "use strict";
 
-describe("GetUsers", function(){
+describe("GetUsers", function() {
   var $scope, $rootScope, $httpBackend, createController;
 
   beforeEach(module("exampleAPI"));
@@ -32,11 +32,11 @@ describe("GetUsers", function(){
       "success": true,
       "other": 42
     });
-    
+
     var controller = createController();
-    
+
     $httpBackend.flush();
-    
+
     expect($scope.testData).toBe("TEST DATA");
   }));
 
@@ -55,7 +55,7 @@ describe("GetUsers", function(){
   });
 });
 
-describe("homeCtrl", function(){
+describe("homeCtrl", function() {
   var $scope, $rootScope, createController;
 
   beforeEach(module("gymjournals"));
@@ -82,9 +82,9 @@ describe("homeCtrl", function(){
   }));
 });
 
-describe("profileCtrl", function(){
+describe("profileCtrl", function() {
   var $scope, $rootScope, createController;
-  
+
   beforeEach(module("gymjournals"));
   beforeEach(inject(function($injector) {
     $rootScope = $injector.get('$rootScope');

@@ -27,43 +27,54 @@ directives.directive('weightChart', function() {
       function resize() {
         svg.selectAll('*').remove();
 
-      var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        var margin = {
+            top: 20,
+            right: 20,
+            bottom: 30,
+            left: 50
+          },
           width = window.innerWidth - margin.left - margin.right,
           height = (window.innerWidth * (3 / 16)) - margin.top - margin.bottom;
 
-      var x = d3.time.scale()
-        .range([0, width]);
+        var x = d3.time.scale()
+          .range([0, width]);
 
-      var y = d3.scale.linear()
-        .range([height, 0]);
+        var y = d3.scale.linear()
+          .range([height, 0]);
 
-      var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
+        var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom");
 
-      var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left");
+        var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
 
-      var area = d3.svg.area()
-        .x(function(d) { return x(d.date); })
-        .y0(height)
-        .y1(function(d) { return y(d.close); });
+        var area = d3.svg.area()
+          .x(function(d) {
+            return x(d.date);
+          })
+          .y0(height)
+          .y1(function(d) {
+            return y(d.close);
+          });
 
-      svg.attr("id", "weightChart")
-        .attr("width", "100%")
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("id", "outerGroup")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.close; })]);
+        svg.attr("id", "weightChart")
+          .attr("width", "100%")
+          .attr("height", height + margin.top + margin.bottom).append("g")
+          .attr("id", "outerGroup")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        x.domain(d3.extent(data, function(d) {
+          return d.date;
+        }));
+        y.domain([0, d3.max(data, function(d) {
+          return d.close;
+        })]);
 
         svg.append("path")
-        .datum(data)
-        .attr("class", "area")
-        .attr("d", area);
+          .datum(data)
+          .attr("class", "area")
+          .attr("d", area);
 
         svg.append("g")
           .attr("class", "x axis")
@@ -80,5 +91,6 @@ directives.directive('weightChart', function() {
           .style("text-anchor", "end")
           .text("Price ($)");
       }
-    }};
+    }
+  };
 });

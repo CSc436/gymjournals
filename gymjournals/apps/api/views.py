@@ -362,3 +362,17 @@ class TagWorkoutListAPIView(generics.ListCreateAPIView):
 class TagGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TagSerializer
     model = Tag
+
+
+class WeightGoalDifferenceAPIView(generics.RetrieveAPIView):
+    model = SiteUser
+
+    def get(self, request, format=None, **kwargs):
+        user_id = kwargs['user_id']
+        my_user = SiteUser.objects.filter(id=user_id).first()
+
+        if my_user.weight_goal and my_user.weight_set.all():
+            curr_weight = my_user.weight_set.order_by("-date").first()
+            return Response(float(my_user.weight_goal) -
+                            float(curr_weight.weight))
+        return Response(0.0)

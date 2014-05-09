@@ -26,7 +26,7 @@ do
     js-beautify -s 2 $file > .$file
     diff $file .$file > /dev/null
     (( exitStatus += $? ))
-    echo "exitStatus: $exitStatus"
+    
     rm $file
     mv .$file $old
 done

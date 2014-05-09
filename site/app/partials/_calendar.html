@@ -4,8 +4,7 @@
     <div class="container" id="directives-calendar" ng-controller="CalendarCtrl">
             <div class="well">
                 <div class="row-fluid">
-                    <div class="span4">
-                        
+<!--                     <div class="span4">         
                         <div class="btn-group calTools">           
                           <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
                             Toggle Source
@@ -14,18 +13,7 @@
                             Add Event
                           </button>
                         </div>
-
-                        <ul class="unstyled">
-                            <li ng-repeat="e in events">
-                                <div class="alert alert-info">
-                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-                                    <b> <input ng-model="e.title"></b> 
-                                    {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>
+                    </div> -->
 
                     <div class="span8" select="renderCalender(myCalendar1);">
                               <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
@@ -42,7 +30,7 @@
     $(document).foundation();
 
 
-                var _gaq = _gaq || [];
+            var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-17352735-3']);
             _gaq.push(['_trackPageview']);
 

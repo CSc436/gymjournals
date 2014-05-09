@@ -2,6 +2,7 @@
 Defines a user of GymJournals.
 """
 
+from math import floor
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator, MinValueValidator
@@ -45,8 +46,6 @@ class SiteUser(models.Model):
 
     @property
     def age(self):
-        if self.dob is None:
-            return -1
         return ((date.today()-self.dob)/365.25).days
 
     @property
@@ -103,7 +102,8 @@ class Workout(models.Model):
 
     def __repr__(self):
         """Return the User and date"""
-        return str(self.__dict__)
+        return ("Username: {}, id: {}, date: {}, description: {}".format(
+                self.user.username, self.id, self.date, self.description))
 
 
 class WeightExercise(models.Model):
@@ -127,7 +127,7 @@ class Set(models.Model):
 
     def __repr__(self):
         return ("{}: Set {} at {} lbs".format(self.ex, self.num, self.weight) +
-                (" for {} reps".format(self.num, self.weight, self.reps)
+                (" for {} reps".format(self.reps)
                     if self.reps else ""))
 
 
@@ -158,16 +158,17 @@ class AerobicExercise(models.Model):
             weightm = -0.05741
             hrm = .4472
             const = 20.4022
-        return (((user.age * agem) + (user.current_weight * weightm) +
-                (self.avg_heartrate * hrm) - const) *
-                (self.duration.hour * 60 + self.duration.minute) /
-                4.184)
+        return floor((((user.age * agem) + (user.current_weight * weightm) +
+                      (self.avg_heartrate * hrm) - const) *
+                      (self.duration.hour * 60 + self.duration.minute) /
+                      4.184))
+
+    def __str__(self):
+        return ("{}: {}".format(self.wkout.user.username, self.name) +
+                " for {}".format(self.duration) if self.duration else "")
 
     def __repr__(self):
-        return ("{}: {} for {}".format(self.wkout.user.username, self.name,
-                self.duration) +
-                (" at {} bpm".format(self.avg_heartrate)
-                    if self.avg_heartrate else ""))
+        return str(self)
 
 
 class Tag(models.Model):
@@ -181,7 +182,8 @@ class Tag(models.Model):
     def __repr__(self):
         return (("{}: ".format(self.weight_exercise) if self.weight_exercise
                 else "") +
-                ("{}: ".format(self.aerobic_exercise) if self.aerobic_exercise
+                ("{}: ".format(str(self.aerobic_exercise))
+                    if self.aerobic_exercise
                     else "") +
                 "{}".format(self.tag))
 

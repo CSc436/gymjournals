@@ -11,3 +11,4 @@ psycopg2==2.5.2
 py==1.4.20
 pytz==2013.9
 stevedore==0.14.1
+six==1.6.1

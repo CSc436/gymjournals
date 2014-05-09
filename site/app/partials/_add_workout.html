@@ -88,10 +88,16 @@
             </div>
             
             <div data-ng-if="exercise.type == 'aerobic'">
-              Duration:
-              <span editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
-              Average Heart Rate:
-              <span editable-number="exercise.avg_heartrate" e-min="1" e-required>{{exercise.avg_heartrate}}</span>
+              <div class="row">
+                <div class="medium-6 columns">
+                  Duration:
+                  <span editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
+                </div>
+                <div class="medium-6 columns">
+                  Average Heart Rate:
+                  <span editable-number="exercise.avg_heartrate" e-min="1" e-required>{{exercise.avg_heartrate}}</span>
+                </div>
+              </div>
             </div>
           </div>
         </dd>

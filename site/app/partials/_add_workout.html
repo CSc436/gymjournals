@@ -8,10 +8,10 @@
 
       <div class="row">
         <div class="medium-6 columns">
-          <span editable-text="workout.description" e-required>{{workout.description}}</span>        
+          <span id="workout-description" editable-text="workout.description" e-required>{{workout.description}}</span>        
         </div>
         <div class="medium-6 columns">
-          <span editable-color="workout.color" e-required style="background-color: {{workout.color}}">Color!</span>
+          <span id="workout-color" editable-color="workout.color" e-required style="background-color: {{workout.color}}">Color!</span>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
               <div class="row">
                 <div class="medium-4 columns">
                   Duration:
-                  <span class="wtf" editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
+                  <span editable-text="exercise.duration" e-min="00:00:01" e-pattern="\d{2}\:[0-5][0-9]\:[0-5][0-9]" e-title="xx:xx:xx" buttons="no">{{exercise.duration || 'empty'}}</span>
                 </div>
                 <div class="medium-3 columns reps-field">
                   <div class="row collapse">

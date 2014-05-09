@@ -54,11 +54,14 @@
 /*.editable-buttons{
   top:-10px;
 }*/
+
+
 .accordion-icon-options i{
   position: relative;
   top: -47px;
   right: 10px;
-  padding-right: 5px;
+  padding: 5px;
+  margin-bottom: -47px;
 }
 
 /* xediable number width */
@@ -279,7 +282,7 @@ background-color:#BEBEBE;
 }
 .editable{
   padding: 2% 2%;
-  display: block;
+  // display: block;
   width: 95%;
   //height: 2em;
   font-size:1.5rem;
@@ -345,3 +348,7 @@ $is-input: false;
 
 }
 */
+
+#workout-description, #workout-color {
+  display: inline-block;
+}

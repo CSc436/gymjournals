@@ -362,3 +362,18 @@ class TagWorkoutListAPIView(generics.ListCreateAPIView):
 class TagGetAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TagSerializer
     model = Tag
+
+
+class WeightGoalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SiteUser
+
+
+class WeightGoalDifferenceAPIView(generics.ListCreateAPIView):
+    serializer_class = WeightGoalSerializer
+    model = SiteUser
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        weight = self.kwargs['weight']
+        my_user = SiteUser.objects.filter(id=user_id).first()

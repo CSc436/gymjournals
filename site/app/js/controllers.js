@@ -83,6 +83,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
       loadInform();
       $scope[name_edit]="";
 
+
     })
     .error( function(data, status, headers, config ) {
       //console.log(data);
@@ -182,6 +183,7 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
       {value: 2, text: 'aerobic'},
     ];
 
+
     $scope.checkValid = function () {
       console.log('isValid?');
     };
@@ -191,7 +193,10 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
     };
 
     $scope.addExercise = function(name, type) {
-      $scope.exerciseItems.push({name:name, type:type, duration:"00:00:00"});
+      $scope.exerciseItems.push({name:name, type:type, 
+                                 duration:"00:00:00",
+                                 tags:[],
+                                });
     };
 
     $scope.addSet = function(exerciseIndex, reps, weight){
@@ -218,6 +223,8 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
             data.wkout = workoutID;
             data.name = exercise.name;
             data.duration = exercise.duration;
+            data.tags = exercise.tags;
+            console.log(data.tags);
 
             if (exercise.type == 'aerobic') {
               data.avg_heartrate = exercise.avg_heartrate;
@@ -226,6 +233,10 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
           // post exercises
           $http.post(server + "api/list/" +exercise.type+ "exercises/" + workoutID + "/", data)
             .success( function(data, status, headers, config ) {
+              console.log("exercise: ");
+              console.log(data);
+                var exerciseID = data.id;
+                var tagFields = { user: userInfo.getID() };
                 if (exercise.type == 'weight') {
                   // insert each set in this weighted exercise
                   angular.forEach(exercise.setItems, function(set, index){
@@ -236,12 +247,29 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
                         console.log(data);
                       }); // error
                     });
+                  tagFields['weight_exercise']= exerciseID ;
                 }
-            })
+                else{
+                  tagFields['aerobic_exercise']= exerciseID ;
+
+                }
+                angular.forEach(exercise.tags, function(tag, index){
+                  //post tags for this exercise
+                  console.log(tag);
+                  tagFields['tag']= tag.text;
+                  console.log(tagFields);
+                  $http.post(server + "api/list/tags_" +exercise.type+ "exercise/" + exerciseID + "/", tagFields)
+                    .success( function(data, status, headers, config ) {
+                      console.log(data);
+                    });
+                }); // forEach
+
+            }) // success
             .error( function(data, status, headers, config ) {
               console.log(data);
             }); // error
-          });
+          }); // end of forEach
+          
 
           $scope.workout.description = "Description"; // clear workout data
           $scope.exerciseItems = []; // clear exercise data

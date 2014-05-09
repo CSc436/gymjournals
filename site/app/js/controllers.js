@@ -2,7 +2,7 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
-var getURL="api/get/users/"
+var getURL = "api/get/users/";
 
 var gymjournals = angular.module('gymjournals');
 
@@ -251,7 +251,9 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
 
 
 /* CALENDAR CTRL */
-gymjournals.controller('CalendarCtrl', function($scope) {
+gymjournals.controller('CalendarCtrl', ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
+
+    // get today's date
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -263,21 +265,36 @@ gymjournals.controller('CalendarCtrl', function($scope) {
             className: 'gcal-event',           // an option!
             currentTimezone: 'America/Chicago' // an option!
     };
+
+    console.log($scope.eventSource);
+
     /* event source that contains custom events on the scope */
-    $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ];
+    $scope.events = [];
+
+    $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
+      .success( function(data, status, headers, config ) {
+        angular.forEach(data, function(workout, index){
+          var list = workout.date.split("-");
+          var year = list[0];
+          var month = list[1];
+          var day = list[2];
+
+          $scope.events.push({title: workout.description,
+                              start: new Date(year, month-1, day),
+                              startEditable: false,
+                            });
+        }); // for each
+      }) // success
+      .error( function(data, status, headers, config ) {
+        console.log(data);
+    });
+
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, callback) {
       var s = new Date(start).getTime() / 1000;
       var e = new Date(end).getTime() / 1000;
       var m = new Date(start).getMonth();
-      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      var events = [];
       callback(events);
     };
 
@@ -310,8 +327,8 @@ gymjournals.controller('CalendarCtrl', function($scope) {
     $scope.addEvent = function() {
       $scope.events.push({
         title: 'Enter name',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
+        start: new Date(y, m, d),
+        end: new Date(y, m, d),
       });
     };
     /* remove event */
@@ -347,7 +364,7 @@ gymjournals.controller('CalendarCtrl', function($scope) {
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-});
+}]);
 
 /* prev */
 gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData", function($scope, $http, calendarData) {

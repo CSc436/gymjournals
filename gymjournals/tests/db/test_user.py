@@ -333,13 +333,14 @@ def test_user_cant_save_over_999_9():
         user.save()
 
 
+@pytest.mark.django_db
 def test_user_repr():
     '''
     This will test that repr is working properly
     for a SiteUser
     '''
     jesse = create_user('jbright@email.com', 'jbright', 'lol',
-                        date.today()-timedelta(days=7305), 'M')
+                        date.today(), 'M')
     jesse.save()
 
     assert str(jesse) == "Username: jbright, Email: jbright@email.com"

@@ -7,7 +7,11 @@ var gymjournals = angular
     'xeditable',
     'ngTagsInput',
     'gymjournals.directives',
+<<<<<<< HEAD
 
+=======
+    'ui.calendar',
+>>>>>>> 3beb8e6a8deaa7776a924c50b8235b7f209b94f1
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
 

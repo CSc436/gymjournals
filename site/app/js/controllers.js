@@ -26,10 +26,10 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     var count = 5;
 
     $scope.username = obj.username;
-    
+
     $scope.email=obj.email;
-    
-    
+
+
     $scope.gender=obj.gender;
 
     if($scope.gender=="M"){
@@ -38,7 +38,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
     else if ($scope.gender=="F"){
       $scope.gender_show="♀";
     }
-   
+
     $scope.dob=obj.dob;
 
 
@@ -61,7 +61,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   }
   //make the field editable
   $scope.edit= function(element){
-    $scope[element]='edit'; 
+    $scope[element]='edit';
     //console.log($scope.weight_goal_edit);
 
   }
@@ -101,7 +101,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
   $scope.leave= function(element){
     $scope[element]="";
   }
-  //validate the password 
+  //validate the password
   $scope.save_pwd=function(old_pwd,new_pwd,confirm_pwd){
     //console.log("saving password.");
     //console.log($('.password-field'));
@@ -115,7 +115,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
             $scope.pwd_error="The old password doesn't match!";
 
           }
-    }      
+    }
   }
 
 }]);
@@ -141,7 +141,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       console.log(data);
 
     });
-    
+
     var date = new Date().toJSON().slice(0,10);
 
     // default workout info
@@ -151,17 +151,17 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
       color: "#6a4415",
       description:"Description",
       duration: "00:00:00"
-    }; 
+    };
 
     $scope.exerciseItems = [];
     // FOR TESTING
-    // $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00', 
-    //                         setItems:[{reps:5, weight:10}, 
-    //                                   {reps:5, weight:13}, 
-    //                                   {reps:5, weight:15}] }, 
+    // $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00',
+    //                         setItems:[{reps:5, weight:10},
+    //                                   {reps:5, weight:13},
+    //                                   {reps:5, weight:15}] },
     //                   {name:"dumbell fly", type:"weight", duration:'00:10:00',
-    //                         setItems:[{reps:5, weight:10}, 
-    //                                   {reps:105, weight:103}, 
+    //                         setItems:[{reps:5, weight:10},
+    //                                   {reps:105, weight:103},
     //                                   {reps:5, weight:15}] },
     //                   {name:"pushups", type:"weight", duration:'00:15:00'},
     //                   {name:"running", type:"aerobic", duration:'00:20:00', avg_heartrate:92}];
@@ -169,7 +169,7 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($
 
 /* EDITING TABLE FOR ADDING SETS CTRL */
 gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", function($scope, $http, userInfo){
-    
+
     $scope.name = 'Exercise'; // default exercise name
     $scope.type = 'weight'; // default status/type
     $scope.statuses = [
@@ -256,7 +256,7 @@ gymjournals.controller('CalendarCtrl', function($scope) {
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-    
+
     /* event source that pulls from google.com */
     $scope.eventSource = {
             url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",

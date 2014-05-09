@@ -6,6 +6,7 @@ var gymjournals = angular
     'ngCookies',
     'xeditable',
     'gymjournals.directives',
+    'nvd3ChartDirectives',
     'ui.calendar',
   ])
   .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {

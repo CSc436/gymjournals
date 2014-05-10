@@ -105,4 +105,9 @@ urlpatterns = patterns(
         views.TagGetAPIView.as_view(),
         name="get_tag",
     ),
+    url(
+        r"list/weight_goal_difference/(?P<user_id>\d+)/$",
+        views.WeightGoalDifferenceAPIView.as_view(),
+        name="weight_goal_difference",
+    ),
 )

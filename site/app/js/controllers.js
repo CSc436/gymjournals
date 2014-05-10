@@ -253,12 +253,16 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
                   tagFields['aerobic_exercise']= exerciseID ;
 
                 }
+                console.log(exercise.tags);
                 angular.forEach(exercise.tags, function(tag, index){
                   //post tags for this exercise
-                  console.log(tag);
+                  //console.log(tag.text);
                   tagFields['tag']= tag.text;
+                  console.log("sending: ");
                   console.log(tagFields);
-                  $http.post(server + "api/list/tags_" +exercise.type+ "exercise/" + exerciseID + "/", tagFields)
+                  var copyTagFields = {};
+                  $.extend(copyTagFields, tagFields);
+                  $http.post(server + "api/list/tags_" +exercise.type+ "exercise/" + exerciseID + "/", copyTagFields)
                     .success( function(data, status, headers, config ) {
                       console.log(data);
                     });

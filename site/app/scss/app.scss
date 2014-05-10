@@ -76,11 +76,21 @@ td .editable-input.editable-has-buttons {
   color: $success-color;
 }
 
-/* no overflow of words on tabs */
-// .tabs dd > a{
-//   padding-left: 0px;
-//   padding-right: 0px;
-// }
+.tabs dd > a{
+  font-size: 0.85rem;
+  //padding-top: 0.725rem;
+
+}
+.tabs dd.active > a{
+  padding-top: 0.45rem;
+
+}
+
+/* no overflow of words on tabs 
+ .tabs dd > a{
+   padding-left: 0px;
+   padding-right: 0px;
+ }*/
 
 /* navbar item bottom border */
 dd.active{
@@ -93,10 +103,16 @@ dd.active{
     line-height: 50%;
   }
 }
+/*
+dd {
 
+  height: 20px;
+  font-size: 0.75rem;
+}
+*/
 .accordion dd{
   margin-bottom: 10px;
-}
+} 
 
 
 /*everything inside a specific tab in navbar*/
@@ -164,10 +180,12 @@ dd.active{
   margin-top: 2em
 }
 
-.login_tabs > dd {
+.login_tabs > dd{
   width:50%;
   text-align:center;
 }
+
+
 
 .tabs-content {
   padding:1em
@@ -258,7 +276,7 @@ fieldset legend{
 /*.active a .accordion-state-icon {
     transform: rotate(45deg);
  }*/
-// weight chart {{{
+// weight chart 
 
 #weightChart {
   .axis path,

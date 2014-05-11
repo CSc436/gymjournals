@@ -481,33 +481,14 @@ gymjournals.controller("loginCtrl", ["$scope", "$http", "$state", "$cookieStore"
 }]);
 
 /* Weight tracking bar chart */
-gymjournals.controller("userWeightBarChart", ["$scope", function($scope) {
+gymjournals.controller("userWeightBarChart", ["$scope", "bodyWeightData", function($scope, bodyWeightData) {
   $scope.user_id = $scope.user_id;
-  $scope.weightData = [{
-    key: "weight",
-    values: [
-      [
-        (new Date(Date.now() - 2345678901)).getTime(),
-        110
-      ],
-      [
-        (new Date(Date.now() - 1234567890)).getTime(),
-        80
-      ],
-      [
-        (new Date(Date.now() - 0335567890)).getTime(),
-        200
-      ],
-      [
-        (new Date(Date.now() - 0229567890)).getTime(),
-        160
-      ],
-      [
-        (new Date(Date.now())).getTime(),
-        300
-      ],
-    ]
-  }];
+  bodyWeightData.getBodyWeightData($scope.user_id).then(function(weightData) {
+    $scope.weightData = [{
+      key: "weight",
+      values: weightData
+    }];
+  });
 
   $scope.xAxisTickFormatFunction = function(){
     return function(d){

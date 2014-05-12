@@ -237,7 +237,7 @@ fieldset legend{
 
 #navBarTabs{
   height: 50px;
-  margin-top: -1px; // gets rid of gap
+  /*margin-top: -1px; // gets rid of gap, messes up in firefox*/
 
   dd {
     height: 100%;

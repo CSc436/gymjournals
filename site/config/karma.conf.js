@@ -18,6 +18,7 @@ module.exports = function(config) {
       'app/js/app.js',
       'app/js/**/*.js',
       'test/unit/**/*Spec.js',
+      '../node_modules/blanket/src/blanket.js', 
     ],
 
     exclude: [

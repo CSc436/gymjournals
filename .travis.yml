@@ -30,4 +30,4 @@ script:
   - grunt test
   - cd ../
   - py.test
-  - bash beautify.bash
+  - ./beautify.sh

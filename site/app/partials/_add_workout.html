@@ -4,6 +4,7 @@
       <span class="fi-clipboard"></span>
       Log Workout
     </a>
+
     <div id="logAccordion1" class="content" >
 
       <div class="row">
@@ -88,6 +89,7 @@
             </div>
             
             <div data-ng-if="exercise.type == 'aerobic'">
+
               <div class="row">
                 <div class="medium-6 columns">
                   Duration:
@@ -99,10 +101,13 @@
                 </div>
               </div>
             </div>
+            <tags-input ng-controller="LoggingWorkoutCtrl"  class="bootstrap" ng-model="exercise.tags" placeholder="Adding tags here"></tags-input>
+
           </div>
         </dd>
         <!-- Add new Exercise -->
         <dd class="accordionExercise">
+
           <a ng-click="editableForm.$show()">
             <i class="fi-plus accordion-state-icon"></i>
             <form editable-form name="editableForm" onbeforesave="checkValid()" onaftersave="addExercise(name, type)" ng-show="editableForm.$visible">

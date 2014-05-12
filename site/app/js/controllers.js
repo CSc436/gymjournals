@@ -12,7 +12,6 @@ gymjournals.controller("homeCtrl", ["$scope", "$cookieStore",
   function($scope, $cookieStore) {
     $scope.title = "Home";
     $scope.items = ["one", "two", "three"]; // testing
-
     $cookieStore.put('loggedin', ''); // store session
   }
 ]);
@@ -65,7 +64,6 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo",
     $scope.edit = function(element) {
       $scope[element] = 'edit';
       //console.log($scope.weight_goal_edit);
-
     }
     //conncet the database and save the changed information
     $scope.save = function(index, element) {
@@ -86,6 +84,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo",
           loadInform();
           $scope[name_edit] = "";
 
+
         })
         .error(function(data, status, headers, config) {
           //console.log(data);
@@ -103,7 +102,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo",
     $scope.leave = function(element) {
       $scope[element] = "";
     }
-    //validate the password 
+    //validate the password
     $scope.save_pwd = function(old_pwd, new_pwd, confirm_pwd) {
       //console.log("saving password.");
       //console.log($('.password-field'));
@@ -123,7 +122,12 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo",
   }
 ]);
 
-
+gymjournals.controller("tagCtrl", ["$scope", "$http", "userInfo",
+  function($scope, $http, userInfo) {
+    var tags = ["one", "two", "three"]
+    $scope.tags = tags;
+  }
+]);
 
 /* PROFILE CTRL */
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo",
@@ -138,12 +142,9 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo",
         if (data.length != 0) {
           $scope.workouts = data;
         }
-
-
       })
       .error(function(data, status, headers, config) {
         console.log(data);
-
       });
 
     var date = new Date().toJSON().slice(0, 10);
@@ -159,13 +160,13 @@ gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo",
 
     $scope.exerciseItems = [];
     // FOR TESTING
-    // $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00', 
-    //                         setItems:[{reps:5, weight:10}, 
-    //                                   {reps:5, weight:13}, 
-    //                                   {reps:5, weight:15}] }, 
+    // $scope.exerciseItems = [{name:"bench press", type:"weight", duration:'00:05:00',
+    //                         setItems:[{reps:5, weight:10},
+    //                                   {reps:5, weight:13},
+    //                                   {reps:5, weight:15}] },
     //                   {name:"dumbell fly", type:"weight", duration:'00:10:00',
-    //                         setItems:[{reps:5, weight:10}, 
-    //                                   {reps:105, weight:103}, 
+    //                         setItems:[{reps:5, weight:10},
+    //                                   {reps:105, weight:103},
     //                                   {reps:5, weight:15}] },
     //                   {name:"pushups", type:"weight", duration:'00:15:00'},
     //                   {name:"running", type:"aerobic", duration:'00:20:00', avg_heartrate:92}];
@@ -186,6 +187,7 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
       text: 'aerobic'
     }, ];
 
+
     $scope.checkValid = function() {
       console.log('isValid?');
     };
@@ -198,7 +200,8 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
       $scope.exerciseItems.push({
         name: name,
         type: type,
-        duration: "00:00:00"
+        duration: "00:00:00",
+        tags: [],
       });
     };
 
@@ -229,6 +232,8 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
             data.wkout = workoutID;
             data.name = exercise.name;
             data.duration = exercise.duration;
+            data.tags = exercise.tags;
+            console.log(data.tags);
 
             if (exercise.type == 'aerobic') {
               data.avg_heartrate = exercise.avg_heartrate;
@@ -237,6 +242,12 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
             // post exercises
             $http.post(server + "api/list/" + exercise.type + "exercises/" + workoutID + "/", data)
               .success(function(data, status, headers, config) {
+                console.log("exercise: ");
+                console.log(data);
+                var exerciseID = data.id;
+                var tagFields = {
+                  user: userInfo.getID()
+                };
                 if (exercise.type == 'weight') {
                   // insert each set in this weighted exercise
                   angular.forEach(exercise.setItems, function(set, index) {
@@ -247,12 +258,31 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo",
                         console.log(data);
                       }); // error
                   });
+                  tagFields['weight_exercise'] = exerciseID;
+                } else {
+                  tagFields['aerobic_exercise'] = exerciseID;
+
                 }
-              })
-              .error(function(data, status, headers, config) {
-                console.log(data);
-              }); // error
-          });
+                console.log(exercise.tags);
+                angular.forEach(exercise.tags, function(tag, index) {
+                  //post tags for this exercise
+                  //console.log(tag.text);
+                  tagFields['tag'] = tag.text;
+                  console.log("sending: ");
+                  console.log(tagFields);
+                  var copyTagFields = {};
+                  $.extend(copyTagFields, tagFields);
+                  $http.post(server + "api/list/tags_" + exercise.type + "exercise/" + exerciseID + "/", copyTagFields)
+                    .success(function(data, status, headers, config) {
+                      console.log(data);
+                    });
+                }); // forEach
+
+              }) // success
+            .error(function(data, status, headers, config) {
+              console.log(data);
+            }); // error
+          }); // end of forEach
 
           $scope.workout.description = "Description"; // clear workout data
           $scope.exerciseItems = []; // clear exercise data

@@ -5,6 +5,7 @@ var gymjournals = angular
     'ui.router',
     'ngCookies',
     'xeditable',
+    'ngTagsInput',
     'gymjournals.directives',
     'ui.calendar',
   ])

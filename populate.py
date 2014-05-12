@@ -3,6 +3,7 @@ from imports import *
 jesse = SiteUser(email="jbright@email.com", username="jbright", pwd="lol")
 jesse.gender = 'M'
 jesse.dob = date(year=1992, month=3, day=10)
+jesse.weight_goal(150)
 jesse.save()
 
 jw = Weight(
@@ -27,6 +28,7 @@ jw.save()
 dan = SiteUser(email="dbelcher@email.com", username="dbelcher", pwd="haha")
 dan.gender = 'M'
 dan.dob = date(year=1993, month=6, day=14)
+dan.weight_goal(155)
 dan.save()
 
 dw = Weight(
@@ -41,6 +43,7 @@ logan = SiteUser(
     username="lchadderdon",
     pwd="password",
     gender='M',
+    logan.weight_goal(190)
     dob=date(year=1992, month=4, day=8)
     )
 logan.save()
@@ -48,6 +51,7 @@ logan.save()
 storme = SiteUser(email="stormeb@email.com", username="stormeb", pwd="yolo")
 storme.gender = 'M'
 storme.dob = date(year=1992, month=3, day=5)
+storme.weight_goal(215)
 storme.save()
 
 haziel = SiteUser(email="hzuniga@email.com", username="hzuniga", pwd="haziel")

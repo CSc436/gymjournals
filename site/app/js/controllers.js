@@ -2,7 +2,7 @@
 
 /* Controllers */
 var server = "http://localhost:8000/";
-var getURL="api/get/users/"
+var getURL = "api/get/users/";
 
 var gymjournals = angular.module('gymjournals');
 
@@ -11,7 +11,6 @@ var gymjournals = angular.module('gymjournals');
 gymjournals.controller("homeCtrl", ["$scope", "$cookieStore", function($scope, $cookieStore) {
   $scope.title = "Home";
   $scope.items = ["one", "two", "three"]; // testing
-
   $cookieStore.put('loggedin', ''); // store session
 }]);
 
@@ -84,6 +83,7 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
       loadInform();
       $scope[name_edit]="";
 
+
     })
     .error( function(data, status, headers, config ) {
       //console.log(data);
@@ -120,7 +120,13 @@ gymjournals.controller("settingsCtrl", ["$scope", "$http", "userInfo", function(
 
 }]);
 
+gymjournals.controller("tagCtrl",["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
+  var tags = ["one","two","three"]
+  $scope.tags =tags;
+  
 
+
+}]);
 
 /* PROFILE CTRL */
 gymjournals.controller("profileCtrl", ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
@@ -177,6 +183,7 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
       {value: 2, text: 'aerobic'},
     ];
 
+
     $scope.checkValid = function () {
       console.log('isValid?');
     };
@@ -186,7 +193,10 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
     };
 
     $scope.addExercise = function(name, type) {
-      $scope.exerciseItems.push({name:name, type:type, duration:"00:00:00"});
+      $scope.exerciseItems.push({name:name, type:type, 
+                                 duration:"00:00:00",
+                                 tags:[],
+                                });
     };
 
     $scope.addSet = function(exerciseIndex, reps, weight){
@@ -213,6 +223,8 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
             data.wkout = workoutID;
             data.name = exercise.name;
             data.duration = exercise.duration;
+            data.tags = exercise.tags;
+            console.log(data.tags);
 
             if (exercise.type == 'aerobic') {
               data.avg_heartrate = exercise.avg_heartrate;
@@ -221,6 +233,10 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
           // post exercises
           $http.post(server + "api/list/" +exercise.type+ "exercises/" + workoutID + "/", data)
             .success( function(data, status, headers, config ) {
+              console.log("exercise: ");
+              console.log(data);
+                var exerciseID = data.id;
+                var tagFields = { user: userInfo.getID() };
                 if (exercise.type == 'weight') {
                   // insert each set in this weighted exercise
                   angular.forEach(exercise.setItems, function(set, index){
@@ -231,12 +247,33 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
                         console.log(data);
                       }); // error
                     });
+                  tagFields['weight_exercise']= exerciseID ;
                 }
-            })
+                else{
+                  tagFields['aerobic_exercise']= exerciseID ;
+
+                }
+                console.log(exercise.tags);
+                angular.forEach(exercise.tags, function(tag, index){
+                  //post tags for this exercise
+                  //console.log(tag.text);
+                  tagFields['tag']= tag.text;
+                  console.log("sending: ");
+                  console.log(tagFields);
+                  var copyTagFields = {};
+                  $.extend(copyTagFields, tagFields);
+                  $http.post(server + "api/list/tags_" +exercise.type+ "exercise/" + exerciseID + "/", copyTagFields)
+                    .success( function(data, status, headers, config ) {
+                      console.log(data);
+                    });
+                }); // forEach
+
+            }) // success
             .error( function(data, status, headers, config ) {
               console.log(data);
             }); // error
-          });
+          }); // end of forEach
+          
 
           $scope.workout.description = "Description"; // clear workout data
           $scope.exerciseItems = []; // clear exercise data
@@ -251,7 +288,9 @@ gymjournals.controller('LoggingWorkoutCtrl', ['$scope', "$http", "userInfo", fun
 
 
 /* CALENDAR CTRL */
-gymjournals.controller('CalendarCtrl', function($scope) {
+gymjournals.controller('CalendarCtrl', ["$scope", "$http", "userInfo", function($scope, $http, userInfo) {
+
+    // get today's date
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -263,21 +302,36 @@ gymjournals.controller('CalendarCtrl', function($scope) {
             className: 'gcal-event',           // an option!
             currentTimezone: 'America/Chicago' // an option!
     };
+
+    console.log($scope.eventSource);
+
     /* event source that contains custom events on the scope */
-    $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ];
+    $scope.events = [];
+
+    $http.get(server + "api/list/workouts/" + userInfo.getID() + "/")
+      .success( function(data, status, headers, config ) {
+        angular.forEach(data, function(workout, index){
+          var list = workout.date.split("-");
+          var year = list[0];
+          var month = list[1];
+          var day = list[2];
+
+          $scope.events.push({title: workout.description,
+                              start: new Date(year, month-1, day),
+                              startEditable: false,
+                            });
+        }); // for each
+      }) // success
+      .error( function(data, status, headers, config ) {
+        console.log(data);
+    });
+
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, callback) {
       var s = new Date(start).getTime() / 1000;
       var e = new Date(end).getTime() / 1000;
       var m = new Date(start).getMonth();
-      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      var events = [];
       callback(events);
     };
 
@@ -310,8 +364,8 @@ gymjournals.controller('CalendarCtrl', function($scope) {
     $scope.addEvent = function() {
       $scope.events.push({
         title: 'Enter name',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
+        start: new Date(y, m, d),
+        end: new Date(y, m, d),
       });
     };
     /* remove event */
@@ -347,7 +401,7 @@ gymjournals.controller('CalendarCtrl', function($scope) {
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
-});
+}]);
 
 /* prev */
 gymjournals.controller('mainSchedulerCtrl', ["$scope", "$http", "calendarData", function($scope, $http, calendarData) {

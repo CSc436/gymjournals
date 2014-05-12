@@ -54,11 +54,14 @@
 /*.editable-buttons{
   top:-10px;
 }*/
+
+
 .accordion-icon-options i{
   position: relative;
   top: -47px;
   right: 10px;
-  padding-right: 5px;
+  padding: 5px;
+  margin-bottom: -47px;
 }
 
 /* xediable number width */
@@ -73,11 +76,21 @@ td .editable-input.editable-has-buttons {
   color: $success-color;
 }
 
-/* no overflow of words on tabs */
-// .tabs dd > a{
-//   padding-left: 0px;
-//   padding-right: 0px;
-// }
+.tabs dd > a{
+  font-size: 0.85rem;
+  //padding-top: 0.725rem;
+
+}
+.tabs dd.active > a{
+  padding-top: 0.45rem;
+
+}
+
+/* no overflow of words on tabs 
+ .tabs dd > a{
+   padding-left: 0px;
+   padding-right: 0px;
+ }*/
 
 /* navbar item bottom border */
 dd.active{
@@ -90,10 +103,16 @@ dd.active{
     line-height: 50%;
   }
 }
+/*
+dd {
 
+  height: 20px;
+  font-size: 0.75rem;
+}
+*/
 .accordion dd{
   margin-bottom: 10px;
-}
+} 
 
 
 /*everything inside a specific tab in navbar*/
@@ -161,10 +180,12 @@ dd.active{
   margin-top: 2em
 }
 
-.login_tabs > dd {
+.login_tabs > dd{
   width:50%;
   text-align:center;
 }
+
+
 
 .tabs-content {
   padding:1em
@@ -255,7 +276,7 @@ fieldset legend{
 /*.active a .accordion-state-icon {
     transform: rotate(45deg);
  }*/
-// weight chart {{{
+// weight chart 
 
 #weightChart {
   .axis path,
@@ -279,7 +300,7 @@ background-color:#BEBEBE;
 }
 .editable{
   padding: 2% 2%;
-  display: block;
+  // display: block;
   width: 95%;
   //height: 2em;
   font-size:1.5rem;
@@ -345,3 +366,9 @@ $is-input: false;
 
 }
 */
+
+#workout-description, #workout-color {
+  display: inline-block;
+  width: 100%;
+  margin: 0px;
+}
